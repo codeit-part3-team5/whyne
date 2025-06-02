@@ -1,0 +1,60 @@
+name: 🎨 디자인/UI 개선
+description: 사용자 경험을 향상시키기 위한 디자인 또는 UI 개선 제안을 작성해주세요.
+title: "[디자인/UI] 개선 내용 작성"
+labels: ["디자인", "UI", "enhancement"]
+assignees: []
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: 📝 개선 사항 요약
+      description: 개선하고자 하는 디자인이나 UI 문제를 한 문장으로 작성해주세요.
+      placeholder: ex) 로그인 버튼 색상 변경 필요
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 🎯 개선 상세 설명
+      description: 현재 디자인이나 UI 문제점과 개선 방안을 구체적으로 적어주세요.
+      placeholder: |
+        - 어떤 부분이 불편한지  
+        - 개선하면 어떤 효과가 있을지  
+        - 구체적인 변경 아이디어
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 🔗 참고 자료 / 레퍼런스
+      description: 디자인 가이드, 참고 이미지, 외부 링크 등을 첨부해주세요.
+      placeholder: ex) https://www.figma.com/file/xyz, 디자인 가이드 문서 링크 등
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚦 우선순위
+      description: 개선 작업의 중요도를 선택해주세요.
+      options:
+        - 🟥 긴급 (사용자 경험에 큰 영향)
+        - 🟧 높음 (많은 사용자가 불편함)
+        - 🟨 보통 (일반적인 개선)
+        - 🟩 낮음 (선택적 개선)
+    validations:
+      required: false
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: ✅ 할 일 목록 (체크리스트)
+      description: 개선 작업에 필요한 구체적인 항목들을 작성해주세요.
+      placeholder: |
+        - [ ] css 개선 
+        - [ ] 구현  
+        - [ ] 테스트
+    validations:
+      required: false
