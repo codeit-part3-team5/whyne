@@ -1,0 +1,101 @@
+name: 🐛 버그 리포트
+description: 발견한 버그를 보고하고 수정 작업을 시작할 때 사용하세요.
+title: "[버그] 버그 제목 작성"
+labels: ["버그"]
+assignees: []
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: 📝 버그 요약
+      description: 발견한 버그를 한 문장으로 간단히 작성해주세요.
+      placeholder: ex) 로그인 시 인증 실패 오류 발생
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 🐞 버그 상세 설명
+      description: 버그가 발생하는 상황과 내용을 구체적으로 적어주세요.
+      placeholder: |
+        - 어떤 환경에서 발생하는지 (OS, 브라우저 등)  
+        - 어떤 기능을 사용할 때 발생하는지  
+        - 문제 증상 및 오류 메시지
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 🔄 재현 방법
+      description: 버그를 재현할 수 있는 단계별 방법을 상세히 적어주세요.
+      placeholder: |
+        1. 로그인 페이지 접속  
+        2. 아이디/비밀번호 입력  
+        3. 로그인 버튼 클릭  
+        4. 인증 실패 메시지 확인
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: ✅ 예상 동작
+      description: 정상적으로 동작했을 때 기대되는 결과를 작성해주세요.
+      placeholder: 예) 로그인 성공 후 대시보드 페이지로 이동
+    validations:
+      required: false
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: ❌ 실제 동작
+      description: 실제로 발생하는 문제나 오류를 작성해주세요.
+      placeholder: 예) "인증 실패" 오류 메시지 표시, 로그인 불가
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚦 우선순위
+      description: 버그의 심각도나 처리 우선순위를 선택해주세요.
+      options:
+        - 🟥 긴급 (서비스 장애, 주요 기능 문제)
+        - 🟧 높음 (사용자 불편이 크거나 빈번함)
+        - 🟨 보통 (일반적인 문제)
+        - 🟩 낮음 (경미한 문제, UI 사소한 오류)
+    validations:
+      required: false
+
+  - type: input
+    id: branch-name
+    attributes:
+      label: 🗂️ 브랜치 이름
+      description: 이 버그 수정을 위한 브랜치 이름을 작성해주세요.
+      placeholder: ex) fix/login-auth-error
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: ✅ 할 일 목록 (체크리스트)
+      description: 버그 수정 과정에서 해야 할 구체적인 작업 목록을 작성해주세요.
+      placeholder: |
+        - [ ] 문제 원인 분석  
+        - [ ] 코드 수정  
+        - [ ] 테스트 케이스 작성  
+        - [ ] 리뷰 요청
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: 🔗 참고 자료
+      description: 관련 이슈, 로그, 문서, 스크린샷 등을 첨부해주세요.
+      placeholder: ex) https://example.com/logs/1234
+    validations:
+      required: false
