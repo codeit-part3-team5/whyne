@@ -41,3 +41,5 @@
 ---
 
 > 🚨 _"모든 PR에는 커피가 필요하다!"_ ☕
+
+- [bugfix pr 템플릿](?expand=1&template=bugfix_template.md)
