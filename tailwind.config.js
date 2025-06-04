@@ -9,16 +9,6 @@ export default {
 	],
 	theme: {
 		extend: {
-			colors: {
-				black: "var(--color-black)",
-				white: "var(--color-white)",
-				gray100: "var(--color-gray100)",
-				gray300: "var(--color-gray300)",
-				gray500: "var(--color-gray500)",
-				gray800: "var(--color-gray800)",
-				purple: "var(--color-purple)",
-				"light-purple": "var(--color-light-purple)",
-			},
 			fontFamily: {
 				pretendard: ["var(--font-pretendard)"],
 			},
