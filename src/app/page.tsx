@@ -1,8 +1,8 @@
 export default function Home() {
-  return (
-    <div>
-      <main>와인 프로젝트입니다.</main>
-      <footer></footer>
-    </div>
-  );
+	return (
+		<div>
+			<h1 className="text-pink-400">Hello, Next.js!</h1>
+			<div className="text-purple">안녕하세요</div>
+		</div>
+	);
 }
