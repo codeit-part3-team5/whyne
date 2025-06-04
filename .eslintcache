@@ -9,14 +9,14 @@
 		"mtime": 1749006109121
 	},
 	{
-		"size": 182,
-		"mtime": 1749006109122,
+		"size": 188,
+		"mtime": 1749010977660,
 		"results": "4",
 		"hashOfConfig": "5"
 	},
 	{
-		"size": 691,
-		"mtime": 1749006109131,
+		"size": 364,
+		"mtime": 1749011039964,
 		"results": "6",
 		"hashOfConfig": "7"
 	},
@@ -37,7 +37,7 @@
 		"suppressedMessages": "13",
 		"errorCount": 0,
 		"fatalErrorCount": 0,
-		"warningCount": 2,
+		"warningCount": 1,
 		"fixableErrorCount": 0,
 		"fixableWarningCount": 0,
 		"source": null
@@ -48,36 +48,20 @@
 	[],
 	"D:\\Source\\Sprint_Project\\whyne\\tailwind.config.js",
 	[
-		"14",
-		"15"
+		"14"
 	],
 	[],
 	{
-		"ruleId": "16",
+		"ruleId": "15",
 		"severity": 1,
-		"message": "17",
+		"message": "16",
 		"line": 3,
 		"column": 1,
-		"nodeType": "18",
-		"endLine": 28,
+		"nodeType": "17",
+		"endLine": 18,
 		"endColumn": 3
-	},
-	{
-		"ruleId": "19",
-		"severity": 1,
-		"message": "20",
-		"line": 20,
-		"column": 5,
-		"nodeType": "21",
-		"messageId": "22",
-		"endLine": 20,
-		"endColumn": 19
 	},
 	"import/no-anonymous-default-export",
 	"Assign object to a variable before exporting as module default",
-	"ExportDefaultDeclaration",
-	"@typescript-eslint/naming-convention",
-	"Object Literal Property name `light-purple` must match one of the following formats: camelCase, PascalCase",
-	"Literal",
-	"doesNotMatchFormat"
+	"ExportDefaultDeclaration"
 ]
