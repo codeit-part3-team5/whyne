@@ -1,20 +1,22 @@
 import "./globals.css";
-export const metadata = {
-  title: "WHYNE",
-  description: "와인 플랫폼",
-  icons: {
-    href: "/favicon.ico",
-    rel: "icon",
-  },
-};
+
+import localFont from "next/font/local";
+
+const pretendard = localFont({
+	src: "../fonts/PretendardVariable.woff2",
+	display: "swap",
+	weight: "45 920",
+	variable: "--font-pretendard",
+});
+
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="ko">
-      <body>{children}</body>
-    </html>
-  );
+	return (
+		<html className={`${pretendard.variable}`} lang="ko">
+			<body className={pretendard.className}>{children}</body>
+		</html>
+	);
 }

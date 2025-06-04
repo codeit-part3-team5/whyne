@@ -1,0 +1,67 @@
+[
+	{
+		"D:\\Source\\Sprint_Project\\whyne\\src\\app\\layout.tsx": "1",
+		"D:\\Source\\Sprint_Project\\whyne\\src\\app\\page.tsx": "2",
+		"D:\\Source\\Sprint_Project\\whyne\\tailwind.config.js": "3"
+	},
+	{
+		"size": 473,
+		"mtime": 1749006109121
+	},
+	{
+		"size": 188,
+		"mtime": 1749010977660,
+		"results": "4",
+		"hashOfConfig": "5"
+	},
+	{
+		"size": 364,
+		"mtime": 1749011039964,
+		"results": "6",
+		"hashOfConfig": "7"
+	},
+	{
+		"filePath": "8",
+		"messages": "9",
+		"suppressedMessages": "10",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 0,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0
+	},
+	"juehmk",
+	{
+		"filePath": "11",
+		"messages": "12",
+		"suppressedMessages": "13",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 1,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0,
+		"source": null
+	},
+	"3ueb7a",
+	"D:\\Source\\Sprint_Project\\whyne\\src\\app\\page.tsx",
+	[],
+	[],
+	"D:\\Source\\Sprint_Project\\whyne\\tailwind.config.js",
+	[
+		"14"
+	],
+	[],
+	{
+		"ruleId": "15",
+		"severity": 1,
+		"message": "16",
+		"line": 3,
+		"column": 1,
+		"nodeType": "17",
+		"endLine": 18,
+		"endColumn": 3
+	},
+	"import/no-anonymous-default-export",
+	"Assign object to a variable before exporting as module default",
+	"ExportDefaultDeclaration"
+]
