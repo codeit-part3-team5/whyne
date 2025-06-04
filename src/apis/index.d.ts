@@ -13,4 +13,4 @@ declare interface SignInApiResponse {
 	refreshToken: string;
 }
 
-declare type SignInApi = (email: string, password: string) => Primise<SignInApiResponse>;
+declare type SignInApi = (email: string, password: string) => Promise<SignInApiResponse>;
