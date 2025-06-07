@@ -3,7 +3,7 @@ import { Review } from "./Review";
 
 export type WineType = "RED" | "WHITE" | "ROSE" | "SPARKLING";
 
-export interface WineListData {
+export interface BaseWineData {
   id: number;
   name: string;
   region: string;
@@ -16,19 +16,7 @@ export interface WineListData {
   userId: number;
 }
 
-export interface WineDetailData {
-  id: number;
-  name: string;
-  region: string;
-  image: string;
-  price: number;
-  type: WineType;
-  avgRating: number;
-  reviewCount: number;
-  recentReview: RecentReview | null;
-  userId: number;
+export interface WineDetailData extends BaseWineData {
   reviews: Review[];
-  avgRatings: {
-    [key: string]: number;
-  };
+  avgRatings: Record<string, number>;
 }
