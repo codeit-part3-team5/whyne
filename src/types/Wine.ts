@@ -1,5 +1,4 @@
-import { RecentReview } from "./RecentReview";
-import { Review } from "./Review";
+import { RecentReview, Review } from "./Review";
 
 export type WineType = "RED" | "WHITE" | "ROSE" | "SPARKLING";
 
@@ -20,3 +19,9 @@ export interface WineDetailData extends BaseWineData {
   reviews: Review[];
   avgRatings: Record<string, number>;
 }
+
+export type WinesResponse = {
+  list: BaseWineData[];
+  totalCount: number;
+  nextCursor: null;
+};

@@ -1,3 +1,14 @@
+import ReviewSummary from "@/components/ReviewSummary";
+import wines from "@/mocks/winesData.json";
+import { WineType } from "@/types/Wine";
+// import wine from "@/mocks/winesDetail.json";
+
 export default function TestPage() {
-  return <div>테스트 페이지입니다.</div>;
+  return (
+    <div>
+      {wines.list.map((wine) => (
+        <ReviewSummary key={wine.id} {...{ ...wine, type: wine.type as WineType }} />
+      ))}
+    </div>
+  );
 }
