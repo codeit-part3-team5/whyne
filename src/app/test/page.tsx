@@ -29,7 +29,7 @@ export default function TestPage() {
           />
         </div>
       ))} */}
-      <ReviewSummary direction="column" {...{ ...fixedWine, type: fixedWine.type as WineType }} />
+      <ReviewSummary direction="row" {...{ ...fixedWine, type: fixedWine.type as WineType }} />
     </div>
   );
 }

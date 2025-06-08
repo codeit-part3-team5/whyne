@@ -16,7 +16,7 @@ export default function ReviewSummary({
       className={cn(
         "flex flex-shrink-0 items-center",
         direction === "column"
-          ? "flex-col w-[112px] min-h-[121px] items-start gap-[10px]" // 높이 고정 대신 min-h로 변경
+          ? "flex-col w-[112px] min-h-[121px] items-start gap-[10px]"
           : "flex-row gap-[20px]"
       )}
     >
@@ -29,7 +29,7 @@ export default function ReviewSummary({
           "flex items-start w-[112px]",
           direction === "column"
             ? "flex-col gap-[10px]"
-            : "flex-col gap-[5px] justify-center mt-[0]" // mt-[9px] 대신 0으로 조절
+            : "flex-col gap-[5px] justify-center mt-[9px]"
         )}
       >
         <Star avgRating={avgRating} />
