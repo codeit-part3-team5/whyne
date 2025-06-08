@@ -1,4 +1,4 @@
-import { RecentReview, Review } from "./Review";
+import { RecentReview, Review } from "./ReviewList";
 
 export type WineType = "RED" | "WHITE" | "ROSE" | "SPARKLING";
 
