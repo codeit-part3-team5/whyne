@@ -13,7 +13,7 @@ export interface Review {
   drySweet: number;
   softAcidic: number;
   user: User;
-  isLikes: boolean;
+  isLiked: boolean;
 }
 
 export interface RecentReview {
