@@ -1,13 +1,16 @@
 import StarIcon from "@/assets/icons/star-icon.svg";
+type StarProps = { avgRating: number };
 
-export default function Star({ avgRating }: { avgRating: number }) {
+export default function Star({ avgRating }: StarProps) {
   const activeColor = "var(--color-purple)";
-  // const inactiveColor = "var(--color-gray300)";
-  console.log(avgRating);
+  const defaultColor = "var(--color-gray300)";
 
-  return (
-    <div>
-      <StarIcon fill={activeColor} height="24" width="24" />
-    </div>
-  );
+  const totalStars = 5;
+  const stars = Array.from({ length: totalStars }, (_, i) => {
+    const fillColor = avgRating >= i + 1 ? activeColor : defaultColor;
+
+    return <StarIcon key={i} className="mr-[1px]" fill={fillColor} height="22" width="22" />;
+  });
+
+  return <div style={{ display: "flex" }}>{stars}</div>;
 }

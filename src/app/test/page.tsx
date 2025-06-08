@@ -7,7 +7,13 @@ export default function TestPage() {
   return (
     <div>
       {wines.list.map((wine) => (
-        <ReviewSummary key={wine.id} {...{ ...wine, type: wine.type as WineType }} />
+        <div key={wine.id} className="mb-[24px]">
+          <ReviewSummary
+            key={wine.id}
+            direction="column"
+            {...{ ...wine, type: wine.type as WineType }}
+          />
+        </div>
       ))}
     </div>
   );
