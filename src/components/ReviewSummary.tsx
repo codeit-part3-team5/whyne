@@ -14,40 +14,26 @@ export default function ReviewSummary({
   return (
     <div
       className={cn(
-        "flex items-center",
+        "flex flex-shrink-0 items-center",
         direction === "column"
-          ? "flex-col w-[112px] h-[121px] items-start gap-[10px]"
+          ? "flex-col w-[112px] min-h-[121px] items-start gap-[10px]" // 높이 고정 대신 min-h로 변경
           : "flex-row gap-[20px]"
       )}
     >
-      <div
-        className="
-      text-gray-800
-        text-[54px] 
-        font-extrabold
-        leading-normal
-        [font-feature-settings:'liga' off,'clig' off]     
-      "
-      >
+      <div className={cn("text-gray-800 text-[48px] font-extrabold leading-[1.3]")}>
         {avgRating.toFixed(1)}
       </div>
 
       <div
         className={cn(
-          "flex items-start w-[112px] h-[24px]",
-          direction === "column" ? "flex-col gap-[10px]" : "flex-col gap-[5px]"
+          "flex items-start w-[112px]",
+          direction === "column"
+            ? "flex-col gap-[10px]"
+            : "flex-col gap-[5px] justify-center mt-[0]" // mt-[9px] 대신 0으로 조절
         )}
       >
         <Star avgRating={avgRating} />
-        <div
-          className="
-          text-gray-500
-          text-[14px]
-          font-normal
-          leading-[24px]
-          not-italic
-          "
-        >
+        <div className="text-gray-500 text-[14px] font-normal leading-[24px]">
           {reviewCount}개의 후기
         </div>
       </div>
