@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, CreateAxiosDefaults } from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const TEAM_ID: string = "15-5";
 const DEFAULT_CONFIG: CreateAxiosDefaults = {
@@ -10,17 +11,28 @@ const DEFAULT_CONFIG: CreateAxiosDefaults = {
   signal: new AbortController().signal,
 };
 
-const getAuthValue = (token: string | undefined | null): string => {
-  const authValue = token ?? localStorage.getItem("accessToken");
+const axiosClient: AxiosInstance = axios.create(DEFAULT_CONFIG);
+const axiosAuthClient: AxiosInstance = axios.create(DEFAULT_CONFIG);
+
+const getAuthValue = async (token: string | undefined | null): Promise<string> => {
+  let authValue = token ?? localStorage.getItem("accessToken");
+  if (authValue !== null) {
+    const jwtToken = jwtDecode(authValue);
+    if (jwtToken.exp !== undefined && jwtToken.exp < Date.now() / 1000) {
+      const responseData = (
+        await axiosClient.post<RefreshTokenApiResponse>("/auth/refresh-token", {
+          refreshToken: localStorage.getItem("refreshToken"),
+        })
+      ).data;
+      authValue = responseData.accessToken;
+    }
+  }
   return `Bearer ${authValue}`;
 };
 
-const axiosAuthClient: AxiosInstance = axios.create(DEFAULT_CONFIG);
-axiosAuthClient.interceptors.request.use((config) => {
-  config.headers.Authorization = getAuthValue(null);
+axiosAuthClient.interceptors.request.use(async (config) => {
+  config.headers.Authorization = await getAuthValue(null);
   return config;
 });
-
-const axiosClient: AxiosInstance = axios.create(DEFAULT_CONFIG);
 
 export { axiosAuthClient, axiosClient };
