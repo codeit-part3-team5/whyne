@@ -1,11 +1,48 @@
 // 와인 목록 페이지
 import WineCard from "@/components/AboutWine/WineCard";
 
-export default function wineListPage() {
+const mockData = {
+  list: [
+    {
+      id: 907,
+      name: "Alain Gautheron Chablis Premier Cru Vaillons",
+      region: "France",
+      image: "https://awine.kr/wp-content/uploads/vb_wine_img/25122.png",
+      price: 89000,
+      type: "WHITE",
+      avgRating: 5,
+      reviewCount: 2,
+      recentReview: {
+        id: 2293,
+        content: "맛있어요!!",
+        createdAt: "2025-04-04T04:48:58.903Z",
+        updatedAt: "2025-04-04T04:48:58.903Z",
+      },
+      userId: 1044,
+    },
+    {
+      id: 906,
+      name: "Roger Coulon Vrigny l'Hommee Champagne Premier Cru",
+      region: "France",
+      image: "https://awine.kr/wp-content/uploads/vb_wine_img/10933.png",
+      price: 189000,
+      type: "SPARKLING",
+      avgRating: 0,
+      reviewCount: 0,
+      recentReview: null,
+      userId: 1044,
+    },
+  ],
+  totalCount: 31,
+  nextCursor: 907,
+};
+
+export default function winesPage() {
   return (
-    <div>
-      와인 목록 페이지입니다.
-      <WineCard />
-    </div>
+    <main className="flex flex-col items-center gap-6 py-10">
+      {mockData.list.map((wine) => (
+        <WineCard key={wine.id} data={wine} />
+      ))}
+    </main>
   );
 }

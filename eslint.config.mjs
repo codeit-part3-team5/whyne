@@ -1,11 +1,10 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import unusedImportsPlugin from "eslint-plugin-unused-imports";
+import typescriptPlugin from "@typescript-eslint/eslint-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,18 +13,15 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-export default tseslint.config(
-  // 기본 추천 설정
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-
   eslintConfigPrettier, // Prettier 충돌 방지
 
   // 커스텀 규칙
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
+      "@typescript-eslint": typescriptPlugin,
       "simple-import-sort": simpleImportSortPlugin,
       "unused-imports": unusedImportsPlugin,
     },
@@ -129,5 +125,7 @@ export default tseslint.config(
         version: "detect", // React 자동 버전 감지
       },
     },
-  }
-);
+  },
+];
+
+export default eslintConfig;
