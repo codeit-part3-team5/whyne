@@ -25,6 +25,6 @@ declare interface MeApiResponse {
   image: string | null;
 }
 
-declare type refreshTokenApi = (refreshToken: string) => Promise<RefreshTokenApiResponse>;
+declare type RefreshTokenApi = (refreshToken: string) => Promise<RefreshTokenApiResponse>;
 declare type SignInApi = (email: string, password: string) => Promise<SignInApiResponse>;
 declare type MeApi = () => Promise<MeApiResponse>;
