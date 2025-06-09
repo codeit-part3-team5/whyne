@@ -2,12 +2,13 @@
 @config '../../tailwind.config.js';
 
 @theme {
-	--color-black: #101318;
-	--color-white: #ffffff;
-	--color-gray100: #f2f4f8;
-	--color-gray300: #cfdbea;
-	--color-gray500: #9facbd;
-	--color-gray800: #2d3034;
-	--color-purple: #6a42db;
-	--color-light-purple: #f1edfc;
+  --color-black: #101318;
+  --color-white: #ffffff;
+  --color-gray100: #f2f4f8;
+  --color-gray300: #cfdbea;
+  --color-gray500: #9facbd;
+  --color-gray800: #2d3034;
+  --color-purple: #6a42db;
+  --color-dark-purple: #5731c8;
+  --color-light-purple: #f1edfc;
 }
