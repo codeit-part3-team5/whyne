@@ -9,7 +9,7 @@ type WineCardProps = {
   };
 };
 
-export default function WineCard({ data }: WineCardProps) {
+const WineCard: React.FC<WineCardProps> = ({ data }) => {
   return (
     <section className="border border-gray-300 rounded-[16px] w-[1140px] h-[260px] flex px-8 gap-10">
       <div className="w-[200px] h-full bg-white rounded-md flex items-end justify-center text-gray-400 text-sm">
@@ -39,4 +39,5 @@ export default function WineCard({ data }: WineCardProps) {
       </div>
     </section>
   );
-}
+};
+export default WineCard;

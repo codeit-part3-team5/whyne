@@ -1,5 +1,5 @@
 // 와인 목록 페이지
-import WineCard from "@/components/AboutWine/WineCard";
+import WineCard from "@/components/about-wine/WineCard";
 
 const mockData = {
   list: [
