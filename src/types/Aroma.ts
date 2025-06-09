@@ -1,0 +1,22 @@
+export enum Aroma {
+  CHERRY = "CHERRY",
+  BERRY = "BERRY",
+  OAK = "OAK",
+  VANILLA = "VANILLA",
+  PEPPER = "PEPPER",
+  BAKING = "BAKING",
+  GRASS = "GRASS",
+  APPLE = "APPLE",
+  PEACH = "PEACH",
+  CITRUS = "CITRUS",
+  TROPICAL = "TROPICAL",
+  MINERAL = "MINERAL",
+  FLOWER = "FLOWER",
+  TOBACCO = "TOBACCO",
+  SOIL = "SOIL",
+  CHOCOLATE = "CHOCOLATE",
+  SPICE = "SPICE",
+  CARAMEL = "CARAMEL",
+  LEATHER = "LEATHER",
+  // 필요한 향 추가
+}

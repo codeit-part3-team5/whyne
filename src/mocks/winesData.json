@@ -1,0 +1,483 @@
+{
+  "list": [
+    {
+      "id": 907,
+      "name": "Alain Gautheron Chablis Premier Cru Vaillons",
+      "region": "France",
+      "image": "https://awine.kr/wp-content/uploads/vb_wine_img/25122.png",
+      "price": 89000,
+      "type": "WHITE",
+      "avgRating": 5,
+      "reviewCount": 2,
+      "recentReview": {
+        "id": 2293,
+        "content": "맛있어요!!",
+        "createdAt": "2025-04-04T04:48:58.903Z",
+        "updatedAt": "2025-04-04T04:48:58.903Z"
+      },
+      "userId": 1044
+    },
+    {
+      "id": 906,
+      "name": "Roger Coulon Vrigny l'Hommee Champagne Premier Cru",
+      "region": "France",
+      "image": "https://awine.kr/wp-content/uploads/vb_wine_img/10933.png",
+      "price": 189000,
+      "type": "SPARKLING",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1044
+    },
+    {
+      "id": 885,
+      "name": "Banfi, Rosa Regale Brachetto d'Acqui",
+      "region": "Italy",
+      "image": "https://d2d8wwwkmhfcva.cloudfront.net/800x/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_cf5a4b53-db39-4943-b600-85d7869eb4ca.jpeg",
+      "price": 84000,
+      "type": "SPARKLING",
+      "avgRating": 5,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2202,
+        "content": "Chill ... Chill ...",
+        "createdAt": "2025-02-18T14:22:35.051Z",
+        "updatedAt": "2025-02-18T14:22:35.051Z"
+      },
+      "userId": 651
+    },
+    {
+      "id": 870,
+      "name": "Alma De Vid Moscatel",
+      "region": "Spain",
+      "image": "https://cafe24.poxo.com/ec01/letsdowine/fYw07Q+e08011Z5Qzbz30yC0JvqcXWvQcBdvn52sOz689E+Ww8NvS3kIz1BovuxPSD13RAqqxECLxwIolL8rLg==/_/web/product/big/202501/8714dc6a85c35b21180bedc35330bcbd.jpg",
+      "price": 12900,
+      "type": "SPARKLING",
+      "avgRating": 5,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1005
+    },
+    {
+      "id": 867,
+      "name": "Estandon Reflet",
+      "region": "France",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTivpMaP9mEGKViKcjjpzl_1AC63ODQpbiT_Q&s",
+      "price": 299000,
+      "type": "WHITE",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1005
+    },
+    {
+      "id": 863,
+      "name": "Vinos de Arganza Alvarez de Toledo Mencia 2021",
+      "region": "Spain",
+      "image": "https://assets.wine.com/winecom/image/upload/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/xqrnpyjo6lzszel7xug4.jpg",
+      "price": 80000,
+      "type": "RED",
+      "avgRating": 4.67,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2027,
+        "content": "wowowwooww",
+        "createdAt": "2025-02-17T15:32:15.047Z",
+        "updatedAt": "2025-02-17T15:32:15.047Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 862,
+      "name": "Clos Henri Otira Sauvignon Blanc",
+      "region": "New Zealand",
+      "image": "https://assets.wine.com/winecom/image/upload/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/hzgfvnciabhaxfl4fybu.jpg",
+      "price": 252000,
+      "type": "WHITE",
+      "avgRating": 4,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2028,
+        "content": "fssadfsa",
+        "createdAt": "2025-02-17T15:40:18.860Z",
+        "updatedAt": "2025-02-17T15:40:18.860Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 861,
+      "name": "Chateau Saint-Andre Corbin 2022",
+      "region": "France",
+      "image": "https://assets.wine.com/winecom/image/upload/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/ek0qtwgmxz3jekw2ow99.jpg",
+      "price": 68000,
+      "type": "RED",
+      "avgRating": 4,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 648
+    },
+    {
+      "id": 860,
+      "name": "Champagne Philippe Glavier La Grace d'Alphael Extra Brut",
+      "region": "France",
+      "image": "https://assets.wine.com/winecom/image/upload/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/vxzaoa8ge7puectyk21z.jpg",
+      "price": 340000,
+      "type": "RED",
+      "avgRating": 4,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2060,
+        "content": "맛있어",
+        "createdAt": "2025-02-18T08:26:04.109Z",
+        "updatedAt": "2025-02-18T08:26:04.109Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 859,
+      "name": "Veuve Clicquot Yellow Label Brut",
+      "region": "France",
+      "image": "https://assets.wine.com/winecom/image/upload/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/ss3a7eatucpizjphtsck.jpg",
+      "price": 25000,
+      "type": "WHITE",
+      "avgRating": 5,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2065,
+        "content": "시원해여",
+        "createdAt": "2025-02-18T08:52:35.727Z",
+        "updatedAt": "2025-02-18T08:52:35.727Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 858,
+      "name": "Veuve Clicquot Yellow Label Brut",
+      "region": "France",
+      "image": "https://assets.wine.com/winecom/image/upload/w_600,h_600,dpr_2.0,c_fit,q_auto:good,fl_progressive/ss3a7eatucpizjphtsck.jpg",
+      "price": 3400000,
+      "type": "RED",
+      "avgRating": 2,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2224,
+        "content": "이거 다른 목록에는 더 싸던데 ... 이건 왜 비쌈",
+        "createdAt": "2025-02-19T04:20:40.781Z",
+        "updatedAt": "2025-02-19T04:21:15.323Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 857,
+      "name": "사모스 프로피티스 2021",
+      "region": "unknown",
+      "image": "https://cdn.imweb.me/thumbnail/20240814/22acf4614746c.jpg",
+      "price": 72000,
+      "type": "WHITE",
+      "avgRating": 4,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 648
+    },
+    {
+      "id": 851,
+      "name": "Dow's Fine Tawny Port",
+      "region": "Portugal",
+      "image": "https://cafe24.poxo.com/ec01/letsdowine/fYw07Q+e08011Z5Qzbz30yC0JvqcXWvQcBdvn52sOz689E+Ww8NvS3kIz1BovuxPSD13RAqqxECLxwIolL8rLg==/_/web/product/big/202207/90702f3c6eb8a93b8cae33b05ad709b6.jpg",
+      "price": 29900,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1005
+    },
+    {
+      "id": 811,
+      "name": "레드",
+      "region": "프랑스",
+      "image": "https://via.placeholder.com/150",
+      "price": 3000,
+      "type": "WHITE",
+      "avgRating": 4,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 2238,
+        "content": "레드레드레드",
+        "createdAt": "2025-02-20T06:47:44.074Z",
+        "updatedAt": "2025-02-20T06:48:47.167Z"
+      },
+      "userId": 978
+    },
+    {
+      "id": 805,
+      "name": "Outpost, True Vineyard Napa Valley Immigrant",
+      "region": "USA",
+      "image": "https://wine21.speedgabia.com/WINE_MST/TITLE/0178000/W0178693.png",
+      "price": 234000,
+      "type": "RED",
+      "avgRating": 4.29,
+      "reviewCount": 6,
+      "recentReview": {
+        "id": 1996,
+        "content": "ㅇㅇㅇㅇㅇㅇㅇ",
+        "createdAt": "2025-02-17T14:15:49.879Z",
+        "updatedAt": "2025-02-17T14:15:49.879Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 786,
+      "name": "Torraccia di Presura, Chianti Classico 'II Tarocco'",
+      "region": "Italy",
+      "image": "https://wine21.speedgabia.com/WINE_MST/IMAGE/0174000/T0174883_001.png",
+      "price": 2043320,
+      "type": "RED",
+      "avgRating": 3.67,
+      "reviewCount": 18,
+      "recentReview": {
+        "id": 2097,
+        "content": "마슨있네",
+        "createdAt": "2025-02-18T12:04:52.309Z",
+        "updatedAt": "2025-02-18T13:52:41.972Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 785,
+      "name": "Istine, Chianti Classico",
+      "region": "Italy",
+      "image": "https://wine21.speedgabia.com/WINE_MST/TITLE/0169000/W0169368.png",
+      "price": 2043000,
+      "type": "RED",
+      "avgRating": 4,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 1669,
+        "content": "크롱크롱",
+        "createdAt": "2025-02-13T11:43:39.802Z",
+        "updatedAt": "2025-02-18T06:54:29.308Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 784,
+      "name": "Quinta do Noval, Noval Extra Dry White Port",
+      "region": "Portugal",
+      "image": "https://wine21.speedgabia.com/WINE_MST/TITLE/0174000/W0174571.png",
+      "price": 43000,
+      "type": "SPARKLING",
+      "avgRating": 4.5,
+      "reviewCount": 4,
+      "recentReview": {
+        "id": 2026,
+        "content": "군침이싹도노",
+        "createdAt": "2025-02-17T15:05:50.604Z",
+        "updatedAt": "2025-02-18T06:56:50.945Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 769,
+      "name": "Dorgo Vineyard, Tokaji Aszu 6 Puttonyos",
+      "region": "France",
+      "image": "https://via.placeholder.com/150",
+      "price": 12413465,
+      "type": "RED",
+      "avgRating": 1,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 1592,
+        "content": "이건 왜 이미지가 없나요",
+        "createdAt": "2025-02-11T18:06:19.504Z",
+        "updatedAt": "2025-02-11T18:06:19.504Z"
+      },
+      "userId": 648
+    },
+    {
+      "id": 692,
+      "name": "Vollenweider, Wolfer Goldgrube Riesling Trocken Beerenauslese GK 2015",
+      "region": "Germany",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_10%2F20190330012559541_EFLQWGTWK.jpg%2FW0164509.jpg%3Ftype%3Dm936",
+      "price": 1130000,
+      "type": "WHITE",
+      "avgRating": 4.23,
+      "reviewCount": 12,
+      "recentReview": {
+        "id": 1977,
+        "content": "물 맛 좋노",
+        "createdAt": "2025-02-17T07:49:30.167Z",
+        "updatedAt": "2025-02-18T14:00:33.120Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 691,
+      "name": "Lapostolle, Clos Apalta 2018",
+      "region": "Chile",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_8%2F20180401072525869_GT0TVK7A7.jpg%2FW0148421.jpg%3Ftype%3Dm936",
+      "price": 623000,
+      "type": "RED",
+      "avgRating": 4,
+      "reviewCount": 3,
+      "recentReview": {
+        "id": 1591,
+        "content": "다음에도 먹을래\n",
+        "createdAt": "2025-02-11T18:01:28.193Z",
+        "updatedAt": "2025-02-18T08:34:40.241Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 690,
+      "name": "Lucien Le Moine, Batard Montrachet Grand Cru 2007",
+      "region": "France",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_4%2F20170929055825087_I8Y1E2POA.jpg%2FW0149012.jpg%3Ftype%3Dm936",
+      "price": 2550000,
+      "type": "WHITE",
+      "avgRating": 3.5,
+      "reviewCount": 3,
+      "recentReview": {
+        "id": 1594,
+        "content": "맛도링 ~ ",
+        "createdAt": "2025-02-11T18:10:02.377Z",
+        "updatedAt": "2025-02-11T18:10:02.377Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 689,
+      "name": "Bodegas Muga, Aro 2019",
+      "region": "Spain",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_10%2F20190615073058925_A2WUYRMN4.jpg%2FW0146994.jpg%3Ftype%3Dm936",
+      "price": 1214000,
+      "type": "RED",
+      "avgRating": 3,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 1585,
+        "content": "조금 많이 셔요. 당도는 없네요..",
+        "createdAt": "2025-02-11T16:37:36.268Z",
+        "updatedAt": "2025-02-11T16:37:36.268Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 688,
+      "name": "Dominio de Pingus, Pingus 2016",
+      "region": "Spain",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_1%2F20140807013258417_418EQ9VGO.jpg%2F2014080623321627.jpg%3Ftype%3Dm936",
+      "price": 3600000,
+      "type": "RED",
+      "avgRating": 5,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 1588,
+        "content": "chill하네요,,",
+        "createdAt": "2025-02-11T17:56:35.787Z",
+        "updatedAt": "2025-02-11T17:56:35.787Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 686,
+      "name": "Aldo Conterno, Granbussia Barolo Riserva 2012",
+      "region": "Italy",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_10%2F20190415074411982_956EF6CG6.jpg%2FW0139292.jpg%3Ftype%3Dm936",
+      "price": 3808000,
+      "type": "RED",
+      "avgRating": 3.5,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 1586,
+        "content": "깊이감이 있어요!!",
+        "createdAt": "2025-02-11T16:42:48.249Z",
+        "updatedAt": "2025-02-11T16:42:48.249Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 685,
+      "name": "Masi, Vajo Dei Masi 1997",
+      "region": "Italy",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_13%2F20221109014254685_GHBV7Q7E2.png%2FW0172362.png%3Ftype%3Dm936",
+      "price": 4350000,
+      "type": "RED",
+      "avgRating": 3.5,
+      "reviewCount": 2,
+      "recentReview": {
+        "id": 1596,
+        "content": "97년산 스근하네",
+        "createdAt": "2025-02-11T18:20:00.697Z",
+        "updatedAt": "2025-02-18T06:54:07.820Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 684,
+      "name": "Sine Qua Non, Just for the Love of it 2002",
+      "region": "U.S.A",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_4%2F20170929051029754_IKG8S67H1.jpg%2FW0153724.jpg%3Ftype%3Dm936",
+      "price": 4380000,
+      "type": "RED",
+      "avgRating": 5,
+      "reviewCount": 1,
+      "recentReview": {
+        "id": 1975,
+        "content": "오오,,,...!",
+        "createdAt": "2025-02-17T07:43:03.454Z",
+        "updatedAt": "2025-02-17T07:43:03.454Z"
+      },
+      "userId": 649
+    },
+    {
+      "id": 683,
+      "name": "Sine Qua Non, A Shot in the Dark 2006",
+      "region": "U.S.A",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_4%2F20170929051029574_4QD487AM1.jpg%2FW0153727.jpg%3Ftype%3Dm936",
+      "price": 4380000,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 649
+    },
+    {
+      "id": 682,
+      "name": "Domaine Bizot, Echezeaux 2020",
+      "region": "Fance",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_1%2F20141101013114997_FD4FJX0GV.jpg%2F2014103113535575.jpg%3Ftype%3Dm936",
+      "price": 4715000,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 649
+    },
+    {
+      "id": 681,
+      "name": "Domaine Leroy, Richebourg Grand Cru 2009",
+      "region": "Fance",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_4%2F20170929044351265_F4HYQU6VH.jpg%2FW0152849.jpg%3Ftype%3Dm936",
+      "price": 5500000,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 649
+    },
+    {
+      "id": 680,
+      "name": "Olivier Leflaive, Montrachet Grand Cru 2020",
+      "region": "Fance",
+      "image": "https://search.pstatic.net/common?type=ofullfill&size=174x216&fillColor=ffffff&quality=75&direct=true&src=https%3A%2F%2Fdbscthumb-phinf.pstatic.net%2F3165_000_14%2F20241107015409796_1L0RZSYTW.png%2FW0177921.png%3Ftype%3Dm936",
+      "price": 6381000,
+      "type": "WHITE",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 649
+    }
+  ],
+  "totalCount": 31,
+  "nextCursor": null
+}
