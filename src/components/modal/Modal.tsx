@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 
 import CloseIcon from "@/assets/close-icon.svg";
 import useModalStore from "@/store/useModalStore";
+import { cn } from "@/utils/cn";
 
 const modalData = {
   filter: { title: "필터" },
@@ -29,17 +30,26 @@ export default function Modal() {
   const { title } = modalData[type ?? "default"] || modalData.default;
 
   const modalContent = (
-    <div className="modal-backdrop" onClick={close}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black/30 z-40"
+      onClick={close}
+    >
+      <div
+        className={cn(
+          "flex flex-col items-end gap-10 w-[375px] max-h-[90vh] p-6",
+          "rounded-[16px] bg-white shadow-[2px_2px_20px_0_rgba(0,0,0,0.04)] z-50"
+        )}
+        onClick={(e) => e.stopPropagation()}
+      >
         {title && (
-          <div className="modal-header">
+          <div className="flex justify-between items-center w-full mb-4">
             <span>{title}</span>
             <button onClick={close}>
               <CloseIcon height={34} width={34} />
             </button>
           </div>
         )}
-        <div className="modal-body">{content}</div>
+        <div className="w-full">{content}</div>
       </div>
     </div>
   );
