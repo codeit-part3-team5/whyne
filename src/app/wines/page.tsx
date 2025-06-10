@@ -1,6 +1,7 @@
 // 와인 목록 페이지
 import WineCard from "@/components/about-wine/WineCard";
 import DropDown from "@/components/DropDown";
+import WineTypeDropDown from "@/components/WineTypeDropDown";
 
 const mockData = {
   list: [
@@ -41,6 +42,7 @@ const mockData = {
 export default function winesPage() {
   return (
     <main className="flex flex-col items-center gap-6 py-10">
+      <WineTypeDropDown />
       <DropDown firstText="마이페이지" secondText="로그아웃" />
       <DropDown firstText="수정하기" secondText="삭제하기" size="small" />
       {mockData.list.map((wine) => (
