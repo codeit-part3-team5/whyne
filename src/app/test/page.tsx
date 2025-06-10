@@ -13,7 +13,21 @@ export default function TestPage() {
 
   return (
     <div>
-      <button onClick={handleClickOpenModal}>모달 열기</button>
+      <button
+        className="fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded"
+        onClick={handleClickOpenModal}
+      >
+        모달 열기
+      </button>
+
+      {/* 스크롤 테스트용 더미 콘텐츠 */}
+      <div className="mt-20 space-y-10 px-4">
+        {Array.from({ length: 50 }, (_, i) => (
+          <div key={i} className="h-40 bg-gray-200 rounded-md shadow-inner">
+            더미 콘텐츠 {i + 1}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
