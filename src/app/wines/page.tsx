@@ -1,7 +1,7 @@
 // 와인 목록 페이지
 import WineCard from "@/components/about-wine/WineCard";
+import WineTypeDropDown from "@/components/about-wine/WineTypeDropDown";
 import DropDown from "@/components/DropDown";
-import WineTypeDropDown from "@/components/WineTypeDropDown";
 
 const mockData = {
   list: [
