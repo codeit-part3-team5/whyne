@@ -13,10 +13,7 @@ export default function TestPage() {
 
   return (
     <div>
-      <button
-        className="fixed top-4 left-4 z-50 bg-blue-500 text-white p-2 rounded"
-        onClick={handleClickOpenModal}
-      >
+      <button className="m-5 bg-blue-500 text-white p-2 rounded" onClick={handleClickOpenModal}>
         모달 열기
       </button>
 
