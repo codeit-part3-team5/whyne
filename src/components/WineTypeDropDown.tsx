@@ -39,7 +39,7 @@ export default function SelectInput() {
   return (
     <div ref={containerRef} className="relative w-[412px]">
       <input
-        className="w-full h-[48px] rounded-[16px] border border-gray-300 pr-12 pl-4 text-gray-500"
+        className="w-full h-[48px] rounded-[16px] border border-gray-300 pr-12 pl-4 text-gray-500 focus:border-dark-purple focus:outline-none"
         value={selected}
         onBlur={handleBlur}
         onChange={(e) => setSelected(e.target.value)}
