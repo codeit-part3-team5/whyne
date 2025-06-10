@@ -22,7 +22,9 @@ const Header: React.FC = () => {
         setLoading(false);
       }
     };
-    const timer = setTimeout(checkAuthStatus, 300);
+
+    const DELAY_TO_SHOW_LOADING_STATE = 300;
+    const timer = setTimeout(checkAuthStatus, DELAY_TO_SHOW_LOADING_STATE);
     return () => clearTimeout(timer);
   }, []);
   return (
