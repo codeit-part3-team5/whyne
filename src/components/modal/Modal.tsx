@@ -6,6 +6,8 @@ import CloseIcon from "@/assets/close-icon.svg";
 import useModalStore from "@/store/useModalStore";
 import { cn } from "@/utils/cn";
 
+import { MODAL_CLASSNAMES } from "./modalClassNames";
+
 const modalData = {
   filter: { title: "필터" },
   addWine: { title: "와인 등록" },
@@ -15,6 +17,19 @@ const modalData = {
   delete: { title: "" },
   default: { title: "기본 모달" },
 };
+
+const defaultMobileStyle = `
+max-mb:flex max-mb:flex-col max-mb:w-[23.438rem] max-mb:p-6 max-mb:items-end max-mb:gap-[2.5rem]
+`;
+
+const defaultMobileBackStyle = `
+max-mb:rounded-b-none max-mb:shadow-[0.125rem_0.125rem_1.25rem_0_rgba(0,0,0,0.04)]
+
+`;
+
+const deleteBackStyle = `
+rounded-2xl shadow-[0_0.125rem_1.25rem_0_rgba(0,0,0,0.04)] border border-gray300
+`;
 
 export default function Modal() {
   const [mounted, setMounted] = useState(false);
@@ -29,23 +44,29 @@ export default function Modal() {
 
   const { title } = modalData[type ?? "default"] || modalData.default;
 
+  const modalClassName = MODAL_CLASSNAMES[type ?? "default"] || MODAL_CLASSNAMES.default;
+
   const modalContent = (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black/30 z-40"
+      className="fixed inset-0 flex items-center justify-center bg-black/30 z-40 "
       onClick={close}
     >
       <div
         className={cn(
-          "flex flex-col items-end gap-10 w-[375px] max-h-[90vh] p-6",
-          "rounded-[16px] bg-white shadow-[2px_2px_20px_0_rgba(0,0,0,0.04)] z-50"
+          modalClassName,
+          "z-50 bg-white rounded-2xl",
+          defaultMobileStyle,
+          type === "delete" ? deleteBackStyle : defaultMobileBackStyle
         )}
         onClick={(e) => e.stopPropagation()}
       >
         {title && (
-          <div className="flex justify-between items-center w-full mb-4">
-            <span>{title}</span>
+          <div className="flex justify-between items-center w-full">
+            <span className="text-gray800 text-2xl font-bold leading-8 max-mb:text-xl">
+              {title}
+            </span>
             <button onClick={close}>
-              <CloseIcon height={34} width={34} />
+              <CloseIcon className="w-[2.125rem] h-[2.125rem] max-mb:w-[1.5rem] max-mb:h-[1.5rem]" />
             </button>
           </div>
         )}

@@ -8,7 +8,7 @@ export default function TestPage() {
   const open = useModalStore((state) => state.open);
 
   const handleClickOpenModal = () => {
-    open("filter", <TestContent />);
+    open("addWine", <TestContent />);
   };
 
   return (
