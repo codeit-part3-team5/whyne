@@ -1,35 +1,30 @@
-import ReviewSummary from "@/components/ReviewSummary";
-import wine from "@/mocks/winesDetail.json";
-// import wines from "@/mocks/winesData.json";
-import { WineType } from "@/types/Wine";
-import { convertStringsToAroma } from "@/utils/aromaConverter";
+"use client";
 
-const fixedWine = {
-  ...wine,
-  recentReview: {
-    ...wine.recentReview,
-    aroma: convertStringsToAroma(wine.recentReview.aroma),
-  },
-  // // 만약 reviews 배열 내 aroma 도 string[] -> Aroma[]로 바꿔야 한다면
-  // reviews: wine.reviews.map((review) => ({
-  //   ...review,
-  //   aroma: convertStringsToAroma(review.aroma),
-  // })),
-};
+import useModalStore from "@/store/useModalStore";
+
+import TestContent from "./TestContent";
 
 export default function TestPage() {
+  const open = useModalStore((state) => state.open);
+
+  const handleClickOpenModal = () => {
+    open("addWine", <TestContent />);
+  };
+
   return (
     <div>
-      {/* {wines.list.map((wine) => (
-        <div key={wine.id} className="mb-[24px]">
-          <ReviewSummary
-            key={wine.id}
-            direction="column"
-            {...{ ...wine, type: wine.type as WineType }}
-          />
-        </div>
-      ))} */}
-      <ReviewSummary direction="row" {...{ ...fixedWine, type: fixedWine.type as WineType }} />
+      <button className="m-5 bg-blue-500 text-white p-2 rounded" onClick={handleClickOpenModal}>
+        모달 열기
+      </button>
+
+      {/* 스크롤 테스트용 더미 콘텐츠 */}
+      <div className="mt-20 space-y-10 px-4">
+        {Array.from({ length: 50 }, (_, i) => (
+          <div key={i} className="h-40 bg-gray-200 rounded-md shadow-inner">
+            더미 콘텐츠 {i + 1}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
