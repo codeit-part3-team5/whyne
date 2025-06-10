@@ -19,8 +19,8 @@ const Header: React.FC = () => {
     <div
       className={cn(
         "bg-black w-full flex items-center",
-        "md:h-[4.375rem] md:px-[3.75rem] md:py-[0.6875px] md:rounded-2xl",
-        "h-[3.125rem] px-[1.25rem] py-[0.9375rem] rounded-xl"
+        "h-[4.375rem] px-[3.75rem] py-[0.6875px] rounded-2xl",
+        "max-mb:h-[3.125rem] max-mb:px-[1.25rem] max-mb:py-[0.9375rem] rounded-xl"
       )}
     >
       <div className="w-full flex items-center justify-between">
