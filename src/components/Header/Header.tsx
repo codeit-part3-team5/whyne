@@ -10,10 +10,20 @@ const Header: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [login, setLogin] = useState(false);
   useEffect(() => {
-    setLoading(false);
-    if (localStorage.getItem("accessToken") !== null) {
-      setLogin(true);
-    }
+    const checkAuthStatus = () => {
+      try {
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("accessToken");
+          setLogin(token !== null);
+        }
+      } catch (error) {
+        console.error("Error accessing localStorage:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const timer = setTimeout(checkAuthStatus, 300);
+    return () => clearTimeout(timer);
   }, []);
   return (
     <div
@@ -24,7 +34,7 @@ const Header: React.FC = () => {
       )}
     >
       <div className="w-full flex items-center justify-between">
-        <img className="w-[3.25rem]" src="/images/logo.png" />
+        <img alt="logo image" className="w-[3.25rem]" src="/images/logo.png" />
         {loading ? (
           <Spinner className="border-white border-r-black" />
         ) : login ? (
