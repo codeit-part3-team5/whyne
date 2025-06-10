@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef, useMemo } from "react";
+import React, { forwardRef, useId, useMemo } from "react";
 
 import SearchIcon from "@/assets/icons/search-icon.svg";
 import {
@@ -35,11 +35,14 @@ const SearchInput = forwardRef<HTMLInputElement, InputProps>(
     // 검색 아이콘 메모이제이션 - 매번 새로 생성하지 않음
     const searchIcon = useMemo(() => <SearchIcon className="w-5 h-5" />, []);
 
+    const fallbackId = useId();
+    const inputId = restProps.name || fallbackId;
+
     return (
       <div className={className}>
         {/* 라벨 */}
         {label && (
-          <label className={INPUT_LABEL_STYLES} htmlFor={restProps.name}>
+          <label className={INPUT_LABEL_STYLES} htmlFor={inputId}>
             {label}
           </label>
         )}
@@ -52,9 +55,9 @@ const SearchInput = forwardRef<HTMLInputElement, InputProps>(
           {/* 입력 필드 */}
           <input
             ref={ref}
-            aria-describedby={error ? `${restProps.name}-error` : undefined}
+            aria-describedby={error ? `${inputId}-error` : undefined}
             aria-invalid={!!error}
-            id={restProps.name}
+            id={inputId}
             type="search"
             {...restProps}
             className={cn(
@@ -73,7 +76,7 @@ const SearchInput = forwardRef<HTMLInputElement, InputProps>(
 
         {/* 에러 메시지 */}
         {error && (
-          <p className={INPUT_ERROR_STYLES} id={`${restProps.name}-error`}>
+          <p className={INPUT_ERROR_STYLES} id={`${inputId}-error`}>
             {error}
           </p>
         )}

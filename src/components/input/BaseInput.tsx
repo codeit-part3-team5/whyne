@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useId } from "react";
 
 import { INPUT_TYPES } from "@/constants/input";
 import {
@@ -25,12 +25,14 @@ const BaseInput = forwardRef<HTMLInputElement, InputProps>(
   ({ label, type = INPUT_TYPES.TEXT, error, className = "", ...restProps }, ref) => {
     // 현재 입력 필드 상태 결정
     const inputState = getInputState(error, restProps.disabled);
+    const fallbackId = useId();
+    const inputId = restProps.name || fallbackId;
 
     return (
       <div className={className}>
         {/* 라벨 */}
         {label && (
-          <label className={INPUT_LABEL_STYLES} htmlFor={restProps.name}>
+          <label className={INPUT_LABEL_STYLES} htmlFor={inputId}>
             {label}
           </label>
         )}
@@ -40,9 +42,9 @@ const BaseInput = forwardRef<HTMLInputElement, InputProps>(
           {/* 입력 필드 */}
           <input
             ref={ref}
-            aria-describedby={error ? `${restProps.name}-error` : undefined}
+            aria-describedby={error ? `${inputId}-error` : undefined}
             aria-invalid={!!error}
-            id={restProps.name}
+            id={inputId}
             type={type}
             {...restProps}
             className={cn(
@@ -56,7 +58,7 @@ const BaseInput = forwardRef<HTMLInputElement, InputProps>(
 
         {/* 에러 메시지 */}
         {error && (
-          <p className={INPUT_ERROR_STYLES} id={`${restProps.name}-error`}>
+          <p className={INPUT_ERROR_STYLES} id={`${inputId}-error`}>
             {error}
           </p>
         )}

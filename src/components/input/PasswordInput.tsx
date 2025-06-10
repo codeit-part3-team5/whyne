@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef } from "react";
+import React, { forwardRef, useId } from "react";
 
 import EyePasswordHideIcon from "@/assets/icons/eye-password-hide.svg";
 import EyePasswordShowIcon from "@/assets/icons/eye-password-show.svg";
@@ -35,6 +35,9 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
     // 실제 input type 결정 (password 토글 고려)
     const actualInputType = getInputType("password");
 
+    const fallbackId = useId();
+    const inputId = restProps.name || fallbackId;
+
     // 패스워드 토글 버튼 렌더링
     const renderPasswordToggle = () => {
       const IconComponent = showPassword ? EyePasswordShowIcon : EyePasswordHideIcon;
@@ -55,7 +58,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={className}>
         {label && (
-          <label className={INPUT_LABEL_STYLES} htmlFor={restProps.name}>
+          <label className={INPUT_LABEL_STYLES} htmlFor={inputId}>
             {label}
           </label>
         )}
@@ -63,9 +66,9 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
         <div className={INPUT_CONTAINER_STYLES}>
           <input
             ref={ref}
-            aria-describedby={error ? `${restProps.name}-error` : undefined}
+            aria-describedby={error ? `${inputId}-error` : undefined}
             aria-invalid={!!error}
-            id={restProps.name}
+            id={inputId}
             type={actualInputType}
             {...restProps}
             className={cn(
@@ -82,7 +85,7 @@ const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
 
         {/* 에러 메시지 */}
         {error && (
-          <p className={INPUT_ERROR_STYLES} id={`${restProps.name}-error`}>
+          <p className={INPUT_ERROR_STYLES} id={`${inputId}-error`}>
             {error}
           </p>
         )}
