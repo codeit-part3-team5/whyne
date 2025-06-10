@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 
 import Modal from "@/components/modal/Modal";
+import { cn } from "@/utils/cn";
 
 const pretendard = localFont({
   src: "../fonts/PretendardVariable.woff2",
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className={`${pretendard.variable}`} lang="ko">
-      <body className={pretendard.className}>
+      <body
+        className={cn(pretendard.className, "flex flex-col justify-center items-center bg-white")}
+      >
         {children}
         <div id="modal-root" />
         <Modal />

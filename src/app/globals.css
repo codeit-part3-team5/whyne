@@ -14,8 +14,8 @@
     --color-light-purple: #f1edfc;
     --breakpoint-*: initial;
     --breakpoint-pc: 120rem;
-    --breakpoint-mb: 23.438rem;
     --breakpoint-tb: 46.5rem;
+    --breakpoint-mb: 23.4375rem;
   }
 }
 
