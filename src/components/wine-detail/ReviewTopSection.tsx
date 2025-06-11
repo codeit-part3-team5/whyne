@@ -1,5 +1,6 @@
 import { MouseEvent } from "react";
 
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { Aroma } from "@/types/Aroma";
 import type { User } from "@/types/User";
 
@@ -24,15 +25,22 @@ export default function ReviewTopSection({
   isLiked = false,
   onLikeClick,
 }: ReviewTopSectionProps) {
+  const isMobile = useMediaQuery("(max-width: 375px)");
+
   console.log(aroma, rating);
+
   return (
-    <section className="flex flex-col items-center justify-between w-full">
+    <section className="flex items-center justify-between w-full">
       <div className="flex items-center gap-4">
         <ProfileCircle imageUrl={user.image} />
         <UserInfo date={date} user={user} />
       </div>
       <div>
-        <LikeButton isLiked={isLiked} onLikeClick={(e) => onLikeClick?.(e)} />
+        <LikeButton
+          isLiked={isLiked}
+          size={isMobile ? 24 : 32}
+          onLikeClick={(e) => onLikeClick?.(e)}
+        />
       </div>
     </section>
   );

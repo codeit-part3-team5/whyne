@@ -24,7 +24,7 @@ export default function WineDetailPage() {
 
   return (
     <main className="flex flex-col items-center py-10">
-      <div className="w-full max-w-[71.25rem] mx-auto px-5">
+      <div className="w-full max-w-[71.25rem] mx-auto ">
         <ReviewList wine={wineData} />
       </div>
     </main>
