@@ -36,7 +36,7 @@ export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
       )}
     >
       <ReviewTopSection
-        date={timeForToday(review.createdAt)}
+        date={timeForToday(review.updatedAt)}
         isLiked={review.isLiked}
         user={review.user}
         onLikeClick={handleLikeClick}
