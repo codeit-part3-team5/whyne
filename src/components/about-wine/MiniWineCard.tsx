@@ -3,6 +3,8 @@
 import Star from "@/components/Star";
 import { BaseWineData } from "@/types/Wine";
 
+import RatingScore from "./RatingScore";
+
 interface Props {
   wine: BaseWineData;
 }
@@ -18,7 +20,10 @@ export default function MiniWineCard({ wine }: Props) {
         />
       </div>
       <div className="flex flex-col justify-end pb-[15px]">
-        <Star avgRating={5} />
+        <RatingScore avgRating={wine.avgRating} />
+        <div className="w-[90px] h-[18px] mb-3">
+          <Star avgRating={wine.avgRating} />
+        </div>
         <div className="text-gray-500 text-[12px] font-[400] whitespace-pre-line leading-tight break-words">
           {wine.name}
         </div>
