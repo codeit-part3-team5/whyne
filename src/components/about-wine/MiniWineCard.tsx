@@ -1,5 +1,6 @@
 // 이미지, 별점, 이름이 적힌 와인카드
 
+import Star from "@/components/Star";
 import { BaseWineData } from "@/types/Wine";
 
 interface Props {
@@ -17,6 +18,7 @@ export default function MiniWineCard({ wine }: Props) {
         />
       </div>
       <div className="flex flex-col justify-end pb-[15px]">
+        <Star avgRating={5} />
         <div className="text-gray-500 text-[12px] font-[400] whitespace-pre-line leading-tight break-words">
           {wine.name}
         </div>
