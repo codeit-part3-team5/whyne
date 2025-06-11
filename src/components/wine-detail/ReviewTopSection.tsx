@@ -1,18 +1,17 @@
 import { MouseEvent } from "react";
+import { useState } from "react";
 
+import Ellipse from "@/assets/ellipse-icon.svg";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import type { Aroma } from "@/types/Aroma";
 import type { User } from "@/types/User";
 
+import DropDown from "../DropDown";
 import ProfileCircle from "../profile/ProfileCircle";
 import LikeButton from "./LikeButton";
 import UserInfo from "./UserInfo";
-
 interface ReviewTopSectionProps {
   date: string;
   user: User;
-  aroma: Aroma[];
-  rating: number;
   isLiked?: boolean;
   onLikeClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
@@ -20,27 +19,33 @@ interface ReviewTopSectionProps {
 export default function ReviewTopSection({
   date,
   user,
-  aroma,
-  rating,
   isLiked = false,
   onLikeClick,
 }: ReviewTopSectionProps) {
   const isMobile = useMediaQuery("(max-width: 375px)");
-
-  console.log(aroma, rating);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="flex items-center justify-between w-full">
+    <section className="flex items-center justify-between w-full relative">
       <div className="flex items-center gap-4">
-        <ProfileCircle imageUrl={user.image} />
+        <ProfileCircle imageUrl={user.image} size={isMobile ? "mobile" : undefined} />
         <UserInfo date={date} user={user} />
       </div>
-      <div>
+      <div className="flex items-start gap-6 mb-6 max-mb:mb-4.5">
         <LikeButton
           isLiked={isLiked}
-          size={isMobile ? 24 : 32}
+          size={isMobile ? 32 : 38}
           onLikeClick={(e) => onLikeClick?.(e)}
         />
+
+        <button className="relative" onClick={() => setIsOpen((prev) => !prev)}>
+          <Ellipse />
+        </button>
+        {isOpen && (
+          <div className="absolute right-0 top-12 z-10">
+            <DropDown firstText="수정하기" secondText="삭제하기" size="small" />
+          </div>
+        )}
       </div>
     </section>
   );

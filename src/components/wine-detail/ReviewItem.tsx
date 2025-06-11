@@ -6,6 +6,7 @@ import { cn } from "@/utils/cn";
 import { timeForToday } from "@/utils/timeFotToday";
 
 import Arrow from "../Arrow";
+import ReviewMiddleSection from "./ReviewMiddleSection";
 import ReviewTopSection from "./ReviewTopSection";
 interface ReviewItemProps {
   review: Review;
@@ -35,13 +36,12 @@ export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
       )}
     >
       <ReviewTopSection
-        aroma={review.aroma}
         date={timeForToday(review.createdAt)}
         isLiked={review.isLiked}
-        rating={review.rating}
         user={review.user}
         onLikeClick={handleLikeClick}
       />
+      <ReviewMiddleSection aromas={review.aroma} rating={review.rating} />
       {isOpen && <p className="text-gray800 whitespace-pre-line">{review.content}</p>}
       <button className="text-left text-gray800" onClick={toggleOpen}>
         <Arrow direction={isUp ? "up" : undefined} />
