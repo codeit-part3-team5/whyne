@@ -19,11 +19,11 @@ export default function ReviewList({ wine }: ReviewListProps) {
     );
   };
   return (
-    <section className="flex flex-col w-full max-w-[50rem]  gap-6">
+    <section className="flex flex-col w-full max-w-[50rem] gap-6">
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-bold text-gray800">리뷰 {wine.reviewCount}개</h3>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-5 max-tb:gap-6 max-mb:gap-4">
         {reviews.map((review) => (
           <ReviewItem key={review.id} review={review} onLikeClick={handleLikeClick} />
         ))}
