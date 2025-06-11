@@ -1,33 +1,32 @@
-// src/app/wines/[id]/page.tsx
-
 "use client";
 
 import ReviewList from "@/components/wine-detail/ReviewList";
-import wineRaw from "@/mocks/winesDetail.json";
-import { WineDetailData } from "@/types/Wine";
+import wine from "@/mocks/winesDetail.json";
+import { WineDetailData, WineType } from "@/types/Wine";
 import { convertStringsToAroma } from "@/utils/aromaConverter";
 
-// mock 데이터를 WineDetailData 타입으로 변환
-function convertWineDetailData(raw: any): WineDetailData {
-  return {
-    ...raw,
-    reviews: raw.reviews.map((review: any) => ({
+export default function WineDetailPage() {
+  // 리뷰의 aroma 데이터만 변환하면 됩니다
+  const wineData: WineDetailData = {
+    ...wine,
+    type: wine.type as WineType,
+    reviews: wine.reviews.map((review) => ({
       ...review,
       aroma: convertStringsToAroma(review.aroma),
     })),
+    recentReview: wine.recentReview
+      ? {
+          ...wine.recentReview,
+          aroma: convertStringsToAroma(wine.recentReview.aroma),
+        }
+      : null,
   };
-}
 
-const wine = convertWineDetailData(wineRaw);
-
-export default function WineDetailPage() {
   return (
-    <main className="mt-[3.875rem] px-[24.375rem] max-tb:px-[1.25rem] max-mb:px-[1rem] gap-[3.75rem]">
-      <ReviewList wine={wine} />
+    <main className="flex flex-col items-center py-10">
+      <div className="w-full max-w-[71.25rem] mx-auto px-5">
+        <ReviewList wine={wineData} />
+      </div>
     </main>
   );
 }
-/* <WineCard key={wine.id} data={wine} /> */
-/* {wine.reviews.map((review) => (
-        <div key={review.id}>{review.content}</div>
-      ))} */
