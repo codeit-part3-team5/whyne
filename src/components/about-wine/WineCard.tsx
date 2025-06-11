@@ -25,11 +25,11 @@ const WineCard: React.FC<WineCardProps> = ({ data }) => {
       </div>
 
       <div className="flex flex-col justify-between h-[209px] py-2 mt-6">
-        <div>
-          <div className="font-[600] text-[30px] leading-tight break-words max-w-[600px]">
+        <div className="min-h-[100px]">
+          <div className="font-[600] text-[30px] leading-tight break-words max-w-[450px] h-full">
             {data.name}
           </div>
-          <div className="font-[400] text-[16px] text-gray-500 mt-10">{data.region}</div>
+          <div className="font-[400] text-[16px] text-gray-500 m">{data.region}</div>
         </div>
         <div className="bg-light-purple rounded-[12px] w-[114px] h-[37px] flex items-center justify-center mt-auto">
           <span className="text-purple font-[700] text-[18px]">
