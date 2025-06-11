@@ -16,7 +16,7 @@ import {
   type ButtonSize,
   type ButtonVariant,
   type SocialType,
-} from "@/constants/buttonStyles";
+} from "@/styles/buttonStyles";
 import { cn } from "@/utils/cn";
 
 import Spinner from "./Spinner";
