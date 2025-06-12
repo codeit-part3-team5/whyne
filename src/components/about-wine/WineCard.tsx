@@ -11,12 +11,12 @@ type WineCardProps = {
 
 const WineCard: React.FC<WineCardProps> = ({ data }) => {
   return (
-    <section className="border border-gray-300 rounded-[16px] w-[1140px] h-[260px] flex px-8 gap-10">
-      <div className="w-[200px] h-full bg-white rounded-md flex items-end justify-center text-gray-400 text-sm">
+    <section className="border border-gray-300 rounded-[1rem] w-[71.25rem] h-[16.25rem] flex px-[0.5rem] gap-[0.625rem]">
+      <div className="w-[12.5rem] h-full bg-white rounded-md flex items-end justify-center text-gray-400 text-sm">
         {data.image ? (
           <img
             alt={data.name}
-            className="w-[200px] h-[209px] object-contain object-bottom"
+            className="w-[12.5rem] h-[13.0625rem] object-contain object-bottom"
             src={data.image}
           />
         ) : (
@@ -24,15 +24,15 @@ const WineCard: React.FC<WineCardProps> = ({ data }) => {
         )}
       </div>
 
-      <div className="flex flex-col justify-between h-[209px] py-2 mt-6">
-        <div className="min-h-[100px]">
-          <div className="font-[600] text-[30px] leading-tight break-words max-w-[450px] h-full">
+      <div className="flex flex-col justify-between h-[13.0625rem] py-[0.5rem] mt-[1.5rem]">
+        <div className="min-h-[6.25rem]">
+          <div className="font-[600] text-[1.875rem] leading-tight break-words max-w-[28.125rem] h-full">
             {data.name}
           </div>
-          <div className="font-[400] text-[16px] text-gray-500 m">{data.region}</div>
+          <div className="font-[400] text-[1rem] text-gray-500"> {data.region}</div>
         </div>
-        <div className="bg-light-purple rounded-[12px] w-[114px] h-[37px] flex items-center justify-center mt-auto">
-          <span className="text-purple font-[700] text-[18px]">
+        <div className="bg-light-purple rounded-[0.75rem] w-[7.125rem] h-[2.3125rem] flex items-center justify-center mt-auto">
+          <span className="text-purple font-[700] text-[1.125rem]">
             ₩ {data.price.toLocaleString()}
           </span>
         </div>
