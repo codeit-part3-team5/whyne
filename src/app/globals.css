@@ -12,7 +12,7 @@
     --color-purple: #6a42db;
     --color-dark-purple: #5731c8;
     --color-light-purple: #f1edfc;
-    --breakpoint-*: initial;
+    --breakpoint-base: initial;
     --breakpoint-pc: 120rem;
     --breakpoint-tb: 46.5rem;
     --breakpoint-mb: 24.375rem;
