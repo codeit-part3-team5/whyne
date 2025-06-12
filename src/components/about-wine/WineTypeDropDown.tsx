@@ -37,9 +37,9 @@ export default function SelectInput() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-[412px]">
+    <div ref={containerRef} className="relative w-[25.75rem]">
       <input
-        className="w-full h-[48px] rounded-[16px] border border-gray-300 pr-12 pl-4 text-gray-500 focus:border-dark-purple focus:outline-none"
+        className="w-full h-[3rem] rounded-[1rem] border border-gray-300 pr-[3rem] pl-[1rem] text-gray-500 focus:border-dark-purple focus:outline-none"
         value={selected}
         onBlur={handleBlur}
         onChange={(e) => setSelected(e.target.value)}
@@ -48,7 +48,7 @@ export default function SelectInput() {
       {/* 드롭다운 토글아이콘에 관한 로직입니다  */}
       <Image
         alt="드롭다운 아이콘"
-        className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+        className="absolute right-[1rem] top-1/2 -translate-y-1/2 cursor-pointer"
         height={20}
         src={dropdownicon}
         width={20}
@@ -56,11 +56,11 @@ export default function SelectInput() {
       />
       {/* 드롭다운에 관한 로직입니다 */}
       {isOpen && (
-        <ul className="absolute z-10 mt-1 w-full rounded-[16px] border border-gray-300 bg-white overflow-hidden text-[16px]">
+        <ul className="absolute z-10 mt-[0.25rem] w-full rounded-[1rem] border border-gray-300 bg-white overflow-hidden text-[1rem]">
           {OPTIONS.map((option) => (
             <li
               key={option}
-              className="px-2 py-2 cursor-pointer"
+              className="px-[0.5rem] py-[0.5rem] cursor-pointer"
               onClick={() => {
                 setSelected(option);
                 setIsOpen(false);
@@ -68,12 +68,12 @@ export default function SelectInput() {
             >
               {/* 소문자로 인풋에 입력해도 드롭다운에서 찾아서 표시되게 하는 로직 */}
               {lowerCaseSelected === option ? (
-                <span className="block w-full bg-light-purple text-purple font-[500] rounded-[10px] px-3 py-2">
+                <span className="block w-full bg-light-purple text-purple font-[500] rounded-[0.625rem] px-[0.75rem] py-[0.5rem]">
                   {option}
                 </span>
               ) : (
                 /* hover 했을 때 배경색 지정 */
-                <span className="block w-full px-3 py-2 text-black hover:bg-light-purple rounded-[10px]">
+                <span className="block w-full px-[0.75rem] py-[0.5rem] text-black hover:bg-light-purple rounded-[0.625rem]">
                   {option}
                 </span>
               )}

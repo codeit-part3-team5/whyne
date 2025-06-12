@@ -5,15 +5,17 @@ type DropDownProps = {
 };
 
 export default function dropDown({ firstText, secondText, size = "default" }: DropDownProps) {
-  const containerSize = size === "small" ? "w-[101px] h-[92px]" : "w-[126px] h-[104px]";
+  const containerSize = size === "small" ? "w-[6.3125rem] h-[5.75rem]" : "w-[7.875rem] h-[6.5rem]";
 
   const padding =
-    size === "small" ? "px-[16px] py-[8px] text-[14px]" : "px-[22px] py-[10px] text-[16px]";
+    size === "small"
+      ? "px-[1rem]] py-[0.5rem] text-[0.875rem]"
+      : "px-[1.375rem] py-[0.625rem] text-[1rem]";
 
   return (
-    <div className={`${containerSize} border border-gray-300 rounded-[16px]`}>
+    <div className={`${containerSize} border border-gray-300 rounded-[1rem]`}>
       <div
-        className={`cursor-pointer bg-light-purple rounded-[12px] text-center text-purple font-[500] my-1 mx-1 ${padding}`}
+        className={`cursor-pointer bg-light-purple rounded-[0.75rem] text-center text-purple font-[500] my-[0.25rem] mx-[0.25rem] ${padding}`}
       >
         {firstText}
       </div>

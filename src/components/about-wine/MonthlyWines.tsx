@@ -42,27 +42,30 @@ export default function MonthlyWines() {
   const VISIBLE_COUNT = 4; // 한 번에 보여줄 카드 수
 
   return (
-    <div className="relative bg-gray-100 w-[1140px] h-[299px] rounded-[16px] px-[30px] py-[30px] overflow-hidden">
-      <h3 className="font-[700] text-[20px] text-gray-800 mb-4">이번 달 추천 와인</h3>
+    <div className="relative bg-gray-100 w-[71.25rem] h-[18.6875rem] rounded-[1rem] px-[1.875rem] py-[1.875rem] overflow-hidden">
+      <h3 className="font-[700] text-[1.25rem] text-gray-800 mb-[1rem]">이번 달 추천 와인</h3>
 
       <Image
         alt="왼쪽화살표"
-        className="absolute left-[16px] top-1/2 -translate-y-1/2 w-[48px] h-[48px] cursor-pointer z-10"
+        className="absolute left-[1rem] top-1/2 -translate-y-1/2 w-[3rem] h-[3rem] cursor-pointer z-10"
         src={leftArrow}
         onClick={handlePrev}
       />
 
       <Image
         alt="오른쪽화살표"
-        className="absolute right-[16px] top-1/2 -translate-y-1/2 w-[48px] h-[48px] cursor-pointer z-10"
+        className="absolute right-[1rem] top-1/2 -translate-y-1/2 w-[3rem] h-[3rem] cursor-pointer z-10"
         src={rightArrow}
         onClick={handleNext}
       />
 
       {/* 카드 리스트 */}
-      <div ref={scrollRef} className="flex gap-4 transition-transform duration-300 overflow-hidden">
+      <div
+        ref={scrollRef}
+        className="flex gap-[1rem] transition-transform duration-300 overflow-hidden"
+      >
         {wines.map((wine) => (
-          <div key={wine.id} className="flex-shrink-0 w-[232px]">
+          <div key={wine.id} className="flex-shrink-0 w-[14.5rem]">
             <MiniWineCard wine={wine} />
           </div>
         ))}
