@@ -22,7 +22,7 @@ export default function ReviewTopSection({
   isLiked = false,
   onLikeClick,
 }: ReviewTopSectionProps) {
-  const isMobile = useMediaQuery("(max-width: 375px)");
+  const isMobile = useMediaQuery("(max-width: 24.375rem)");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -31,7 +31,7 @@ export default function ReviewTopSection({
         <ProfileCircle imageUrl={user.image} size={isMobile ? "mobile" : undefined} />
         <UserInfo date={date} user={user} />
       </div>
-      <div className="flex items-start gap-6 mb-6 max-mb:mb-4.5">
+      <div className="flex items-start gap-6 mb-6 max-mb:mb-4.5 max-mb:gap-[1.125rem]">
         <LikeButton
           isLiked={isLiked}
           size={isMobile ? 32 : 38}
@@ -42,8 +42,8 @@ export default function ReviewTopSection({
           <Ellipse />
         </button>
         {isOpen && (
-          <div className="absolute right-0 top-12 z-10">
-            <DropDown firstText="수정하기" secondText="삭제하기" size="small" />
+          <div className="absolute right-0 top-12 z-11">
+            <DropDown firstText="수정하기" secondText="삭제하기" />
           </div>
         )}
       </div>

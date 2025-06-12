@@ -1,19 +1,29 @@
-import StarIcon from "@/assets/star-icon.svg";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/utils/cn";
 
 export default function Rating({ rating }: { rating: number }) {
-  const isMobile = useMediaQuery("(max-width: 375px)");
+  const isMobile = useMediaQuery("(max-width: 24.375rem)");
   const size = isMobile ? 16 : 20;
 
   return (
     <div
       className={cn(
-        "flex items-center gap-[.125rem] px-[.9375rem] py-2 rounded-[.75rem] bg-light-purple",
-        "max-mb:px-2.5 max-mb:py-1.5"
+        "h-full flex items-center justify-center gap-[.125rem] px-[.9375rem] py-2 rounded-[.75rem] bg-light-purple",
+        "max-mb:px-2.5 max-mb:py-1.5 z-10"
       )}
     >
-      <StarIcon fill="#6a42db" height={size} width={size} />
+      <svg
+        fill="none"
+        height={size}
+        viewBox="0 0 20 21"
+        width={size}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9.99985 14.8962L6.54152 16.9795C6.38874 17.0767 6.22902 17.1184 6.06235 17.1045C5.89568 17.0906 5.74985 17.035 5.62485 16.9378C5.49985 16.8406 5.40263 16.7191 5.33318 16.5732C5.26374 16.4274 5.24985 16.2642 5.29152 16.0837L6.20818 12.1462L3.14568 9.50033C3.00679 9.37533 2.91999 9.23296 2.88527 9.07324C2.85054 8.91352 2.86096 8.75727 2.91652 8.60449C2.97207 8.45171 3.05541 8.32671 3.16652 8.22949C3.27763 8.13227 3.43041 8.06977 3.62485 8.04199L7.66652 7.68783L9.22902 3.97949C9.29846 3.81283 9.4061 3.68783 9.55193 3.60449C9.69777 3.52116 9.84707 3.47949 9.99985 3.47949C10.1526 3.47949 10.3019 3.52116 10.4478 3.60449C10.5936 3.68783 10.7012 3.81283 10.7707 3.97949L12.3332 7.68783L16.3748 8.04199C16.5693 8.06977 16.7221 8.13227 16.8332 8.22949C16.9443 8.32671 17.0276 8.45171 17.0832 8.60449C17.1387 8.75727 17.1492 8.91352 17.1144 9.07324C17.0797 9.23296 16.9929 9.37533 16.854 9.50033L13.7915 12.1462L14.7082 16.0837C14.7498 16.2642 14.736 16.4274 14.6665 16.5732C14.5971 16.7191 14.4998 16.8406 14.3748 16.9378C14.2498 17.035 14.104 17.0906 13.9373 17.1045C13.7707 17.1184 13.611 17.0767 13.4582 16.9795L9.99985 14.8962Z"
+          fill="#6A42DB"
+        />
+      </svg>
       <span
         className={cn(
           "text-purple text-center  text-[1.125rem] font-bold  leading-6",
