@@ -1,4 +1,3 @@
-// 이 달의 추천 와인
 "use client";
 
 import Image from "next/image";
@@ -12,14 +11,32 @@ import type { BaseWineData } from "@/types/Wine";
 import MiniWineCard from "./MiniWineCard";
 
 export default function MonthlyWines() {
-  const wines = winesData.list as BaseWineData[]; //winesData.json 에서 리스트를 BaseWineData[] 로 타입을 지정한 것입니다
+  const wines = winesData.list as BaseWineData[];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(4); //카드갯수 관리
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const CARD_WIDTH = 232 + 16;
 
-  // currentIndex 가 변경될 때마다 카드의 위치로 이동하는 로직
-  // CARD_WIDTH 를 의존성 배열에 넣은 이유는 안정성을 위해서입니다
+  // 브레이크포인트 별로 보여줄 카드 갯수 조정
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) {
+        setVisibleCount(1); // mobile
+      } else if (width < 1024) {
+        setVisibleCount(2); // tablet
+      } else {
+        setVisibleCount(4); // desktop
+      }
+    };
+
+    handleResize(); // 초기 세팅
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // currentIndex가 바뀌면 해당 카드 위치로 스크롤
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({
@@ -29,22 +46,19 @@ export default function MonthlyWines() {
     }
   }, [currentIndex, CARD_WIDTH]);
 
-  // 왼쪽 화살표 아이콘 클릭시 이전 카드로 이동합니다
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  // 오른쪽 화살표 아이콘 클릭시 다른 카드로 이동합니다
   const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, wines.length - VISIBLE_COUNT));
+    setCurrentIndex((prev) => Math.min(prev + 1, wines.length - visibleCount));
   };
 
-  const VISIBLE_COUNT = 4; // 한 번에 보여줄 카드 수
-
   return (
-    <div className="relative bg-gray-100 w-[71.25rem] h-[18.6875rem] rounded-[1rem] px-[1.875rem] py-[1.875rem] overflow-hidden">
+    <div className="relative bg-gray-100 w-full max-w-[71.25rem] h-[18.6875rem] rounded-[1rem] px-[1.875rem] py-[1.875rem] overflow-hidden mx-auto">
       <h3 className="font-[700] text-[1.25rem] text-gray-800 mb-[1rem]">이번 달 추천 와인</h3>
 
+      {/* 왼쪽 화살표 */}
       <Image
         alt="왼쪽화살표"
         className="absolute left-[1rem] top-1/2 -translate-y-1/2 w-[3rem] h-[3rem] cursor-pointer z-10"
@@ -52,6 +66,7 @@ export default function MonthlyWines() {
         onClick={handlePrev}
       />
 
+      {/* 오른쪽 화살표 */}
       <Image
         alt="오른쪽화살표"
         className="absolute right-[1rem] top-1/2 -translate-y-1/2 w-[3rem] h-[3rem] cursor-pointer z-10"
@@ -60,12 +75,9 @@ export default function MonthlyWines() {
       />
 
       {/* 카드 리스트 */}
-      <div
-        ref={scrollRef}
-        className="flex gap-[1rem] transition-transform duration-300 overflow-hidden"
-      >
+      <div ref={scrollRef} className="flex gap-4 transition-transform duration-300 overflow-hidden">
         {wines.map((wine) => (
-          <div key={wine.id} className="flex-shrink-0 w-[14.5rem]">
+          <div key={wine.id} className="flex-shrink-0 w-[232px]">
             <MiniWineCard wine={wine} />
           </div>
         ))}
