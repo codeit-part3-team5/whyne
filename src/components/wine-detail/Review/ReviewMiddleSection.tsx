@@ -11,7 +11,6 @@ export default function ReviewMiddleSection({
   aromas: Aroma[];
   rating: number;
 }) {
-  console.log(rating, aromas);
   return (
     <section className="relative flex w-full items-start justify-between self-stretch">
       <div className="flex gap-2.5 max-mb:gap-1.5 overflow-x-auto whitespace-nowrap scroll-hide">
