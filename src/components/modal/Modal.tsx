@@ -70,6 +70,7 @@ export default function Modal() {
           defaultMobileStyle,
           type === "delete" ? deleteBackStyle : defaultMobileBackStyle
         )}
+        data-modal-type={type}
         onClick={(e) => e.stopPropagation()}
       >
         {title && (

@@ -6,9 +6,9 @@ import TestContent from "./TestContent";
 
 export default function TestPage() {
   const open = useModalStore((state) => state.open);
-
   const handleClickOpenModal = () => {
-    open("addWine", <TestContent />);
+    // addReview 타입으로 모달을 열어서 range input 크기가 더 작아지는지 테스트
+    open("addReview", <TestContent />);
   };
 
   return (

@@ -1,17 +1,29 @@
 input[type="range"] {
   -webkit-appearance: none;
+  appearance: none;
   border-radius: 3.125rem;
   border: 1px solid var(--color-gray300);
   background: var(--color-gray100);
   height: 0.5rem;
-  width: 30.6875rem;
+  max-width: 30.6875rem;
+  width: 100%;
 
   @media (max-width: 46.5rem) {
-    width: 24.75rem;
+    max-width: 24.75rem;
   }
 
   @media (max-width: 24.375rem) {
-    width: 6.875rem;
+    max-width: 6.875rem;
+  }
+}
+
+/* 리뷰 모달에서의 range input 스타일 */
+[data-modal-type="addReview"] input[type="range"],
+[data-modal-type="editReview"] input[type="range"] {
+  max-width: 16.25rem;
+
+  @media (max-width: 24.375rem) {
+    max-width: 7.75rem;
   }
 }
 

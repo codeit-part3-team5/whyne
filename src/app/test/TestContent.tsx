@@ -9,13 +9,13 @@ export default function TestContent() {
   const [smoothTannic, setSmoothTannic] = useState(7);
 
   return (
-    <div className="p-8 space-y-8 w-full">
+    <div className="space-y-8 w-500px">
       <div>
         <button className="mb-4" onClick={close}>
           닫기
         </button>
 
-        <h1 className="text-2xl font-bold mb-8">WineTaste 컴포넌트 테스트</h1>
+        <h1 className="text-2xl font-bold ">WineTaste 컴포넌트 테스트</h1>
 
         <div className="space-y-6">
           <h2 className="text-xl">수정 가능한 상태:</h2>
