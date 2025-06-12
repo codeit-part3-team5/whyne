@@ -65,7 +65,7 @@ export default function WineTaste({ type, taste, readOnly, onChange }: WineTaste
       >
         <span className={cn(baseStyles.sideText, mobileStyles.sideText)}>{label.left}</span>
         <input
-          className={cn(baseStyles.rangeInput, readOnly && "cursor-default  ")}
+          className={cn(readOnly && "cursor-default ")}
           max={10}
           min={0}
           type="range"
