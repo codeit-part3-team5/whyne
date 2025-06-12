@@ -15,8 +15,8 @@ export default function ReviewBottomSection({
   softAcidic,
 }: ReviewBottomSectionProps) {
   return (
-    <section className="flex flex-col w-full gap-5 max-tb:gap-6 max-mb:gap-4">
-      <span className="w-full h-full self-stretch size-4 max-mb:size-3.5 font-normal leading-6.5 max-mb:leading-6">
+    <section className="flex flex-col w-full  gap-5 max-tb:gap-6 max-mb:gap-4">
+      <span className=" text-nowrap w-full h-full self-stretch size-4 max-mb:size-3.5 font-normal leading-6.5 max-mb:leading-6">
         {content}
       </span>
 
