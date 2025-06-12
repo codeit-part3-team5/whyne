@@ -4,7 +4,7 @@ import { useState } from "react";
 import Arrow from "@/components/Arrow";
 import { Review } from "@/types/ReviewList";
 import { cn } from "@/utils/cn";
-import { timeForToday } from "@/utils/timeFotToday";
+import { timeForToday } from "@/utils/timeForToday";
 
 import ReviewBottomSection from "./ReviewBottomSection";
 import ReviewMiddleSection from "./ReviewMiddleSection";
@@ -16,10 +16,9 @@ interface ReviewItemProps {
 }
 export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isUp, setIsUp] = useState(false);
+
   const toggleOpen = () => {
     setIsOpen((prev) => !prev);
-    setIsUp((prev) => !prev);
   };
 
   const handleLikeClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -53,7 +52,7 @@ export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
         />
       )}
       <button className="text-left text-gray800" onClick={toggleOpen}>
-        <Arrow direction={isUp ? "up" : undefined} />
+        <Arrow direction={isOpen ? "up" : undefined} />
       </button>
     </article>
   );

@@ -13,6 +13,7 @@ export default function LikeButton({ isLiked, onLikeClick, size = 24 }: LikeButt
     <button
       aria-label={isLiked ? "좋아요 취소" : "좋아요"}
       className="flex items-center justify-center hover:opacity-80 transition-opacity"
+      type="button"
       onClick={onLikeClick}
     >
       <Heart filled={isLiked} size={size} />

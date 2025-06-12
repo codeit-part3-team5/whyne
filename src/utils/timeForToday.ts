@@ -1,6 +1,10 @@
 export function timeForToday(dateString: string): string {
   const today = new Date();
   const timeValue = new Date(dateString);
+  if (isNaN(timeValue.getTime())) {
+    console.warn(`timeForToday: invalid date ${dateString}`);
+    return "";
+  }
 
   const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
 

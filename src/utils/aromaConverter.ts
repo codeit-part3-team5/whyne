@@ -1,6 +1,6 @@
 import { Aroma } from "@/types/Aroma";
 
-export const aromaToKorean: Record<Aroma, string> = {
+export const aromaToKorean = {
   [Aroma.CHERRY]: "체리",
   [Aroma.BERRY]: "베리",
   [Aroma.OAK]: "오크",
@@ -20,7 +20,7 @@ export const aromaToKorean: Record<Aroma, string> = {
   [Aroma.SPICE]: "스파이스",
   [Aroma.CARAMEL]: "카라멜",
   [Aroma.LEATHER]: "가죽",
-};
+} satisfies Record<Aroma, string>;
 
 export function getKoreanAroma(aroma: Aroma): string {
   return aromaToKorean[aroma];

@@ -9,7 +9,7 @@ export default function TestContent() {
   const [smoothTannic, setSmoothTannic] = useState(7);
 
   return (
-    <div className="space-y-8 w-500px">
+    <div className="space-y-8 w-[500px]">
       <div>
         <button className="mb-4" onClick={close}>
           닫기

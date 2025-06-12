@@ -26,8 +26,8 @@ export default function Rating({ rating }: { rating: number }) {
       </svg>
       <span
         className={cn(
-          "text-purple text-center  text-[1.125rem] font-bold  leading-6",
-          "max-tb:[.875rem] max-mb:text-[.875rem]"
+          "text-purple text-center font-bold  leading-6",
+          "text-[1.125rem] max-tb:text-[.875rem] max-mb:text-[.875rem]"
         )}
       >
         {rating.toFixed(1)}

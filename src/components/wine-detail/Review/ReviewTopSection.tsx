@@ -38,7 +38,12 @@ export default function ReviewTopSection({
           onLikeClick={(e) => onLikeClick?.(e)}
         />
 
-        <button className="relative" onClick={() => setIsOpen((prev) => !prev)}>
+        <button
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
+          className="relative"
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
           <Ellipse />
         </button>
         {isOpen && (

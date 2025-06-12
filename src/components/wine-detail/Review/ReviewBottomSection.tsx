@@ -21,10 +21,10 @@ export default function ReviewBottomSection({
       </span>
 
       <div className="flex flex-col gap-4.5">
-        <WineTaste taste={lightBold} type="lightBold" />
-        <WineTaste taste={smoothTannic} type="smoothTannic" />
-        <WineTaste taste={drySweet} type="drySweet" />
-        <WineTaste taste={softAcidic} type="softAcidic" />
+        <WineTaste readOnly taste={lightBold} type="lightBold" />
+        <WineTaste readOnly taste={smoothTannic} type="smoothTannic" />
+        <WineTaste readOnly taste={drySweet} type="drySweet" />
+        <WineTaste readOnly taste={softAcidic} type="softAcidic" />
       </div>
     </section>
   );
