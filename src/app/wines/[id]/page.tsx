@@ -1,6 +1,6 @@
 "use client";
 
-import ReviewList from "@/components/wine-detail/ReviewList";
+import ReviewList from "@/components/wine-detail/Review/ReviewList";
 import wine from "@/mocks/winesDetail.json";
 import { WineDetailData, WineType } from "@/types/Wine";
 import { convertStringsToAroma } from "@/utils/aromaConverter";

@@ -2,11 +2,11 @@ import { MouseEvent } from "react";
 import { useState } from "react";
 
 import Ellipse from "@/assets/ellipse-icon.svg";
+import DropDown from "@/components/DropDown";
+import ProfileCircle from "@/components/profile/ProfileCircle";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { User } from "@/types/User";
 
-import DropDown from "../DropDown";
-import ProfileCircle from "../profile/ProfileCircle";
 import LikeButton from "./LikeButton";
 import UserInfo from "./UserInfo";
 interface ReviewTopSectionProps {

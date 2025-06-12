@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 
-import Heart from "../Heart";
+import Heart from "@/components/Heart";
 
 interface LikeButtonProps {
   isLiked: boolean;

@@ -1,18 +1,19 @@
 import { MouseEvent } from "react";
 import { useState } from "react";
 
+import Arrow from "@/components/Arrow";
 import { Review } from "@/types/ReviewList";
 import { cn } from "@/utils/cn";
 import { timeForToday } from "@/utils/timeFotToday";
 
-import Arrow from "../Arrow";
+import ReviewBottomSection from "./ReviewBottomSection";
 import ReviewMiddleSection from "./ReviewMiddleSection";
 import ReviewTopSection from "./ReviewTopSection";
+
 interface ReviewItemProps {
   review: Review;
   onLikeClick?: (reviewId: number) => void;
 }
-
 export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isUp, setIsUp] = useState(false);
@@ -42,7 +43,15 @@ export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
         onLikeClick={handleLikeClick}
       />
       <ReviewMiddleSection aromas={review.aroma} rating={review.rating} />
-      {isOpen && <p className="text-gray800 whitespace-pre-line">{review.content}</p>}
+      {isOpen && (
+        <ReviewBottomSection
+          content={review.content}
+          drySweet={review.drySweet}
+          lightBold={review.lightBold}
+          smoothTannic={review.smoothTannic}
+          softAcidic={review.softAcidic}
+        />
+      )}
       <button className="text-left text-gray800" onClick={toggleOpen}>
         <Arrow direction={isUp ? "up" : undefined} />
       </button>
