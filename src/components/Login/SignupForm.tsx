@@ -21,7 +21,7 @@ const SignupForm: React.FC = () => {
   const {
     register,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm<FormInput>({ mode: "all" });
   const password = watch("password");
@@ -86,7 +86,13 @@ const SignupForm: React.FC = () => {
           label="비밀번호 확인"
           type="password"
         />
-        <Button className="w-full mt-[0.5rem]" type="submit" variant="primary">
+        <Button
+          className="w-full mt-[0.5rem]"
+          disabled={isSubmitting}
+          loading={isSubmitting}
+          type="submit"
+          variant="primary"
+        >
           가입하기
         </Button>
       </form>
