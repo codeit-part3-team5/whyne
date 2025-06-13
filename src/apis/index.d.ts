@@ -11,7 +11,7 @@ declare interface UserResponse {
   image: string | null;
   email: string;
 }
-declare interface SignInApiResponse {
+declare interface SigningApiResponse {
   user: UserResponse;
   accessToken: string;
   refreshToken: string;
@@ -26,5 +26,11 @@ declare interface MeApiResponse {
 }
 
 declare type RefreshTokenApi = (refreshToken: string) => Promise<RefreshTokenApiResponse>;
-declare type SignInApi = (email: string, password: string) => Promise<SignInApiResponse>;
+declare type SignInApi = (email: string, password: string) => Promise<SigningApiResponse>;
+declare type SignUpApi = (
+  email: string,
+  nickname: string,
+  password: string,
+  passwordConfirmation: string
+) => Promise<SigningApiResponse>;
 declare type MeApi = () => Promise<MeApiResponse>;
