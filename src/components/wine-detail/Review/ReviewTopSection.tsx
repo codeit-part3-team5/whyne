@@ -44,7 +44,7 @@ export default function ReviewTopSection({
           className="relative"
           onClick={() => setIsOpen((prev) => !prev)}
         >
-          <Ellipse />
+          <Ellipse height="38" width="38" />
         </button>
         {isOpen && (
           <div className="absolute right-0 top-12 z-11">
