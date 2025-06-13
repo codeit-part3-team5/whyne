@@ -4,36 +4,38 @@ import { BaseWineData } from "@/types/Wine";
 import { cn } from "@/utils/cn";
 
 import Star from "./Star";
-type ReviewSummaryProps = BaseWineData & { direction?: "row" | "column" };
+type ReviewSummaryProps = BaseWineData & { page?: "wineCard" | "wineDetail" };
 
 export default function ReviewSummary({
   avgRating,
   reviewCount,
-  direction = "row",
+  page = "wineCard",
 }: ReviewSummaryProps) {
   return (
     <div
       className={cn(
-        "flex flex-shrink-0 items-center",
-        direction === "column"
-          ? "flex-col w-[112px] min-h-[121px] items-start gap-[10px]"
-          : "flex-row gap-[20px]"
+        "flex max-mb:flex-row flex-shrink-0 items-center max-mb:items-center max-mb:gap-[.9375rem] max-mb:w-auto max-mb:h-auto",
+        page === "wineCard"
+          ? "flex-col w-[7rem] h-[7.75rem] items-start gap-[.625rem] "
+          : "flex-row w-[13.625rem] h-[4rem] gap-[1.25rem]"
       )}
     >
-      <div className={cn("text-gray-800 text-[48px] font-extrabold leading-[1.3]")}>
+      <div
+        className={cn(
+          "text-gray800 text-[3rem] font-extrabold leading-[normal] max-mb:text-[1.75rem]"
+        )}
+      >
         {avgRating.toFixed(1)}
       </div>
 
       <div
         className={cn(
-          "flex items-start w-[112px]",
-          direction === "column"
-            ? "flex-col gap-[10px]"
-            : "flex-col gap-[5px] justify-center mt-[9px]"
+          "flex items-start w-auto max-mb:gap-[.3125rem]",
+          page === "wineCard" ? "flex-col gap-[.625rem] justify-center" : "flex-col gap-[.3125rem "
         )}
       >
         <Star avgRating={avgRating} />
-        <div className="text-gray-500 text-[14px] font-normal leading-[24px]">
+        <div className="text-gray500 text-[.875rem] font-normal leading-6 max-mb:text-[.75rem] max-mb:leading-4.5">
           {reviewCount}개의 후기
         </div>
       </div>
