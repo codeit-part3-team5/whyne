@@ -11,7 +11,7 @@ interface Props {
 
 export default function WineInfoCard({ data }: Props) {
   return (
-    <section className="border border-gray-300 rounded-[1rem] w-full max-w-[50rem] h-auto p-[0.5rem] flex flex-col">
+    <section className="border border-gray-300 rounded-[1rem] w-full max-w-[50rem] h-auto p-[0.5rem] flex flex-col my-[40px]">
       {/* 상단 내용: 이미지 , 정보 , 리뷰 요약 */}
       <div className="flex gap-[0.625rem]">
         {/* 이미지 */}
@@ -30,7 +30,7 @@ export default function WineInfoCard({ data }: Props) {
         {/* 가운데 텍스트 정보 */}
         <div className="flex flex-col justify-between h-[13.0625rem] py-[0.5rem] mt-[1rem] flex-1">
           <div className="min-h-[6.25rem]">
-            <div className="font-[600] text-[30px] max-[300px]:text-[1.3rem] leading-tight break-words max-w-[22rem]">
+            <div className="font-[600] text-[30px] max-[640px]:text-[1.1rem] leading-tight break-words max-w-[22rem]">
               {data.name}
             </div>
             <div className="font-[400] text-[1rem] text-gray-500 mt-2">{data.region}</div>
