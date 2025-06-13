@@ -9,7 +9,7 @@ type RatingScoreProps = {
 
 export default function RatingScore({ avgRating, className }: RatingScoreProps) {
   return (
-    <div className={cn("text-gray-800 text-[36px] font-[800] px-[5px]", className)}>
+    <div className={cn("text-gray-800 text-[2.25rem] font-[800] px-[0.3125rem]", className)}>
       {avgRating.toFixed(1)}
     </div>
   );
