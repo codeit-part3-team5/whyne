@@ -1,0 +1,56 @@
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 3.125rem;
+  border: 1px solid var(--color-gray300);
+  background: var(--color-gray100);
+  height: 0.5rem;
+  max-width: 30.6875rem;
+  width: 100%;
+
+  @media (max-width: 46.5rem) {
+    max-width: 24.75rem;
+  }
+
+  @media (max-width: 24.375rem) {
+    max-width: 6.875rem;
+  }
+}
+
+/* 리뷰 모달에서의 range input 스타일 */
+[data-modal-type="addReview"] input[type="range"],
+[data-modal-type="editReview"] input[type="range"] {
+  max-width: 16.25rem;
+
+  @media (max-width: 24.375rem) {
+    max-width: 7.75rem;
+  }
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-purple);
+  border-radius: 50%;
+  filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.04));
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-purple);
+  border-radius: 50%;
+  filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.04));
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-purple);
+  border-radius: 50%;
+  filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.04));
+  cursor: pointer;
+}

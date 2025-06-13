@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
   return (
     <footer
       className={cn(
-        "bg-black w-full h-[7rem] flex items-center text-white px-[2.8rem] py-[0.6rem]",
+        "bg-black w-full h-[7rem] flex items-center text-white px-[2.8rem] py-[0.6rem] mt-3",
         "max-mb:h-[6rem] max-mb:px-[1.25rem] max-mb:py-[0.9375rem]"
       )}
     >

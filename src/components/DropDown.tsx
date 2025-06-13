@@ -16,7 +16,7 @@ export default function DropDown({ firstText, secondText, size = "default" }: Dr
       : "px-[1.375rem] py-[0.625rem] text-[1rem] sm:px-[1rem] sm:py-[0.5rem] sm:text-[0.875rem]";
 
   return (
-    <div className={`${containerSize} border border-gray-300 rounded-[1rem]`}>
+    <div className={`${containerSize} border border-gray-300 rounded-[1rem] bg-white`}>
       <div
         className={`cursor-pointer bg-light-purple rounded-[0.75rem] text-center text-purple font-[500] my-[0.25rem] mx-[0.25rem] ${padding}`}
       >

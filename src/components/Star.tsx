@@ -1,4 +1,4 @@
-import StarIcon from "@/assets/icons/star-icon.svg";
+import StarIcon from "@/assets/star-icon.svg";
 type StarProps = { avgRating: number };
 
 export default function Star({ avgRating }: StarProps) {
