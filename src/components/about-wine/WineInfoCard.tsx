@@ -57,7 +57,7 @@ export default function WineInfoCard({ data }: Props) {
       {data.recentReview && (
         <div className="border-t border-gray-300 pt-3 mt-1 w-full px-[15px] py-[15px]">
           <div className="text-[1rem] font-[600] text-gray-800 mb-1 ml-6">최신 후기</div>
-          <div className="text-[1rem] forn-[400] text-gray-500 leading-relaxed whitespace-pre-line ml-6">
+          <div className="text-[1rem] font-[400] text-gray-500 leading-relaxed whitespace-pre-line ml-6">
             "{data.recentReview.content}"
           </div>
         </div>
