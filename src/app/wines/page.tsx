@@ -1,22 +1,40 @@
-// 와인 목록 페이지
+//와인 목록 페이지
+
+"use client";
+
+import { useMemo, useState } from "react";
+
 import MonthlyWines from "@/components/about-wine/MonthlyWines";
-import WineCard from "@/components/about-wine/WineCard";
-import WineTypeDropDown from "@/components/about-wine/WineTypeDropDown";
-import DropDown from "@/components/DropDown";
+import WineInfoCard from "@/components/about-wine/WineInfoCard";
+import SearchInput from "@/components/input/SearchInput";
 import winesData from "@/mocks/winesData.json";
+import type { BaseWineData } from "@/types/Wine";
 
 export default function WinesPage() {
-  const wines = winesData.list;
+  const wines = winesData.list as BaseWineData[];
+  const [search, setSearch] = useState("");
+
+  // 검색 결과
+  const filteredWines = useMemo(() => {
+    return wines.filter((wine) => wine.name.toLowerCase().includes(search.toLowerCase()));
+  }, [search, wines]);
 
   return (
     <main>
-      <DropDown firstText="수정하기" secondText="삭제하기" size="small" />
-      <DropDown firstText="마이페이지" secondText="로그아웃" />
-      <WineTypeDropDown />
       <MonthlyWines />
-      {wines.map((wine) => (
-        <WineCard key={wine.id} data={wine} />
+      <div className="w-full max-w-[50rem] my-4">
+        <SearchInput
+          placeholder="와인을 검색해보세요"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+      {filteredWines.map((wine) => (
+        <WineInfoCard key={wine.id} data={wine} />
       ))}
+      {filteredWines.length === 0 && (
+        <p className="text-center text-gray-500 mt-8">검색 결과가 없습니다.</p>
+      )}
     </main>
   );
 }

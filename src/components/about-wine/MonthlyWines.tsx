@@ -55,7 +55,7 @@ export default function MonthlyWines() {
   };
 
   return (
-    <div className="relative bg-gray-100 w-full max-w-[71.25rem] h-[18.6875rem] rounded-[1rem] px-[1.875rem] py-[1.875rem] overflow-hidden mx-auto">
+    <div className="relative bg-gray-100 w-full max-w-[71.25rem] h-[18.6875rem] rounded-[1rem] px-[1.875rem] py-[1.875rem] overflow-hidden mx-auto my-[20px]">
       <h3 className="font-[700] text-[1.25rem] text-gray-800 mb-[1rem]">이번 달 추천 와인</h3>
 
       {/* 왼쪽 화살표 */}
