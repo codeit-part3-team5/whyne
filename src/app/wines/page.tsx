@@ -11,7 +11,9 @@ export default function WinesPage() {
   return (
     <main>
       <MonthlyWines />
-      <SearchInput />
+      <div className="w-full max-w-[50rem]">
+        <SearchInput />
+      </div>
       {wines.map((wine) => (
         <WineInfoCard key={wine.id} data={wine} />
       ))}
