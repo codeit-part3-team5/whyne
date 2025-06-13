@@ -2,7 +2,7 @@
 
 import React, { forwardRef, useId, useMemo } from "react";
 
-import SearchIcon from "@/assets/icons/search-icon.svg";
+import SearchIcon from "@/assets/search-icon.svg";
 import {
   getInputState,
   getPaddingStyle,

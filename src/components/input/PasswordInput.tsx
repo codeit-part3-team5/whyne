@@ -2,8 +2,8 @@
 
 import React, { forwardRef, useId } from "react";
 
-import EyePasswordHideIcon from "@/assets/icons/eye-password-hide.svg";
-import EyePasswordShowIcon from "@/assets/icons/eye-password-show.svg";
+import EyePasswordHideIcon from "@/assets/eye-password-hide.svg";
+import EyePasswordShowIcon from "@/assets/eye-password-show.svg";
 import { usePasswordToggle } from "@/hooks/usePasswordToggle";
 import {
   getInputState,
