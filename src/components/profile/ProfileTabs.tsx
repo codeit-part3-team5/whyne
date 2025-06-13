@@ -8,24 +8,22 @@ interface ProfileTabsProps {
 }
 
 const TABS = [
-  { id: 1, label: "내가 쓴 후기" },
-  { id: 2, label: "내가 등록한 와인" },
+  { id: 1, label: "내가 쓴 후기", key: "reviewCount" as const },
+  { id: 2, label: "내가 등록한 와인", key: "wineCount" as const },
 ] as const;
 
 export default function ProfileTabs({
   activeTab,
   handleTabClick,
-  reviewCount = 0,
-  wineCount = 0,
+  reviewCount,
+  wineCount,
 }: ProfileTabsProps) {
+  const counts = { reviewCount, wineCount };
+
   const getTabButtonClass = (tabId: number) => {
     const baseClass = "hover:text-[var(--color-purple)] transition-colors";
     const activClass = activeTab === tabId ? "text-gray-800" : "text-gray-400";
     return `${baseClass} ${activClass}`;
-  };
-
-  const getCount = (tabId: number) => {
-    return tabId === 1 ? reviewCount : wineCount;
   };
 
   return (
@@ -41,8 +39,12 @@ export default function ProfileTabs({
           </button>
         ))}
       </div>
-      <div>
-        <span className="text-[var(--color-purple)]">총 {getCount(activeTab)}개</span>
+      <div className="self-center">
+        {TABS.find((tab) => tab.id === activeTab) && (
+          <span className="text-[var(--color-purple)]">
+            {counts[TABS.find((tab) => tab.id === activeTab)!.key]}개
+          </span>
+        )}
       </div>
     </div>
   );
