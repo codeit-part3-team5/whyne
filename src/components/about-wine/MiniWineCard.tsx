@@ -21,7 +21,7 @@ export default function MiniWineCard({ wine }: Props) {
       </div>
       <div className="flex flex-col items-start h-full w-full">
         <RatingScore avgRating={wine.avgRating} />
-        <div className="w-[5.625rem] h-[1.125rem] mt-[0.2rem]">
+        <div className="w-full h-[1.125rem] mt-[0.2rem]">
           <Star avgRating={wine.avgRating} />
         </div>
         <div className="mt-2 text-gray-500 text-[] font-[400] whitespace-pre-line leading-tight break-words">
