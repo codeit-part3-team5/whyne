@@ -11,14 +11,14 @@ interface Props {
 
 export default function WineInfoCard({ data }: Props) {
   return (
-    <section className="border border-gray-300 rounded-[1rem] w-full max-w-[50rem] h-auto p-[0.5rem] flex flex-col my-[30px]">
+    <section className="w-[21.4375rem] sm:w-full max-w-[50rem] h-auto p-0 sm:p-[0.5rem] flex flex-col border border-gray-300 rounded-[1rem] my-[30px] px-2 py-2 sm:px-0 mx-auto">
       <div className="flex gap-[0.625rem]">
         {/* 이미지 */}
-        <div className="w-[12.5rem] h-full bg-white rounded-md overflow-hidden flex items-end justify-center text-gray-400 text-sm">
+        <div className="w-[7rem] sm:w-[8rem] md:w-[9rem] lg:w-[10rem] h-full bg-white rounded-md overflow-hidden flex items-end justify-center text-gray-400 text-sm">
           {data.image ? (
             <img
               alt={data.name}
-              className="w-[12.5rem] h-[13.0625rem] object-contain object-bottom"
+              className="w-[4rem] h-[10rem] sm:w-[10rem] sm:h-[11rem] md:w-[12rem] md:h-[12.5rem] lg:w-[12.5rem] lg:h-[13.0625rem] object-contain object-bottom"
               src={data.image}
             />
           ) : (
@@ -42,7 +42,7 @@ export default function WineInfoCard({ data }: Props) {
         </div>
 
         {/* 오른쪽: 평점, 화살표 */}
-        <div className="mt-4 flex flex-col items-center justify-between h-[13.0625rem] mr-10">
+        <div className="mt-4 flex flex-col items-center justify-between h-[9rem] sm:h-[11rem] md:h-[12rem] lg:h-[13.0625rem] mr-4 sm:mr-6 md:mr-8 lg:mr-10">
           <ReviewSummary {...data} />
           <Image
             alt="상세페이지 이동"
