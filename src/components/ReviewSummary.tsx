@@ -31,7 +31,7 @@ export default function ReviewSummary({
       <div
         className={cn(
           "flex items-start w-auto max-mb:gap-[.3125rem]",
-          page === "wineCard" ? "flex-col gap-[.625rem] justify-center" : "flex-col gap-[.3125rem "
+          page === "wineCard" ? "flex-col gap-[.625rem] justify-center" : "flex-col gap-[.3125rem] "
         )}
       >
         <Star avgRating={avgRating} />

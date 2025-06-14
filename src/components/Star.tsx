@@ -13,14 +13,10 @@ export default function Star({ avgRating }: StarProps) {
   const stars = Array.from({ length: totalStars }, (_, i) => {
     const fillColor = avgRating >= i + 1 ? activeColor : defaultColor;
 
-    return (
-      <>
-        {isMobile ? (
-          <StarMiniIcon fill={fillColor} height={size} width={size} />
-        ) : (
-          <StarIcon fill={fillColor} height={size} width={size} />
-        )}
-      </>
+    return isMobile ? (
+      <StarMiniIcon key={i} fill={fillColor} height={size} width={size} />
+    ) : (
+      <StarIcon key={i} fill={fillColor} height={size} width={size} />
     );
   });
 
