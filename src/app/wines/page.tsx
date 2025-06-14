@@ -9,12 +9,15 @@ import PriceFilter from "@/components/Filters/PriceFilter";
 import RatingFilter from "@/components/Filters/RatingFilter";
 import TypeFilter from "@/components/Filters/TypeFilter";
 import SearchInput from "@/components/input/SearchInput";
+import PostModal from "@/components/modal/PostModal";
 import winesData from "@/mocks/winesData.json";
+import useModalStore from "@/store/useModalStore";
 import type { BaseWineData } from "@/types/Wine";
 
 export default function WinesPage() {
   const wines = winesData.list as BaseWineData[];
   const [search, setSearch] = useState("");
+  const openModal = useModalStore((state) => state.open); //모달 오픈
 
   const filteredWines = useMemo(() => {
     return wines.filter((wine) => wine.name.toLowerCase().includes(search.toLowerCase()));
@@ -23,17 +26,21 @@ export default function WinesPage() {
   return (
     <main className="flex flex-col items-center">
       <MonthlyWines />
-      <div className="flex w-full max-w-[80rem] gap-12 mt-6">
+      <div className="flex w-full max-w-[80rem] gap-16 mt-6">
         {/* 왼쪽: 필터 */}
         <aside className="w-full max-w-[284px] shrink-0 flex flex-col gap-6 mt-30">
           <TypeFilter />
           <PriceFilter />
           <RatingFilter />
-          <Button className="rounded-2xl max-w-[284px] mt-6" size="lg" variant="primary">
+          <Button
+            className="rounded-2xl max-w-[284px] mt-6"
+            size="lg"
+            variant="primary"
+            onClick={() => openModal("addWine", <PostModal />)}
+          >
             와인 등록하기
           </Button>
         </aside>
-
         {/* 오른쪽: 검색 + 와인 리스트 (우측 정렬) */}
         <section className="flex-1">
           <div className="flex flex-col w-full max-w-[50rem] ml-auto">
