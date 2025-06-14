@@ -1,6 +1,9 @@
 "use client";
 
+import ReviewSummary from "@/components/ReviewSummary";
+import wines from "@/mocks/winesData.json";
 import useModalStore from "@/store/useModalStore";
+import { WineType } from "@/types/Wine";
 
 import TestContent from "./TestContent";
 
@@ -17,11 +20,14 @@ export default function TestPage() {
         모달 열기
       </button>
 
-      {/* 스크롤 테스트용 더미 콘텐츠 */}
-      <div className="mt-20 space-y-10 px-4">
-        {Array.from({ length: 50 }, (_, i) => (
-          <div key={i} className="h-40 bg-gray-200 rounded-md shadow-inner">
-            더미 콘텐츠 {i + 1}
+      <div>
+        {wines.list.map((wine) => (
+          <div key={wine.id} className="mb-[24px]">
+            <ReviewSummary
+              key={wine.id}
+              page="wineDetail"
+              {...{ ...wine, type: wine.type as WineType }}
+            />
           </div>
         ))}
       </div>
