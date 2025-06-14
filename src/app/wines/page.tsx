@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 
 import MonthlyWines from "@/components/about-wine/MonthlyWines";
 import WineInfoCard from "@/components/about-wine/WineInfoCard";
+import TypeFilter from "@/components/Filters/TypeFilter";
 import SearchInput from "@/components/input/SearchInput";
 import winesData from "@/mocks/winesData.json";
 import type { BaseWineData } from "@/types/Wine";
@@ -28,6 +29,9 @@ export default function WinesPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+      </div>
+      <div>
+        <TypeFilter />
       </div>
       {filteredWines.map((wine) => (
         <WineInfoCard key={wine.id} data={wine} />
