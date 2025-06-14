@@ -17,7 +17,7 @@ export default function ReviewOverview({ wine }: { wine: WineDetailData }) {
     <div
       className={cn(
         "flex flex-col gap-7.5 max-w-full h-auto max-tb:max-w-[36.125rem] max-mb:w-full",
-        "relative flex-col-reverse"
+        "max-tb:relative max-tb:flex-col-reverse"
       )}
     >
       <div
