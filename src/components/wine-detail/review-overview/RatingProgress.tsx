@@ -19,7 +19,7 @@ export default function RatingProgress({
             <span className="text-gray500 text-right text-base font-medium leading-[normal] flex-shrink-0">
               {rating}점
             </span>
-            <progress max={reviewCount} value={count} />
+            <progress aria-label={`${rating}점 중 리뷰 비율`} max={reviewCount} value={count} />
           </div>
         ))}
     </div>
