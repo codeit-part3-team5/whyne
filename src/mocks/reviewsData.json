@@ -1,0 +1,110 @@
+{
+  "list": [
+    {
+      "id": 2502,
+      "rating": 4,
+      "lightBold": 3,
+      "smoothTannic": 0,
+      "drySweet": 8,
+      "softAcidic": 4,
+      "aroma": ["TROPICAL", "FLOWER"],
+      "content": "Plum and peppery on the nose. Black cherry and blackberry on the palate. Supple tannins, medium body.",
+      "createdAt": "2025-06-10T16:54:52.528Z",
+      "updatedAt": "2025-06-10T16:54:52.528Z",
+      "user": {
+        "id": 1303,
+        "nickname": "개굴개굴",
+        "image": null
+      },
+      "wine": {
+        "id": 849,
+        "name": "일 푸모 말바시아 소비뇽 살렌토",
+        "region": "이탈리아 살렌토",
+        "image": "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Wine/user/726/1739774610803/001002000495.png",
+        "price": 25000,
+        "avgRating": 4.333333333333333,
+        "type": "WHITE"
+      }
+    },
+    {
+      "id": 2503,
+      "rating": 4,
+      "lightBold": 0,
+      "smoothTannic": 1,
+      "drySweet": 5,
+      "softAcidic": 3,
+      "aroma": ["VANILLA"],
+      "content": "Deep maroon color, tasting notes of blackberry, dark chocolate, plum. Super jammy and bold with some smoky after notes. Big flavor. Amazing value (would pay three times the price for it), well balanced flavor. Could drink all day everyday with or without food. I need more immediately.",
+      "createdAt": "2025-06-12T08:04:17.632Z",
+      "updatedAt": "2025-06-12T08:04:17.632Z",
+      "user": {
+        "id": 1303,
+        "nickname": "개굴개굴",
+        "image": null
+      },
+      "wine": {
+        "id": 803,
+        "name": "도멘 뒤 그랑 무통",
+        "region": "프랑스 ",
+        "image": "https://sprint-fe-project.s3.ap-northeast-2.amazonaws.com/Wine/user/726/1739503773067/001002000494.png",
+        "price": 44900,
+        "avgRating": 3.666666666666667,
+        "type": "WHITE"
+      }
+    },
+    {
+      "id": 2504,
+      "rating": 4,
+      "lightBold": 0,
+      "smoothTannic": 1,
+      "drySweet": 5,
+      "softAcidic": 3,
+      "aroma": ["VANILLA"],
+      "content": "Deep maroon color, tasting notes of blackberry, dark chocolate, plum. Super jammy and bold with some smoky after notes. Big flavor. Amazing value (would pay three times the price for it), well balanced flavor. Could drink all day everyday with or without food. I need more immediately.",
+      "createdAt": "2025-06-12T08:04:17.632Z",
+      "updatedAt": "2025-06-12T08:04:17.632Z",
+      "user": {
+        "id": 1303,
+        "nickname": "개굴개굴",
+        "image": null
+      },
+      "wine": {
+        "id": 907,
+        "name": "Alain Gautheron Chablis Premier Cru Vaillons",
+        "region": "France",
+        "image": "https://awine.kr/wp-content/uploads/vb_wine_img/25122.png",
+        "price": 89000,
+        "avgRating": 3.666666666666667,
+        "type": "WHITE"
+      }
+    },
+    {
+      "id": 2505,
+      "rating": 4,
+      "lightBold": 0,
+      "smoothTannic": 1,
+      "drySweet": 5,
+      "softAcidic": 3,
+      "aroma": ["VANILLA"],
+      "content": "Deep maroon color, tasting notes of blackberry, dark chocolate, plum. Super jammy and bold with some smoky after notes. Big flavor. Amazing value (would pay three times the price for it), well balanced flavor. Could drink all day everyday with or without food. I need more immediately.",
+      "createdAt": "2025-06-12T08:04:17.632Z",
+      "updatedAt": "2025-06-12T08:04:17.632Z",
+      "user": {
+        "id": 1303,
+        "nickname": "개굴개굴",
+        "image": null
+      },
+      "wine": {
+        "id": 906,
+        "name": "Banfi, Rosa Regale Brachetto d'Acqui",
+        "region": "Italy",
+        "image": "https://d2d8wwwkmhfcva.cloudfront.net/800x/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_cf5a4b53-db39-4943-b600-85d7869eb4ca.jpeg",
+        "price": 84000,
+        "avgRating": 3.666666666666667,
+        "type": "SPARKLING"
+      }
+    }
+  ],
+  "totalCount": 4,
+  "nextCursor": null
+}
