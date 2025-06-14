@@ -29,7 +29,7 @@ export default function ReviewItem({ review, onLikeClick }: ReviewItemProps) {
   return (
     <article
       className={cn(
-        "flex flex-col border border-gray300 bg-white rounded-2xl items-center px-10 max-tb:gap-6  pb-5 ",
+        "flex flex-col border border-gray300 bg-white rounded-2xl items-center px-10 max-tb:gap-6 pb-5 ",
         isOpen
           ? "pt-[1.0313rem] gap-5 max-mb:gap-4  max-tb:pt-[1.875rem] max-mb:py-4 max-mb:px-5"
           : "pt-[1.875rem] gap-3.5 max-tb:gap-[1.0313rem] max-tb:pt-8 max-tb:pb-6  max-mb:pt-4 max-mb:pb-2 max-mb:px-[.875rem]"

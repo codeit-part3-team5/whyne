@@ -28,7 +28,7 @@ export default function ReviewList({ wine }: ReviewListProps) {
 
   return (
     <section className="flex flex-col w-full max-w-[50rem] flex-1 gap-6 max-tb:gap-0">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center">
         {isPC && <h3 className="text-xl font-bold text-gray800">리뷰 목록</h3>}
       </div>
       <div className="flex flex-col gap-5 max-tb:gap-6 max-mb:gap-4">
