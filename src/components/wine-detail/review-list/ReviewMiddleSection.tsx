@@ -12,7 +12,7 @@ export default function ReviewMiddleSection({
   rating: number;
 }) {
   return (
-    <section className="relative flex w-full items-start justify-between self-stretch">
+    <section className="relative flex items-start justify-between self-stretch">
       <div className="flex gap-2.5 max-mb:gap-1.5 overflow-x-auto whitespace-nowrap scroll-hide">
         {aromas.map((aroma) => (
           <AromaItem key={aroma} aroma={getKoreanAroma(aroma)} />

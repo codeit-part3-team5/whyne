@@ -8,7 +8,7 @@ import reviewsData from "@/mocks/reviewsData.json";
 import { timeForToday } from "@/utils/timeForToday";
 
 import DropDown from "../DropDown";
-import Rating from "../wine-detail/Review/Rating";
+import Rating from "../wine-detail/review-list/Rating";
 
 export default function ReviewCard() {
   const reviews = reviewsData.list;

@@ -37,7 +37,6 @@ export default function ReviewTopSection({
           size={isMobile ? 32 : 38}
           onLikeClick={(e) => onLikeClick?.(e)}
         />
-
         <button
           aria-expanded={isOpen}
           aria-haspopup="menu"
@@ -48,7 +47,11 @@ export default function ReviewTopSection({
         </button>
         {isOpen && (
           <div className="absolute right-0 top-12 z-11">
-            <DropDown firstText="수정하기" secondText="삭제하기" />
+            <DropDown
+              firstText="수정하기"
+              secondText="삭제하기"
+              size={isMobile ? "small" : "default"}
+            />
           </div>
         )}
       </div>
