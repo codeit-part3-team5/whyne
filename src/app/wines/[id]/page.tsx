@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 
-import ReviewList from "@/components/wine-detail/Review/ReviewList";
+import ReviewList from "@/components/wine-detail/review-list/ReviewList";
 import wineJson from "@/mocks/winesDetail.json";
 import { WineDetailData, WineType } from "@/types/Wine";
 import { convertStringsToAroma } from "@/utils/aromaConverter";
