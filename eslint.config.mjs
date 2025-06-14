@@ -50,6 +50,11 @@ const eslintConfig = [
           selector: "default",
           format: ["camelCase"],
           leadingUnderscore: "allow",
+          // import된 식별자는 제외
+          filter: {
+            regex: "^(import|Import)",
+            match: false,
+          },
         },
         // 변수: camelCase, PascalCase (React 컴포넌트), UPPER_CASE (상수)
         {
@@ -81,11 +86,6 @@ const eslintConfig = [
             regex: "^(aria-|data-|[a-z]+_[a-z]+).*$",
             match: false,
           },
-        },
-        //  import 에 대한 규칙 PascalCase
-        {
-          selector: "import",
-          format: ["camelCase", "PascalCase"],
         },
       ],
 
