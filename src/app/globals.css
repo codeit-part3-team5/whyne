@@ -26,3 +26,27 @@
     text-decoration: none;
   }
 }
+
+/* PriceFilter.tsx 에서 thumb 스타일입니다 
+-webkit-slider-thumb 은 크롬,사파리에서 작동하는 브라우저에서 슬라이드 핸들을 만들 때 사용하는 가상요소라고합니다.
+*/
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #cfdbea; /* 보라색 */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+/* firefox 전용 스타일입니다 */
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #cfdbea;
+  pointer-events: auto;
+}
