@@ -23,13 +23,11 @@ export default function WineDetailPage() {
 
   return (
     <main className="flex flex-col items-center py-10">
-      <div className="flex w-full max-w-[71.25rem] mx-auto gap-15 ">
+      <div className="flex w-full max-w-[71.25rem] mx-auto justify-between max-tb:flex-col-reverse">
         <div className="flex-grow max-mb:w-full">
           <ReviewList wine={wineData} />
         </div>
-        <div className="flex-shrink-0">
-          <ReviewOverview wine={wineData} />
-        </div>
+        <ReviewOverview wine={wineData} />
       </div>
     </main>
   );
