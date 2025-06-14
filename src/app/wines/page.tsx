@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 
 import MonthlyWines from "@/components/about-wine/MonthlyWines";
 import WineInfoCard from "@/components/about-wine/WineInfoCard";
+import Button from "@/components/Button";
 import PriceFilter from "@/components/Filters/PriceFilter";
 import RatingFilter from "@/components/Filters/RatingFilter";
 import TypeFilter from "@/components/Filters/TypeFilter";
@@ -28,6 +29,9 @@ export default function WinesPage() {
           <TypeFilter />
           <PriceFilter />
           <RatingFilter />
+          <Button className="rounded-2xl max-w-[284px] mt-6" size="lg" variant="primary">
+            와인 등록하기
+          </Button>
         </aside>
 
         {/* 오른쪽: 검색 + 와인 리스트 (우측 정렬) */}
