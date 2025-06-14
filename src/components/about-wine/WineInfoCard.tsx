@@ -43,7 +43,7 @@ export default function WineInfoCard({ data }: Props) {
 
         {/* 오른쪽: 평점, 화살표 */}
         <div className="mt-4 flex flex-col items-center justify-between h-[13.0625rem] mr-10">
-          <ReviewSummary {...data} direction="column" />
+          <ReviewSummary {...data} />
           <Image
             alt="상세페이지 이동"
             className="cursor-pointer ml-12 mb-3"
