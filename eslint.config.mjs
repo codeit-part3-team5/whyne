@@ -82,6 +82,11 @@ const eslintConfig = [
             match: false,
           },
         },
+        //  import 에 대한 규칙 PascalCase
+        {
+          selector: "import",
+          format: ["camelCase", "PascalCase"],
+        },
       ],
 
       // React JSX 관련 규칙
