@@ -16,7 +16,7 @@ export default function PriceFilter() {
     return Math.min(Math.max(percent, 5), 95);
   };
 
-  // ✅ 슬라이더 핸들 자유롭게 이동하도록 제한 제거
+  // 슬라이더 핸들 자유롭게 이동하도록 제한 제거
   const handleMinMove = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMinValue(Number(e.target.value));
   };
@@ -26,7 +26,7 @@ export default function PriceFilter() {
   };
 
   return (
-    <div className="font-[700] text-[20px] text-gray-800 mt-10">
+    <div className="font-[700] text-[20px] text-gray-800 mt-4">
       <div className="py-6">PRICE</div>
 
       {/* 가격 텍스트 */}

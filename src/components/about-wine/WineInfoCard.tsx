@@ -11,7 +11,7 @@ interface Props {
 
 export default function WineInfoCard({ data }: Props) {
   return (
-    <section className="border border-gray-300 rounded-[1rem] w-full max-w-[50rem] h-auto p-[0.5rem] flex flex-col my-[40px]">
+    <section className="border border-gray-300 rounded-[1rem] w-full max-w-[50rem] h-auto p-[0.5rem] flex flex-col my-[30px]">
       <div className="flex gap-[0.625rem]">
         {/* 이미지 */}
         <div className="w-[12.5rem] h-full bg-white rounded-md overflow-hidden flex items-end justify-center text-gray-400 text-sm">
