@@ -55,7 +55,7 @@ export default function WinesPage() {
               onChange={(e) => setSearch(e.target.value)}
             />
             {/* 모바일/태블릿용 필터 아이콘 (lg 미만에서만 보임) */}
-            <div className="lg:hidden w-full flex justify-start">
+            <div aria-label="필터 열기" className="lg:hidden w-full flex justify-start">
               <button
                 className="w-[2.375rem] h-[2.375rem] flex items-center justify-center bg-white hover:bg-gray-100 transition-colors duration-200"
                 type="button"

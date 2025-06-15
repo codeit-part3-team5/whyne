@@ -41,7 +41,11 @@ export default function SelectInput({ className = "" }: SelectInputProps) {
   };
 
   return (
-    <div ref={containerRef} className={`relative w-full max-w-[25.75rem] ${className}`}>
+    <div
+      ref={containerRef}
+      aria-expanded={isOpen}
+      className={`relative w-full max-w-[25.75rem] ${className}`}
+    >
       {/* 드롭다운 입력창입니다 */}
       <input
         className="w-full h-[3rem] sm:h-[3rem] rounded-[1rem] border border-gray-300 pr-[3rem] pl-[1rem] text-gray-500 focus:border-dark-purple focus:outline-none sm:pt-[0.875rem] sm:pb-[0.875rem] sm:pr-[1.25rem] sm:pl-[1.25rem]"

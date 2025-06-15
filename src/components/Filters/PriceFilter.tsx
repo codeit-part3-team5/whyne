@@ -64,6 +64,7 @@ export default function PriceFilter() {
 
         {/* 슬라이더 핸들 2개 */}
         <input
+          aria-label="최소가격"
           className="absolute w-full max-w-[284px] h-[6px] appearance-none cursor-pointer"
           max={maxPrice}
           min={minPrice}
@@ -73,6 +74,7 @@ export default function PriceFilter() {
           onChange={handleMinMove}
         />
         <input
+          aria-label="최대가격"
           className="absolute w-full max-w-[284px] h-[6px] appearance-none cursor-pointer"
           max={maxPrice}
           min={minPrice}

@@ -37,7 +37,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   border-radius: 50%;
   background: white;
-  border: 1px solid #cfdbea; /* 보라색 */
+  border: 1px solid #cfdbea; /* 회색 */
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   pointer-events: auto;
 }
