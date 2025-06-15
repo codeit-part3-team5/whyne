@@ -14,10 +14,10 @@ export default function ReviewSummary({
   return (
     <div
       className={cn(
-        "flex max-mb:flex-row flex-shrink-0 items-center max-mb:items-center max-mb:gap-[.9375rem] max-mb:w-auto max-mb:h-auto",
+        "flex max-mb:flex-row flex-shrink-0 items-center max-mb:gap-[.9375rem] max-mb:w-auto max-mb:h-auto",
         page === "wineCard"
           ? "flex-col w-[7rem] h-[7.75rem] items-start gap-[.625rem] "
-          : "flex-row w-[13.625rem] h-[4rem] gap-[1.25rem]"
+          : "flex-row max-w-[13.625rem] h-[4rem] gap-[1.25rem] max-tb:mt-4.5 max-mb:mt-0"
       )}
     >
       <div
