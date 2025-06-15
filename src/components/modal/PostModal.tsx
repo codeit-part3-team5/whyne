@@ -3,10 +3,13 @@ import Image from "next/image";
 import addIcon from "@/assets/add-image.png";
 import WineTypeDropDown from "@/components/about-wine/WineTypeDropDown";
 import Button from "@/components/Button";
+import useModalStore from "@/store/useModalStore";
 
 import BaseInput from "../input/BaseInput";
 
 export default function PostModal() {
+  const { close } = useModalStore();
+
   return (
     <section>
       <div className="font-[500] text-[1rem] pb-[0.425rem]">와인 이름</div>
@@ -34,7 +37,7 @@ export default function PostModal() {
         <Button className="w-[18.375rem] rounded-[0.75rem]" size="lg" variant="primary">
           와인 등록하기
         </Button>
-        <Button className="rounded-[0.75rem]" size="sm" variant="secondary">
+        <Button className="rounded-[0.75rem]" size="sm" variant="secondary" onClick={close}>
           취소
         </Button>
       </div>
