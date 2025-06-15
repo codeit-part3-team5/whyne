@@ -4,7 +4,7 @@ import { useState } from "react";
 const TYPES = ["Red", "White", "Sparkling"]; //map 사용하기 위해서 지정했습니다
 
 export default function TypeFilter() {
-  const [selecteType, setSelectType] = useState<string>("");
+  const [selectType, setSelectType] = useState<string>("");
 
   const handleSelect = (type: string) => {
     setSelectType(type); // 와인 타입 클릭시 변하는 상태값입니다
@@ -20,7 +20,7 @@ export default function TypeFilter() {
             key={type}
             className={`inline-flex items-center justify-center h-[42px] px-4 border rounded-full cursor-pointer
             ${
-              selecteType === type
+              selectType === type
                 ? "bg-purple text-white border-purple"
                 : "bg-white text-black border-gray-300 hover:bg-purple hover:text-white"
             }`}
