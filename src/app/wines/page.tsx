@@ -12,7 +12,7 @@ import RatingFilter from "@/components/Filters/RatingFilter";
 import TypeFilter from "@/components/Filters/TypeFilter";
 import SearchInput from "@/components/input/SearchInput";
 import FilterModal from "@/components/modal/FilterModal";
-import PostModal from "@/components/modal/PostModal";
+import WinePostModal from "@/components/modal/WinePostModal";
 import winesData from "@/mocks/winesData.json";
 import useModalStore from "@/store/useModalStore";
 import type { BaseWineData } from "@/types/Wine";
@@ -39,7 +39,7 @@ export default function WinesPage() {
             className="rounded-2xl max-w-[284px] mt-6"
             size="lg"
             variant="primary"
-            onClick={() => openModal("addWine", <PostModal />)}
+            onClick={() => openModal("addWine", <WinePostModal />)}
           >
             와인 등록하기
           </Button>
