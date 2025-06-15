@@ -3,11 +3,10 @@ import Image from "next/image";
 import addIcon from "@/assets/add-image.png";
 import WineTypeDropDown from "@/components/about-wine/WineTypeDropDown";
 import Button from "@/components/Button";
+import BaseInput from "@/components/input/BaseInput";
 import useModalStore from "@/store/useModalStore";
 
-import BaseInput from "../input/BaseInput";
-
-export default function PostModal() {
+export default function WinePostModal() {
   const { close } = useModalStore();
 
   return (
