@@ -40,7 +40,11 @@ export default function ProfileTabs({
         ))}
       </div>
       <div className="text-[var(--color-purple)]">
-        {counts[TABS.find((tab) => tab.id === activeTab)!.key]}개
+        {(() => {
+          const active = TABS.find((tab) => tab.id === activeTab);
+          return active ? counts[active.key] : 0;
+        })()}
+        개
       </div>
     </div>
   );
