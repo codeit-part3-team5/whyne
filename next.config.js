@@ -13,7 +13,7 @@ const nextConfig = {
     return config;
   },
   env: {
-    NEXT_PUBLIC_KAKAO_APP_KEY: "",
+    NEXT_PUBLIC_KAKAO_APP_KEY: process.env.NEXT_PUBLIC_KAKAO_APP_KEY || "",
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   },
 };
