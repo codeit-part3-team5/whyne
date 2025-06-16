@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
+import KakaoSdkScript from "@/components/Login/KakaoSdkScript";
 import Modal from "@/components/modal/Modal";
 import { cn } from "@/utils/cn";
 
@@ -36,6 +37,7 @@ export default function RootLayout({
           <Modal />
         </div>
         <Footer />
+        <KakaoSdkScript />
       </body>
     </html>
   );

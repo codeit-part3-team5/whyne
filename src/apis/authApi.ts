@@ -14,3 +14,17 @@ export const signUp: SignUpApi = async (email, nickname, password, passwordConfi
   });
   return res.data;
 };
+
+export const signInWithProvider: signInWithProviderApi = async (
+  provider,
+  token,
+  redirectUri = undefined,
+  state = undefined
+) => {
+  const res = await axiosClient.post<SigningApiResponse>(`/auth/signIn/${provider}`, {
+    token,
+    redirectUri,
+    state,
+  });
+  return res.data;
+};
