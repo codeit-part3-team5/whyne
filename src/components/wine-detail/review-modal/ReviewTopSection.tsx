@@ -36,7 +36,7 @@ export default function ReviewTopSection() {
   }
 
   return (
-    <div className="w-[480px] flex flex-col items-start gap-12">
+    <div className="w-[480px] max-mb:w-full flex flex-col items-start gap-12">
       <ReviewTitle wineName={wine.name} />
       <ReviewWrite />
     </div>

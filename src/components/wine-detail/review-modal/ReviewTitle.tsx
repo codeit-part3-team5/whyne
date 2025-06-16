@@ -16,9 +16,9 @@ export default function ReviewTitle({ wineName }: ReviewTitleProps) {
       <div className="flex items-center w-17 h-full min-h-17 p-[7px] rounded-lg bg-gray100">
         <WineIcon height={size} width={size} />
       </div>
-      <div className="flex flex-col items-start w-[18.75rem] gap-2 max-mb:w-[11.9375rem] ">
+      <div className="flex flex-col items-start w-full gap-2 max-mb:w-[11.9375rem] ">
         <h2 className="text-lg font-semibold text-gray800 leading-6.5">{wineName}</h2>
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex items-center gap-10 max-mb:gap-4">
           <RatingStars allowHalfStar initialRating={rating} onChange={setRating} />
           {rating > 0 && (
             <span className="text-base max-mb:text-sm  font-medium text-center text-gray500">
