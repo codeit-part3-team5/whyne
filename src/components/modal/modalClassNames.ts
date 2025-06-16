@@ -3,7 +3,7 @@ flex flex-col w-[28.75rem] p-6 items-start gap-[2.5rem]
 `;
 
 const reviewDefaultStyle = `
-inline-flex flex-col p-6 w-auto items-start gap-[3rem]
+inline-flex flex-col p-6 w-auto items-start gap-5
 `;
 
 /**

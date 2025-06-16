@@ -1,7 +1,6 @@
-import { useState } from "react";
-
 import WineIcon from "@/assets/wine-icon.svg";
 import RatingStars from "@/components/RatingStars";
+import { useReviewStore } from "@/store/useReviewStore";
 
 interface ReviewTitleProps {
   wineName: string;
@@ -9,7 +8,8 @@ interface ReviewTitleProps {
 
 export default function ReviewTitle({ wineName }: ReviewTitleProps) {
   const size = 54;
-  const [rating, setRating] = useState(0);
+  const rating = useReviewStore((state) => state.rating);
+  const setRating = useReviewStore((state) => state.setRating);
 
   return (
     <section className="flex items-center gap-4 w-full">
@@ -18,7 +18,7 @@ export default function ReviewTitle({ wineName }: ReviewTitleProps) {
       </div>
       <div className="flex flex-col items-start w-full gap-2 max-mb:w-[11.9375rem] ">
         <h2 className="text-lg font-semibold text-gray800 leading-6.5">{wineName}</h2>
-        <div className="flex items-center gap-10 max-mb:gap-4">
+        <div className="flex items-center gap-2">
           <RatingStars allowHalfStar initialRating={rating} onChange={setRating} />
           {rating > 0 && (
             <span className="text-base max-mb:text-sm  font-medium text-center text-gray500">

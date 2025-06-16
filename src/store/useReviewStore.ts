@@ -23,10 +23,10 @@ interface ReviewState {
 export const useReviewStore = create<ReviewState>((set) => ({
   rating: 0,
   content: "",
-  lightBold: 10,
-  smoothTannic: 10,
-  drySweet: 10,
-  softAcidic: 10,
+  lightBold: 5,
+  smoothTannic: 5,
+  drySweet: 5,
+  softAcidic: 5,
   aroma: [],
 
   setRating: (rating) => set({ rating }),
@@ -41,10 +41,10 @@ export const useReviewStore = create<ReviewState>((set) => ({
     set({
       rating: 0,
       content: "",
-      lightBold: 10,
-      smoothTannic: 10,
-      drySweet: 10,
-      softAcidic: 10,
+      lightBold: 5,
+      smoothTannic: 5,
+      drySweet: 5,
+      softAcidic: 5,
       aroma: [],
     }),
 }));

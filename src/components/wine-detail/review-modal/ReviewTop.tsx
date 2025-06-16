@@ -11,7 +11,7 @@ import { convertStringsToAroma } from "@/utils/aromaConverter";
 import ReviewTitle from "./ReviewTitle";
 import ReviewWrite from "./ReviewWrite";
 
-export default function ReviewTopSection() {
+export default function ReviewTop() {
   const { wine, setWine } = useWineStore();
 
   // 임시로 컴포넌트 마운트 시 와인 데이터 설정
@@ -32,13 +32,13 @@ export default function ReviewTopSection() {
   }, [wine, setWine]);
 
   if (!wine) {
-    return <div className="text-center p-4">와인 정보를 불러오는 중...</div>;
+    return <span className="text-center p-4">와인 정보를 불러오는 중...</span>;
   }
 
   return (
-    <div className="w-[480px] max-mb:w-full flex flex-col items-start gap-12">
+    <section className="w-[480px] max-mb:w-full flex flex-col items-start gap-6">
       <ReviewTitle wineName={wine.name} />
       <ReviewWrite />
-    </div>
+    </section>
   );
 }
