@@ -5,10 +5,14 @@ import { useEffect, useRef, useState } from "react";
 
 import dropdownicon from "@/assets/dropdown-icon.png";
 
+type SelectInputProps = {
+  className?: string;
+};
+
 // 드롭다운에서 와인 타입을 고르는 배열입니다. OPTIONS 배열을 만들어서 map 을 돌리는 방식입니다.
 const OPTIONS = ["Red", "White", "Sparkling"];
 
-export default function SelectInput() {
+export default function SelectInput({ className = "" }: SelectInputProps) {
   const [isOpen, setIsOpen] = useState(false); // 드롭다운이 열려 있는지 여부
   const [selected, setSelected] = useState("Red"); // 선택된 와인 타입
   const containerRef = useRef<HTMLDivElement>(null); // 외부 클릭 감지를 위한 ref
@@ -39,11 +43,12 @@ export default function SelectInput() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[25.75rem] sm:max-w-[21.4375rem] sm:h-[2.625rem]"
+      aria-expanded={isOpen}
+      className={`relative w-full max-w-[25.75rem] ${className}`}
     >
       {/* 드롭다운 입력창입니다 */}
       <input
-        className="w-full h-[3rem] sm:h-[2.625rem] rounded-[1rem] border border-gray-300 pr-[3rem] pl-[1rem] text-gray-500 focus:border-dark-purple focus:outline-none sm:pt-[0.875rem] sm:pb-[0.875rem] sm:pr-[1.25rem] sm:pl-[1.25rem]"
+        className="w-full h-[3rem] sm:h-[3rem] rounded-[1rem] border border-gray-300 pr-[3rem] pl-[1rem] text-gray-500 focus:border-dark-purple focus:outline-none sm:pt-[0.875rem] sm:pb-[0.875rem] sm:pr-[1.25rem] sm:pl-[1.25rem]"
         value={selected}
         onBlur={handleBlur}
         onChange={(e) => setSelected(e.target.value)}
