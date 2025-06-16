@@ -8,8 +8,8 @@ interface ProfileTabsProps {
 }
 
 const TABS = [
-  { id: 1, label: "내가 쓴 후기", key: "reviewCount" as const },
-  { id: 2, label: "내가 등록한 와인", key: "wineCount" as const },
+  { id: 1, label: "내가 쓴 후기", key: "reviewCount" },
+  { id: 2, label: "내가 등록한 와인", key: "wineCount" },
 ] as const;
 
 export default function ProfileTabs({
@@ -27,7 +27,7 @@ export default function ProfileTabs({
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between items-center">
       <div className="flex gap-8 text-xl max-mb:gap-4 max-mb:text-lg font-bold">
         {TABS.map((tab) => (
           <button
@@ -39,12 +39,8 @@ export default function ProfileTabs({
           </button>
         ))}
       </div>
-      <div className="self-center">
-        {TABS.find((tab) => tab.id === activeTab) && (
-          <span className="text-[var(--color-purple)]">
-            {counts[TABS.find((tab) => tab.id === activeTab)!.key]}개
-          </span>
-        )}
+      <div className="text-[var(--color-purple)]">
+        {counts[TABS.find((tab) => tab.id === activeTab)!.key]}개
       </div>
     </div>
   );

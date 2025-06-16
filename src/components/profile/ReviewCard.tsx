@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import Ellipse from "@/assets/ellipse-icon.svg";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import reviewsData from "@/mocks/reviewsData.json";
+import reviewsData from "@/mocks/myReviewsData.json";
 import { timeForToday } from "@/utils/timeForToday";
 
 import DropDown from "../DropDown";
