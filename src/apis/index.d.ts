@@ -25,8 +25,16 @@ declare interface MeApiResponse {
   image: string | null;
 }
 
+type ProviderType = "KAKAO" | "GOOGLE" | "NAVER";
+
 declare type RefreshTokenApi = (refreshToken: string) => Promise<RefreshTokenApiResponse>;
 declare type SignInApi = (email: string, password: string) => Promise<SigningApiResponse>;
+declare type signInWithProviderApi = (
+  provider: ProviderType,
+  token: string,
+  state: string = undefined,
+  redirectUri: string = undefined
+) => Promise<SigningApiResponse> | Promise.null;
 declare type SignUpApi = (
   email: string,
   nickname: string,
