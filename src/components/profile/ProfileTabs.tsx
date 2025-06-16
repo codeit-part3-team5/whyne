@@ -22,8 +22,8 @@ export default function ProfileTabs({
 
   const getTabButtonClass = (tabId: number) => {
     const baseClass = "hover:text-[var(--color-purple)] transition-colors";
-    const activClass = activeTab === tabId ? "text-gray-800" : "text-gray-400";
-    return `${baseClass} ${activClass}`;
+    const activeClass = activeTab === tabId ? "text-gray-800" : "text-gray-400";
+    return `${baseClass} ${activeClass}`;
   };
 
   return (

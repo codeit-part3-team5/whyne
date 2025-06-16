@@ -4,12 +4,9 @@ export function useDropdown<T>(items: T[], getId: (item: T) => number) {
   const [openDropdownId, setOpenDropdownId] = useState<number | null>(null);
   const dropdownRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
-  const handleDropdownToggle = useCallback(
-    (id: number) => {
-      setOpenDropdownId(openDropdownId === id ? null : id);
-    },
-    [openDropdownId]
-  );
+  const handleDropdownToggle = useCallback((id: number) => {
+    setOpenDropdownId((prev) => (prev === id ? null : id));
+  }, []);
 
   // 외부 클릭 시 드롭다운 닫기
   useEffect(() => {
