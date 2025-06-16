@@ -18,8 +18,8 @@ export const signUp: SignUpApi = async (email, nickname, password, passwordConfi
 export const signInWithProvider: signInWithProviderApi = async (
   provider,
   token,
-  redirectUri,
-  state
+  redirectUri = undefined,
+  state = undefined
 ) => {
   const res = await axiosClient.post<SigningApiResponse>(`/auth/signIn/${provider}`, {
     token,

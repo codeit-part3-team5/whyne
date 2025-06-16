@@ -32,8 +32,8 @@ declare type SignInApi = (email: string, password: string) => Promise<SigningApi
 declare type signInWithProviderApi = (
   provider: ProviderType,
   token: string,
-  redirectUri: string = undefined,
-  state: string = undefined
+  redirectUri?: string,
+  state?: string
 ) => Promise<SigningApiResponse>;
 declare type SignUpApi = (
   email: string,
