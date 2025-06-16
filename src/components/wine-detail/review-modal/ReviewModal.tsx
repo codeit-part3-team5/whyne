@@ -10,7 +10,7 @@ import ReviewTop from "./ReviewTop";
 export default function ReviewModal() {
   const { close } = useModalStore();
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
-  const size = isMobile ? "sm" : "xl";
+  const size = isMobile ? "lg" : "xl";
   const { rating, content, lightBold, smoothTannic, drySweet, softAcidic, aroma, resetReview } =
     useReviewStore();
 

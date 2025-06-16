@@ -14,8 +14,10 @@ export default function ReviewMiddle() {
 
   return (
     <article className="flex flex-col items-start gap-8 w-full">
-      <div className="flex flex-col w-full gap-5">
-        <h3 className="text-xl font-bold leading-8">와인의 맛은 어땠나요?</h3>
+      <div className="flex flex-col w-full gap-5  max-mb:gap-6 ">
+        <h3 className="text-xl font-bold leading-8 max-mb:text-lg max-mb:leading-6.5">
+          와인의 맛은 어땠나요?
+        </h3>
         <div className="flex flex-col gap-4.5 w-full">
           <WineTaste taste={lightBold} type="lightBold" onChange={handleTasteChange("lightBold")} />
           <WineTaste

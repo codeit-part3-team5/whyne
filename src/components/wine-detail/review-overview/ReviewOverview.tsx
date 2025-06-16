@@ -26,7 +26,7 @@ export default function ReviewOverview({ wine }: { wine: WineDetailData }) {
         className={cn(
           "flex flex-col gap-4 w-full items-start",
           "max-tb:flex-row max-tb:gap-20 max-tb:w-full",
-          "max-[575px]:!gap-4.5  max-mb:flex-col "
+          "max-[35.9375rem]:!gap-4.5  max-mb:flex-col "
         )}
       >
         <ReviewSummary {...wine} page="wineDetail" />
