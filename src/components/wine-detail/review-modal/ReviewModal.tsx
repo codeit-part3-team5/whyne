@@ -21,7 +21,6 @@ export default function ReviewModal() {
   // 컴포넌트가 언마운트될 때 리뷰 초기화
   useEffect(() => {
     return () => {
-      console.log("ReviewModal 언마운트: 리뷰 초기화");
       resetReview();
     };
   }, [resetReview]);
