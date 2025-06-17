@@ -35,7 +35,7 @@ export type SocialType = "google" | "kakao";
  * - fit: 내용에 맞춤 버튼 (패딩만 적용)
  */
 export const BUTTON_SIZES: Record<ButtonSize, string> = {
-  xl: "w-[25rem] py-[0.875rem]", // 480px × 14px
+  xl: "w-[30rem] py-[0.875rem]", // 480px × 14px
   lg: "w-[20rem] py-[0.875rem]", // 320px × 14px
   md: "w-[10.5rem] py-[0.625rem]", // 168px × 10px
   sm: "w-[6.25rem] py-[0.625rem]", // 100px × 10px

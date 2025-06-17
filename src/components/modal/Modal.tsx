@@ -23,8 +23,7 @@ max-mb:flex max-mb:flex-col max-mb:w-[23.438rem] max-mb:p-6 max-mb:items-end max
 `;
 
 const defaultMobileBackStyle = `
-max-mb:rounded-b-none max-mb:shadow-[0.125rem_0.125rem_1.25rem_0_rgba(0,0,0,0.04)]
-
+max-mb:shadow-[0.125rem_0.125rem_1.25rem_0_rgba(0,0,0,0.04)]
 `;
 
 const deleteBackStyle = `
@@ -68,7 +67,8 @@ export default function Modal() {
           modalClassName,
           "z-50 bg-white rounded-2xl",
           defaultMobileStyle,
-          type === "delete" ? deleteBackStyle : defaultMobileBackStyle
+          type === "delete" ? deleteBackStyle : defaultMobileBackStyle,
+          "max-mb:max-h-[800px] overflow-y-auto overflow-x-hidden"
         )}
         data-modal-type={type}
         onClick={(e) => e.stopPropagation()}
@@ -83,7 +83,7 @@ export default function Modal() {
             </button>
           </div>
         )}
-        <div className="w-full">{content}</div>
+        <div className="w-full max-mb:w-[20.3125rem]">{content}</div>
       </div>
     </div>
   );

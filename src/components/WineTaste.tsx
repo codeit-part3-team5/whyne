@@ -19,7 +19,7 @@ export default function WineTaste({ type, taste, readOnly, onChange }: WineTaste
   const baseStyles = {
     container: "flex items-center  gap-4",
     label: cn(
-      "flex flex-shrink-0 w-[3.5rem] h-[1.75rem] px-[7px] py-1 justify-center items-center rounded-md bg-gray100",
+      "flex flex-shrink-0 w-[3.5rem] h-[1.75rem] px-[.4375rem] py-1 justify-center items-center rounded-md bg-gray100",
       "text-gray500 text-sm font-semibold leading-6"
     ),
     contentWrapper: cn(
@@ -32,7 +32,7 @@ export default function WineTaste({ type, taste, readOnly, onChange }: WineTaste
 
   const mobileStyles = {
     container: "max-mb:gap-auto w-full ",
-    label: "max-tb:text-[12px] max-tb:leading-5",
+    label: "max-tb:text-[.75rem] max-tb:leading-5",
     contentWrapper: "max-mb:text-sm max-mb:leading-6 gap-1.5",
     sideText: "max-mb:w-[3.875rem]",
     rightText: "max-mb:w-[3.125rem]",
@@ -40,18 +40,21 @@ export default function WineTaste({ type, taste, readOnly, onChange }: WineTaste
 
   const modalStyles = {
     container: "flex items-center w-[30rem]  justify-between",
-    label: "max-tb:text-[12px] max-tb:leading-5 px-[6px]",
-    contentWrapper: cn("text-[14px] flex w-full  items-center", "max-tb:text-sm max-tb:leading-6 "),
-    sideText: " max-tb:w-15.5",
+    label: "max-tb:text-[.75rem] max-tb:leading-5 px-[.375rem]",
+    contentWrapper: cn(
+      "flex w-full justify-between items-center max-mb:justify-start",
+      "max-mb:text-sm max-mb:leading-6 "
+    ),
+    sideText: "max-tb:w-15.5",
     rightText: "max-tb:w-12.5",
   };
 
   return (
     <div
       className={cn(
-        onChange ? modalStyles.container : baseStyles.container,
         "gap-2",
-        mobileStyles.container
+        mobileStyles.container,
+        onChange ? modalStyles.container : baseStyles.container
       )}
     >
       <span className={cn(baseStyles.label, mobileStyles.label, onChange && modalStyles.label)}>

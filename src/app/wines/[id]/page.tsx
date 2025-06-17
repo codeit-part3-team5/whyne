@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 
+import WineCard from "@/components/about-wine/WineCard";
 import ReviewList from "@/components/wine-detail/review-list/ReviewList";
 import ReviewOverview from "@/components/wine-detail/review-overview/ReviewOverview";
 import wineJson from "@/mocks/winesDetail.json";
@@ -22,7 +23,8 @@ export default function WineDetailPage() {
   );
 
   return (
-    <main className="flex flex-col items-center py-10">
+    <main className="flex flex-col items-center py-10 gap-[3.75rem] max-mb:gap-[2.5rem]">
+      <WineCard data={wineData} />
       <div className="flex w-full max-w-[71.25rem] gap-[1.875rem] max-tb:flex-col-reverse items-start justify-center max-tb:items-center">
         <div className="flex-grow w-full max-mb:w-full max-w-[50rem]">
           <ReviewList wine={wineData} />
