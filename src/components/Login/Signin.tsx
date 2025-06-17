@@ -5,10 +5,16 @@ import SigninForm from "./SigninForm";
 
 export default function Login() {
   const loginWithKakao = () => {
-    if (typeof window.Kakao !== "undefined") {
+    if (
+      typeof window.Kakao !== "undefined" &&
+      typeof window.Kakao.isInitialized === "function" &&
+      window.Kakao.isInitialized()
+    ) {
       window.Kakao.Auth.authorize({
         redirectUri: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/kakao`,
       });
+    } else {
+      console.error("Kakao SDK가 초기화되지 않았거나 로드되지 않았습니다.");
     }
   };
 
