@@ -106,13 +106,29 @@ export default function RatingStars({
               starRefs.current[i] = el;
             }}
             aria-label={`${starValue} 점`}
+            aria-pressed={displayValue >= starValue}
+            aria-readonly={readOnly}
+            aria-valuemax={5}
+            aria-valuemin={0}
+            aria-valuenow={rating}
             className={cn(
               "relative cursor-pointer transition-transform",
               !readOnly && "hover:scale-110",
               readOnly && "cursor-default"
             )}
             role={readOnly ? undefined : "button"}
+            tabIndex={readOnly ? -1 : 0}
             onClick={(e) => (allowHalfStar ? handleStarClick(e, i) : handleClick(starValue))}
+            onKeyDown={(e) => {
+              if (readOnly) return;
+              if (e.key === "Enter" || e.key === " ") {
+                if (allowHalfStar) {
+                  handleStarClick(e as unknown as React.MouseEvent<HTMLDivElement>, i);
+                } else {
+                  handleClick(starValue);
+                }
+              }
+            }}
             onMouseEnter={() => !allowHalfStar && handleMouseEnter(i)}
             onMouseLeave={handleMouseLeave}
             onMouseMove={(e) => handleMouseMove(e, i)}

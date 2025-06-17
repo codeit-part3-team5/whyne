@@ -1,10 +1,11 @@
 import { useReviewStore } from "@/store/useReviewStore";
+import { Aroma } from "@/types/Aroma";
 import { aromaToKorean } from "@/utils/aromaConverter";
 
 export default function AromaSelector() {
   const { aroma, setAroma } = useReviewStore();
 
-  const toggleAroma = (aromaValue: string) => {
+  const toggleAroma = (aromaValue: Aroma) => {
     const newAroma = [...aroma];
     const index = newAroma.indexOf(aromaValue);
 
@@ -30,12 +31,12 @@ export default function AromaSelector() {
           <button
             key={key}
             className={`items-center  justify-center text-center text-nowrap px-4.5 py-2.5 max-mb:px-2.5 max-mb:py-1.5 rounded-full text-base max-mb:text-sm font-medium leading-6.5 max-mb:leading-6 ${
-              aroma.includes(key)
+              aroma.includes(key as Aroma)
                 ? "bg-purple text-white "
                 : "bg-white border border-gray300 text-gray600 hover:bg-gray100 "
             }`}
             type="button"
-            onClick={() => toggleAroma(key)}
+            onClick={() => toggleAroma(key as Aroma)}
           >
             {label}
           </button>

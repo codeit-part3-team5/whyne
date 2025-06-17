@@ -50,7 +50,13 @@ export default function WineTaste({ type, taste, readOnly, onChange }: WineTaste
   };
 
   return (
-    <div className={cn(onChange ? modalStyles.container : baseStyles.container, "gap-2")}>
+    <div
+      className={cn(
+        "gap-2",
+        mobileStyles.container,
+        onChange ? modalStyles.container : baseStyles.container
+      )}
+    >
       <span className={cn(baseStyles.label, mobileStyles.label, onChange && modalStyles.label)}>
         {WINE_TASTE[type]}
       </span>
