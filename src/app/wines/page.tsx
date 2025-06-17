@@ -20,22 +20,42 @@ import type { BaseWineData } from "@/types/Wine";
 export default function WinesPage() {
   const wines = winesData.list as BaseWineData[];
   const [search, setSearch] = useState("");
-  const [selectRating, setSelectRating] = useState<string | null>(null); // 평점 필터에 대한 state
+  const [selectedType, setSelectedType] = useState<string>("");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
+  const [selectedRating, setSelectedRating] = useState<string | null>(null);
+
   const openModal = useModalStore((state) => state.open);
 
   const filteredWines = useMemo(() => {
-    return wines.filter((wine) => wine.name.toLowerCase().includes(search.toLowerCase()));
-  }, [search, wines]);
+    return wines.filter((wine) => {
+      const matchSearch = wine.name.toLowerCase().includes(search.toLowerCase());
+      const matchType = selectedType ? wine.type === selectedType.toUpperCase() : true;
+      const matchPrice = wine.price >= priceRange[0] && wine.price <= priceRange[1];
+      const matchRating = selectedRating
+        ? (() => {
+            const rating = wine.avgRating;
+            if (selectedRating === "4.5") return rating >= 4.5;
+            if (selectedRating === "4.0") return rating >= 4.0 && rating < 4.5;
+            if (selectedRating === "3.5") return rating >= 3.5 && rating < 4.0;
+            if (selectedRating === "3.0") return rating >= 3.0 && rating < 3.5;
+            return true;
+          })()
+        : true;
+
+      return matchSearch && matchType && matchPrice && matchRating;
+    });
+  }, [search, wines, selectedType, priceRange, selectedRating]);
 
   return (
     <main className="flex flex-col items-center">
       <MonthlyWines />
+
       <div className="flex w-full max-w-[80rem] gap-1 sm:gap-4 md:gap-10 lg:gap-20 mt-6">
         {/* 데스크탑 전용 필터 */}
         <aside className="hidden lg:flex w-full max-w-[284px] shrink-0 flex-col gap-2 mt-30">
-          <TypeFilter />
-          <PriceFilter />
-          <RatingFilter selected={selectRating} onChange={setSelectRating} />
+          <TypeFilter selectedType={selectedType} onChange={setSelectedType} />
+          <PriceFilter selectedRange={priceRange} onChange={setPriceRange} />
+          <RatingFilter selected={selectedRating} onChange={setSelectedRating} />
           <Button
             className="rounded-2xl max-w-[284px] mt-6"
             size="lg"
@@ -55,17 +75,31 @@ export default function WinesPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            {/* 모바일/태블릿용 필터 아이콘 (lg 미만에서만 보임) */}
+            {/* 모바일/태블릿용 필터 버튼 */}
             <div aria-label="필터 열기" className="lg:hidden w-full flex justify-start">
               <button
                 className="w-[2.375rem] h-[2.375rem] flex items-center justify-center bg-white hover:bg-gray-100 transition-colors duration-200"
                 type="button"
-                onClick={() => openModal("filter", <FilterModal />)}
+                onClick={() =>
+                  openModal(
+                    "filter",
+                    <FilterModal
+                      priceRange={priceRange}
+                      selectedRating={selectedRating}
+                      selectedType={selectedType}
+                      onPriceChange={setPriceRange}
+                      onRatingChange={setSelectedRating}
+                      onTypeChange={setSelectedType}
+                    />
+                  )
+                }
               >
                 <Image alt="필터 아이콘" height={28} src={filterIcon} width={28} />
               </button>
             </div>
           </div>
+
+          {/* 와인 카드 리스트 */}
           <div className="flex flex-col items-center w-full sm:px-2">
             <div className="w-full max-w-full sm:max-w-[36rem] md:max-w-[42rem] lg:max-w-[50rem] lg:ml-auto">
               {filteredWines.map((wine) => (
