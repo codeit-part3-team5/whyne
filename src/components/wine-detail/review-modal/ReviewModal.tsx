@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Button from "@/components/Button";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModalStore from "@/store/useModalStore";
@@ -15,6 +17,20 @@ export default function ReviewModal() {
     useReviewStore();
 
   const { wine } = useWineStore();
+
+  // 컴포넌트가 언마운트될 때 리뷰 초기화
+  useEffect(() => {
+    return () => {
+      console.log("ReviewModal 언마운트: 리뷰 초기화");
+      resetReview();
+    };
+  }, [resetReview]);
+
+  // 원래 close 함수를 감싸서 리뷰 초기화 후 모달 닫기
+  const handleClose = () => {
+    resetReview();
+    close();
+  };
 
   const handleClickAddReview = () => {
     if (!wine) return;
@@ -36,10 +52,7 @@ export default function ReviewModal() {
     // API 호출 부분 (실제 구현 필요)
     console.log("리뷰 데이터 제출:", reviewData);
 
-    // 리뷰 스토어 초기화
-    resetReview();
-
-    close();
+    handleClose();
   };
 
   // 유효성 검사 (필수 필드가 입력되었는지 확인)
