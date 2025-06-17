@@ -20,6 +20,7 @@ import type { BaseWineData } from "@/types/Wine";
 export default function WinesPage() {
   const wines = winesData.list as BaseWineData[];
   const [search, setSearch] = useState("");
+  const [selectRating, setSelectRating] = useState<string | null>(null); // 평점 필터에 대한 state
   const openModal = useModalStore((state) => state.open);
 
   const filteredWines = useMemo(() => {
@@ -34,7 +35,7 @@ export default function WinesPage() {
         <aside className="hidden lg:flex w-full max-w-[284px] shrink-0 flex-col gap-2 mt-30">
           <TypeFilter />
           <PriceFilter />
-          <RatingFilter />
+          <RatingFilter selected={selectRating} onChange={setSelectRating} />
           <Button
             className="rounded-2xl max-w-[284px] mt-6"
             size="lg"
