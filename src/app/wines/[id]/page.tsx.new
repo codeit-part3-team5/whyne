@@ -3,24 +3,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
-import { getWineDetail } from "@/apis/winesApi";
 import WineCard from "@/components/about-wine/WineCard";
-import Spinner from "@/components/Spinner";
-import NoReviewSection from "@/components/wine-detail/NoReviewSection";
 import ReviewList from "@/components/wine-detail/review-list/ReviewList";
-import ReviewModal from "@/components/wine-detail/review-modal/ReviewModal";
 import ReviewOverview from "@/components/wine-detail/review-overview/ReviewOverview";
-import useModalStore from "@/store/useModalStore";
-import { WineType } from "@/types/Wine";
+import { WineDetailData, WineType } from "@/types/Wine";
 import { convertStringsToAroma } from "@/utils/aromaConverter";
+import { getWineDetail } from "@/apis/winesApi";
+import Spinner from "@/components/Spinner";
+
 export default function WineDetailPage() {
   const { id } = useParams();
   const wineId = typeof id === "string" ? id : "";
-  const open = useModalStore((state) => state.open);
-
-  const handleClick = () => {
-    open("addReview", <ReviewModal />);
-  };
+  
   const {
     data: wineData,
     isLoading,
@@ -29,16 +23,17 @@ export default function WineDetailPage() {
     queryKey: ["wine", wineId],
     queryFn: async () => {
       try {
-        console.log("API 호출 시작, ID:", wineId);
+        console.log('API 호출 시작, ID:', wineId);
         const data = await getWineDetail(wineId);
-        console.log("API 응답 데이터:", data);
+        console.log('API 응답 데이터:', data);
         return data;
       } catch (err) {
-        console.error("API 호출 오류:", err);
+        console.error('API 호출 오류:', err);
         throw err;
       }
     },
     select: (data) => {
+      console.log('데이터 변환 중:', data);
       return {
         ...data,
         type: data.type as WineType,
@@ -81,9 +76,7 @@ export default function WineDetailPage() {
       </div>
     );
   }
-  if (!wineData.reviews || wineData.reviews.length === 0) {
-    return <NoReviewSection wineData={wineData} onAddReview={handleClick} />;
-  }
+
   // 메인 UI
   return (
     <main className="flex flex-col items-center py-10 gap-[3.75rem] max-mb:gap-[2.5rem]">
