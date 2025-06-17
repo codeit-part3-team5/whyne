@@ -1,6 +1,7 @@
 import { Aroma } from "./Aroma";
 import { Like } from "./Like";
 import { User } from "./User";
+import { MyReviewWine } from "./Wine";
 export interface Review {
   id: number;
   rating: number;
@@ -30,3 +31,16 @@ export interface RecentReview {
   user?: User;
   likes?: Like[];
 }
+
+export type MyReview = Pick<
+  Review,
+  "id" | "user" | "rating" | "content" | "createdAt" | "updatedAt"
+> & {
+  wine: MyReviewWine;
+};
+
+export type MyReviewsResponse = {
+  list: MyReview[];
+  totalCount: number;
+  nextCursor: null;
+};

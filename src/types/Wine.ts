@@ -25,3 +25,6 @@ export type WinesResponse = {
   totalCount: number;
   nextCursor: null;
 };
+
+export type MyReviewWine = Pick<BaseWineData, "id" | "name" | "avgRating">;
+export type MyWine = Pick<BaseWineData, "id" | "name" | "region" | "image" | "price">;

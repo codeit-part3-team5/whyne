@@ -1,0 +1,42 @@
+{
+  "list": [
+    {
+      "id": 1060,
+      "name": "Textbook, Napa Cabernet Sauvignon",
+      "region": "나파 밸리",
+      "image": "https://wine21.speedgabia.com/WINE_MST/IMAGE/0153000/T0153628_003.png",
+      "price": 126000,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1266
+    },
+    {
+      "id": 1061,
+      "name": "Roger Coulon Vrigny l'Hommee Champagne Premier Cru l'Hommee Champagne Premier Crul'Hommee Champagne Premier Cru",
+      "region": "France",
+      "image": "https://awine.kr/wp-content/uploads/vb_wine_img/10933.png",
+      "price": 189000,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1266
+    },
+    {
+      "id": 1062,
+      "name": "Sentinel Carbernet Sauvignon 2016",
+      "region": "Western Cape, South Africa",
+      "image": "https://awine.kr/wp-content/uploads/vb_wine_img/10933.png",
+      "price": 64990,
+      "type": "RED",
+      "avgRating": 0,
+      "reviewCount": 0,
+      "recentReview": null,
+      "userId": 1266
+    }
+  ],
+  "totalCount": 3,
+  "nextCursor": null
+}
