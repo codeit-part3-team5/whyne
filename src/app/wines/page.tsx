@@ -78,7 +78,7 @@ export default function WinesPage() {
         </aside>
         {/* 와인 리스트 */}
         <section className="flex-1">
-          <div className="hidden md:flex lg:hidden w-full justify-between items-center px-4 mb-7">
+          <div className="hidden md:flex lg:hidden w-full justify-between items-center mb-7">
             {/* 필터 아이콘 */}
             <div>
               <button
@@ -124,7 +124,7 @@ export default function WinesPage() {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <div className="flex md:hidden justify-start px-4 mb-4 mt-4">
+            <div className="flex md:hidden justify-start mb-4 mt-4">
               <button
                 className="w-[2.375rem] h-[2.375rem] flex items-center justify-center"
                 type="button"
