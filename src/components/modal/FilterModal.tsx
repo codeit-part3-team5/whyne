@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import Button from "@/components/Button";
+import useModalStore from "@/store/useModalStore";
 
 import PriceFilter from "../Filters/PriceFilter";
 import RatingFilter from "../Filters/RatingFilter";
@@ -26,6 +27,7 @@ export default function FilterModal({
   onRatingChange,
 }: FilterModalProps) {
   //  모달 내부에서 별도로 관리하는 로컬 상태
+  const { close } = useModalStore();
   const [localType, setLocalType] = useState(selectedType);
   const [localPrice, setLocalPrice] = useState<[number, number]>(priceRange);
   const [localRating, setLocalRating] = useState<string | null>(selectedRating);
@@ -49,6 +51,7 @@ export default function FilterModal({
     onTypeChange(localType);
     onPriceChange(localPrice);
     onRatingChange(localRating);
+    close();
   };
 
   return (

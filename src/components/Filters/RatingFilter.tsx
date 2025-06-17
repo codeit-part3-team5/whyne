@@ -12,7 +12,7 @@ const ratingOptions = [
   { label: "4.0 - 4.5", value: "4.0" },
   { label: "3.5 - 4.0", value: "3.5" },
   { label: "3.0 - 3.5", value: "3.0" },
-];
+] as const;
 
 export default function RatingFilter({ selected, onChange }: RatingFilterProps) {
   const ratingName = useId(); // 고유 name 생성
@@ -22,8 +22,7 @@ export default function RatingFilter({ selected, onChange }: RatingFilterProps) 
       <div className="font-[700] text-[20px] mb-2">RATING</div>
 
       {ratingOptions.map((option) => {
-        const isAll = option.value === "all";
-        const isChecked = isAll ? selected === null : selected === option.value;
+        const isChecked = selected === option.value;
 
         return (
           <label
@@ -36,7 +35,7 @@ export default function RatingFilter({ selected, onChange }: RatingFilterProps) 
               name={ratingName} // 고유 name 적용 wines/page.tsx 와 같은 필터이기 때문에 차별성을 주기 위해 다른 이름 부여
               type="radio"
               value={option.value}
-              onChange={() => onChange(isAll ? null : option.value)}
+              onChange={() => onChange(option.value)}
             />
             <div className="pointer-events-none absolute w-[10px] h-[10px] bg-purple rounded-[3px] peer-checked:block hidden ml-[5px]" />
             <div>{option.label}</div>
