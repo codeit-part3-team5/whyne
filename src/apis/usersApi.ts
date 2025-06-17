@@ -9,7 +9,10 @@ export const me: MeApi = async () => {
 };
 
 // 내 정보 수정 (닉네임 및 프로필 이미지)
-export const updateUserProfile = async (nickname: string, imageUrl: string) => {
+export const updateUserProfile = async (
+  nickname: string,
+  imageUrl: string | null
+): Promise<User> => {
   try {
     const response = await axiosAuthClient.patch<User>("/users/me", {
       nickname,

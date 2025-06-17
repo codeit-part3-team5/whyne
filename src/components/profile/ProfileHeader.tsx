@@ -50,7 +50,12 @@ export default function ProfileHeader() {
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
           <div className="flex justify-between items-center">
             <span className="text-red-600 text-sm">{error}</span>
-            <button className="text-red-400 hover:text-red-600 ml-2" onClick={clearError}>
+            <button
+              aria-label="에러 메시지 닫기"
+              className="text-red-400 hover:text-red-600 ml-2"
+              type="button"
+              onClick={clearError}
+            >
               ✕
             </button>
           </div>

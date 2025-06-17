@@ -9,9 +9,7 @@ export const uploadImage = async (file: File) => {
     // 파일명을 안전한 형태로 변경
     const safeFile = generateSafeFileName(file);
     formData.append("image", safeFile);
-    const response = await axiosAuthClient.post("/images/upload", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    const response = await axiosAuthClient.post("/images/upload", formData);
 
     return response.data.url;
   } catch (error) {

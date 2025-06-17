@@ -131,7 +131,6 @@ export default function FileInput({ currentImage, onImageChange }: FileInputProp
       <input
         ref={imageRef}
         accept="image/*"
-        aria-describedby="file-help"
         aria-label="프로필 이미지 업로드"
         className="hidden"
         type="file"
