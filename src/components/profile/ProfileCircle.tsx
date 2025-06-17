@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 
 interface ProfileCircleProps {
-  imageUrl?: string;
+  imageUrl?: string | null;
   size?: "default" | "mobile";
 }
 
