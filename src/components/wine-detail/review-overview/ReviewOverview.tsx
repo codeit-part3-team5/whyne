@@ -1,16 +1,18 @@
 import ReviewSummary from "@/components/ReviewSummary";
+import useModalStore from "@/store/useModalStore";
 import { WineDetailData } from "@/types/Wine";
 import { cn } from "@/utils/cn";
 import { getRatingDistribution } from "@/utils/reviewUtil";
 
+import ReviewModal from "../review-modal/ReviewModal";
 import RatingProgress from "./RatingProgress";
 
 export default function ReviewOverview({ wine }: { wine: WineDetailData }) {
   const reviews = getRatingDistribution(wine.reviews);
+  const open = useModalStore((state) => state.open);
 
   const handleClick = () => {
-    // Open modal logic here, e.g., using a modal store or context
-    console.log("Open review modal");
+    open("addReview", <ReviewModal />);
   };
 
   return (
@@ -24,7 +26,7 @@ export default function ReviewOverview({ wine }: { wine: WineDetailData }) {
         className={cn(
           "flex flex-col gap-4 w-full items-start",
           "max-tb:flex-row max-tb:gap-20 max-tb:w-full",
-          "max-[575px]:!gap-4.5  max-mb:flex-col "
+          "max-[35.9375rem]:!gap-4.5  max-mb:flex-col "
         )}
       >
         <ReviewSummary {...wine} page="wineDetail" />
