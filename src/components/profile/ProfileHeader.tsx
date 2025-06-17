@@ -37,7 +37,15 @@ export default function ProfileHeader() {
     return (
       <div className="bg-white px-5 py-7 min-w-70 h-130 rounded-2xl border border-gray-300 shadow-md max-tb:w-full max-tb:h-auto max-tb:p-6 max-tb:px-8 max-mb:p-5">
         <div className="flex items-center justify-center h-full">
-          <div className="text-red-500">{error || "사용자 정보를 불러올 수 없습니다."}</div>
+          <span className="text-red-500">{error || "사용자 정보를 불러올 수 없습니다."}</span>
+          <button
+            aria-label="에러 메시지 닫기"
+            className="text-red-400 hover:text-red-600 ml-2 shrink-0"
+            type="button"
+            onClick={clearError}
+          >
+            ✕
+          </button>
         </div>
       </div>
     );
