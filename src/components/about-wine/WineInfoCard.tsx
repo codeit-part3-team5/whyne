@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import arrowIcon from "@/assets/arrow-icon.png";
 import { BaseWineData } from "@/types/Wine";
@@ -10,8 +11,13 @@ interface Props {
 }
 
 export default function WineInfoCard({ data }: Props) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/wines/${data.id}`);
+  };
   return (
-    <section className="w-[21.4375rem] sm:w-full max-w-[50rem] h-auto p-0 sm:p-[0.5rem] flex flex-col border border-gray-300 rounded-[1rem] my-[30px] px-2 py-2 sm:px-0 mx-auto">
+    <section className="sm:w-full max-w-[50rem] h-auto p-0 sm:p-[0.5rem] flex flex-col border border-gray-300 rounded-[1rem] my-[30px] px-2 py-2 sm:px-0 mx-auto">
       <div className="flex gap-[0.625rem]">
         {/* 이미지 */}
         <div className="w-[7rem] sm:w-[8rem] md:w-[9rem] lg:w-[10rem] h-full bg-white rounded-md overflow-hidden flex items-end justify-center text-gray-400 text-sm">
@@ -50,6 +56,7 @@ export default function WineInfoCard({ data }: Props) {
             height={36}
             src={arrowIcon}
             width={36}
+            onClick={handleClick}
           />
         </div>
       </div>
@@ -58,7 +65,7 @@ export default function WineInfoCard({ data }: Props) {
         <div className="border-t border-gray-300 pt-3 mt-1 w-full px-[15px] py-[15px]">
           <div className="text-[1rem] font-[600] text-gray-800 mb-1 ml-6">최신 후기</div>
           <div className="text-[1rem] font-[400] text-gray-500 leading-relaxed whitespace-pre-line ml-6">
-            "{data.recentReview.content}"
+            {data.recentReview.content}
           </div>
         </div>
       )}
