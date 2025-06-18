@@ -9,22 +9,22 @@ const Landing = () => {
       <picture>
         <source media="(max-width:24.4375rem)" srcSet={`${landingImagePath}sm_01.png`} />
         <source media="(max-width:46.5rem)" srcSet={`${landingImagePath}md_01.png`} />
-        <img src={`${landingImagePath}lg_01.png`} />
+        <img alt="소개 이미지_01" src={`${landingImagePath}lg_01.png`} />
       </picture>
       <div className="w-full flex flex-col items-center justify-center">
         <div className="flex flex-col gap-[6rem] max-mb:gap-[3rem] max-w-[43.75rem]">
           <picture>
             <source media="(max-width:24.4375rem)" srcSet={`${landingImagePath}sm_02.png`} />
-            <img src={`${landingImagePath}lg_02.png`} />
+            <img alt="소개 이미지_02" src={`${landingImagePath}lg_02.png`} />
           </picture>
 
           <picture>
             <source media="(max-width:24.4375rem)" srcSet={`${landingImagePath}sm_03.png`} />
-            <img src={`${landingImagePath}lg_03.png`} />
+            <img alt="소개 이미지_03" src={`${landingImagePath}lg_03.png`} />
           </picture>
           <picture>
             <source media="(max-width:24.4375rem)" srcSet={`${landingImagePath}sm_04.png`} />
-            <img src={`${landingImagePath}lg_04.png`} />
+            <img alt="소개 이미지_04" src={`${landingImagePath}lg_04.png`} />
           </picture>
         </div>
         <Link
