@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { signIn } from "@/apis/authApi";
@@ -16,13 +17,18 @@ const SigninForm = () => {
   const {
     register,
     formState: { errors, isSubmitting },
+    setError,
     handleSubmit,
   } = useForm<LoginFormInput>({ mode: "all" });
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
-    const res = await signIn(data.email, data.password);
+    const res = await signIn(data.email, data.password, () =>
+      setError("email", { type: "custom", message: "이메일 혹은 비밀번호를 확인해주세요." })
+    );
     localStorage.setItem("accessToken", res.accessToken);
     localStorage.setItem("refreshToken", res.refreshToken);
+    router.push("/");
   };
 
   return (
