@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { signUp } from "@/apis/authApi";
@@ -25,11 +27,30 @@ const SignupForm: React.FC = () => {
     handleSubmit,
   } = useForm<FormInput>({ mode: "all" });
   const password = watch("password");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("accessToken") !== null &&
+      localStorage.getItem("refreshToken") !== null
+    ) {
+      router.push("/");
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
-    const res = await signUp(data.email, data.nickname, data.password, data.passwordConfirmation);
+    const res = await signUp(
+      data.email,
+      data.nickname,
+      data.password,
+      data.passwordConfirmation,
+      () => {
+        alert("회원가입에 실패하였습니다.");
+      }
+    );
     localStorage.setItem("accessToken", res.accessToken);
     localStorage.setItem("refreshToken", res.refreshToken);
+    router.push("/");
   };
 
   return (
