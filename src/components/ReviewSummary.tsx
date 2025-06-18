@@ -20,21 +20,21 @@ export default function ReviewSummary({
           : "flex-row max-w-[13.625rem] h-[4rem] gap-[1.25rem] max-tb:mt-4.5 max-mb:mt-0"
       )}
     >
+      {" "}
       <div
         className={cn(
           "text-gray800 text-[3rem] font-extrabold leading-[normal] max-mb:text-[1.75rem]"
         )}
       >
-        {avgRating.toFixed(1)}
+        {avgRating != null ? avgRating.toFixed(1) : "0.0"}
       </div>
-
       <div
         className={cn(
           "flex items-start w-auto max-mb:gap-[.3125rem]",
           page === "wineCard" ? "flex-col gap-[.625rem] justify-center" : "flex-col gap-[.3125rem] "
         )}
       >
-        <Star avgRating={avgRating} />
+        <Star avgRating={avgRating != null ? avgRating : 0} />
         <div className="text-gray500 text-[.875rem] font-normal leading-6 max-mb:text-[.75rem] max-mb:leading-4.5">
           {reviewCount}개의 후기
         </div>
