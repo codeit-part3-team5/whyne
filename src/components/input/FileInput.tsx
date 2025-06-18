@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import BaseProfileImg from "@/assets/base-profile.svg";
 import CameraIcon from "@/assets/camera-icon.svg";
+import { validateFileForUpload } from "@/utils/fileUtil";
 
 import Spinner from "../Spinner";
 
@@ -19,24 +20,24 @@ export default function FileInput({ currentImage, onImageChange }: FileInputProp
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isHover, setIsHover] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     setImagePreview(currentImage || "");
+    setImageError(false);
   }, [currentImage]);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const validExt = ["image/jpeg", "image/png", "image/gif", "image/webp"];
+    // 파일 검증
+    const validation = validateFileForUpload(file, {
+      maxSize: MAX_FILE_SIZE,
+    });
 
-    if (!validExt.includes(file.type)) {
-      alert("이미지 파일만 업로드 가능합니다.");
-      return;
-    }
-
-    if (file.size > MAX_FILE_SIZE) {
-      alert("최대 5MB 이하의 파일만 업로드 가능합니다.");
+    if (!validation.isValid) {
+      alert(validation.error);
       return;
     }
 
@@ -45,17 +46,35 @@ export default function FileInput({ currentImage, onImageChange }: FileInputProp
     try {
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
+      setImageError(false);
       onImageChange(file, previewUrl);
     } catch (error) {
       console.error("이미지 처리 중 오류:", error);
       alert("이미지 처리 중 오류가 발생했습니다.");
+
+      // 실패 시 원본으로 되돌리기
+      setImagePreview(currentImage || "");
     } finally {
       setIsUploading(false);
     }
-
-    //TODO: 이미지 업로드 로직 추가 필요
   };
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error("이미지 로드 실패:", imagePreview);
+    console.error("에러 상세:", e);
+    setImageError(true);
+
+    // 원본 URL로 다시 시도
+    if (imagePreview !== currentImage && currentImage) {
+      setImagePreview(currentImage);
+    }
+  };
+
+  const handleImageLoad = () => {
+    setImageError(false);
+  };
+
+  // blob URL 메모리 정리 - 의존성 배열에서 imagePreview 제거하여 최적화
   useEffect(() => {
     return () => {
       if (imagePreview && imagePreview.startsWith("blob:")) {
@@ -67,7 +86,15 @@ export default function FileInput({ currentImage, onImageChange }: FileInputProp
   return (
     <div
       className="relative w-41 h-41 max-tb:w-15 max-tb:h-15 rounded-full overflow-hidden border border-gray-300 cursor-pointer"
+      role="button"
+      tabIndex={0}
       onClick={() => imageRef.current?.click()}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          imageRef.current?.click();
+        }
+      }}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
@@ -77,17 +104,13 @@ export default function FileInput({ currentImage, onImageChange }: FileInputProp
         </div>
       ) : (
         <>
-          {imagePreview ? (
-            // 이미지가 있을 때
+          {imagePreview && !imageError ? (
             <img
               alt="프로필 이미지"
               className="w-full h-full object-cover rounded-full"
               src={imagePreview}
-              onError={(e) => {
-                console.error("이미지 로드 실패:", imagePreview);
-                console.error("에러 상세:", e);
-              }}
-              onLoad={() => console.log("이미지 로드 성공:", imagePreview)}
+              onError={handleImageError}
+              onLoad={handleImageLoad}
             />
           ) : (
             <div className="w-41 h-41 max-tb:w-15 max-tb:h-15 rounded-full hover:bg-purple-200">
