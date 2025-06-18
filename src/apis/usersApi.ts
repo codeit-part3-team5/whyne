@@ -24,3 +24,21 @@ export const updateUserProfile = async (
     throw error;
   }
 };
+
+// 내가 작성한 리뷰 조회
+export const getMyReviews = async (limit: number, cursor?: number | null) => {
+  try {
+    const params: { limit: number; cursor?: number } = { limit };
+    if (cursor !== null) params.cursor = cursor;
+
+    const response = await axiosAuthClient.get("/users/me/reviews", { params });
+    return response.data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("내가 작성한 리뷰 조회 실패: ", error);
+    } else {
+      console.error("내가 작성한 리뷰 조회 실패: 알 수 없는 오류");
+    }
+    throw error;
+  }
+};
