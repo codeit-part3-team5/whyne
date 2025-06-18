@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import { getWines } from "@/apis/winesApi";
 import filterIcon from "@/assets/filter-icon.png";
 import MonthlyWines from "@/components/about-wine/MonthlyWines";
 import WineInfoCard from "@/components/about-wine/WineInfoCard";
@@ -13,14 +14,25 @@ import TypeFilter from "@/components/Filters/TypeFilter";
 import SearchInput from "@/components/input/SearchInput";
 import FilterModal from "@/components/modal/FilterModal";
 import WinePostModal from "@/components/modal/WinePostModal";
-import winesData from "@/mocks/winesData.json";
 import useModalStore from "@/store/useModalStore";
 import type { BaseWineData } from "@/types/Wine";
 
 export default function WinesPage() {
-  const wines = winesData.list as BaseWineData[];
   const [search, setSearch] = useState("");
   const openModal = useModalStore((state) => state.open);
+  const [wines, setWines] = useState<BaseWineData[]>([]); //get api
+
+  useEffect(() => {
+    const fetchWines = async () => {
+      try {
+        const data = await getWines(10);
+        setWines(data);
+      } catch (error) {
+        console.error("와인 데이터를 불러오는 중 오류:", error);
+      }
+    };
+    fetchWines();
+  }, []);
 
   const filteredWines = useMemo(() => {
     return wines.filter((wine) => wine.name.toLowerCase().includes(search.toLowerCase()));
