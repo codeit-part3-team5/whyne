@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import MyReviewCard from "@/components/profile/MyReviewCard";
 import MyWineCard from "@/components/profile/MyWineCard";
@@ -10,7 +11,14 @@ import { useMyReviews } from "@/hooks/useMyReviews";
 import { useMyWines } from "@/hooks/useMyWines";
 
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState(1);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // URL에서 탭 상태 가져오기 (기본값: 1)
+  const [activeTab, setActiveTab] = useState(() => {
+    const tabFromUrl = searchParams.get("tab");
+    return tabFromUrl ? parseInt(tabFromUrl, 10) : 1;
+  });
 
   // useMyReviews 훅
   const {
@@ -38,7 +46,22 @@ export default function ProfilePage() {
 
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", tabId.toString());
+    router.replace(`/profile?${params.toString()}`);
   };
+
+  // URL 파라미터 변경 감지
+  useEffect(() => {
+    const tabFromUrl = searchParams.get("tab");
+    if (tabFromUrl) {
+      const tabNumber = parseInt(tabFromUrl, 10);
+      if (tabNumber >= 1 && tabNumber <= 2) {
+        setActiveTab(tabNumber);
+      }
+    }
+  });
 
   return (
     <div>
