@@ -9,9 +9,14 @@ export const getWines = async (limit = 10): Promise<BaseWineData[]> => {
 };
 
 //와인 등록하기 모달
-export const postWines = async (
-  newWine: Omit<BaseWineData, "id" | "avgRating" | "reviewCount" | "recentReview">
-) => {
+export const postWines = async (newWine: WinePostRequest) => {
   const response = await axiosAuthClient.post("/wines", newWine);
   return response.data;
+};
+export type WinePostRequest = {
+  name: string;
+  price: number;
+  region: string;
+  type: "RED" | "WHITE" | "SPARKLING";
+  image: string;
 };
