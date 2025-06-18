@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import { useEffect } from "react";
 
 import { getWineDetail } from "@/apis/winesApi";
 import WineCard from "@/components/about-wine/WineCard";
@@ -11,34 +12,27 @@ import ReviewList from "@/components/wine-detail/review-list/ReviewList";
 import ReviewModal from "@/components/wine-detail/review-modal/ReviewModal";
 import ReviewOverview from "@/components/wine-detail/review-overview/ReviewOverview";
 import useModalStore from "@/store/useModalStore";
+import { useWineStore } from "@/store/useWineStore";
 import { WineType } from "@/types/Wine";
 import { convertStringsToAroma } from "@/utils/aromaConverter";
 export default function WineDetailPage() {
   const { id } = useParams();
   const wineId = typeof id === "string" ? id : "";
   const open = useModalStore((state) => state.open);
+
   const handleClick = async () => {
-    // 최신 데이터로 리프레시 후 모달 열기
-    try {
-      await refetch();
-      console.log("리뷰 모달 열기 전 데이터 리프레시 완료");
-    } catch (err) {
-      console.error("데이터 리프레시 실패:", err);
-    }
     open("addReview", <ReviewModal />);
   };
+  const setWine = useWineStore((state) => state.setWine);
   const {
     data: wineData,
     isLoading,
     error,
-    refetch,
   } = useQuery({
     queryKey: ["wine", wineId],
     queryFn: async () => {
       try {
-        console.log(`[Query] 와인 상세 데이터 요청: ID=${wineId}`);
         const data = await getWineDetail(wineId);
-        console.log(`[Query] 와인 상세 데이터 수신 완료`);
         return data;
       } catch (err) {
         console.error("API 호출 오류:", err);
@@ -46,8 +40,7 @@ export default function WineDetailPage() {
       }
     },
     select: (data) => {
-      console.log(`[Query] 와인 데이터 변환 중: 리뷰 수=${data.reviews?.length || 0}`);
-      return {
+      const transformedData = {
         ...data,
         type: data.type as WineType,
         reviews: (data.reviews ?? []).map((r) => ({
@@ -58,12 +51,22 @@ export default function WineDetailPage() {
           ? { ...data.recentReview, aroma: convertStringsToAroma(data.recentReview.aroma ?? []) }
           : null,
       };
+
+      // 렌더링 중에 상태 업데이트를 하지 않기 위해 select에서 setWine 호출을 제거
+      return transformedData;
     },
     enabled: !!wineId,
     retry: 1, // 실패 시 한 번만 재시도
     refetchOnWindowFocus: true, // 윈도우 포커스 시 데이터 리프레시
     staleTime: 10000, // 10초 후 데이터를 stale로 간주
   });
+
+  // useEffect를 사용하여 데이터가 변경될 때 전역 상태 업데이트
+  useEffect(() => {
+    if (wineData) {
+      setWine(wineData);
+    }
+  }, [wineData, setWine]);
 
   // 로딩 중 UI
   if (isLoading) {
@@ -82,11 +85,11 @@ export default function WineDetailPage() {
       </div>
     );
   }
-
   if (!wineData) {
     return null;
   }
 
+  // 리뷰가 없는 경우 NoReviewSection 컴포넌트 렌더링
   if (!wineData.reviews || wineData.reviews.length === 0) {
     return <NoReviewSection wineData={wineData} onAddReview={handleClick} />;
   }

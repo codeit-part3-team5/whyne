@@ -17,7 +17,7 @@ export default function ReviewModal() {
   const size = isMobile ? "lg" : "xl";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const queryClient = useQueryClient(); // React Query 클라이언트 가져오기
+  const queryClient = useQueryClient();
 
   const { rating, content, lightBold, smoothTannic, drySweet, softAcidic, aroma, resetReview } =
     useReviewStore();
@@ -31,36 +31,47 @@ export default function ReviewModal() {
     };
   }, [resetReview]);
 
-  // 원래 close 함수를 감싸서 리뷰 초기화 후 모달 닫기
-  const handleClose = () => {
+  // 리뷰 작성 성공 후 모달 닫기
+  const handleSuccessClose = () => {
     resetReview();
     close();
   };
+
   const handleClickAddReview = async () => {
-    if (!wine) return;
+    if (!wine || !wine.id) {
+      console.error("와인 정보가 없습니다:", wine);
+      setError("와인 정보가 올바르지 않습니다. 페이지를 새로고침 해주세요.");
+      return;
+    }
+
+    console.log("리뷰 작성 - 와인 정보:", {
+      id: wine.id,
+      name: wine.name,
+      type: wine.type,
+    });
+
     setIsSubmitting(true);
     setError(null);
 
     // 토큰 확인
     const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    console.log("인증 상태 확인:", {
+      accessToken: accessToken ? "있음" : "없음",
+      refreshToken: refreshToken ? "있음" : "없음",
+    });
+
     if (!accessToken) {
       setError("인증 토큰이 없습니다. 로그인이 필요합니다.");
       setIsSubmitting(false);
       return;
     }
-
     try {
-      // 아로마 값 검증 및 로깅
-      console.log("아로마 데이터 타입:", typeof aroma, Array.isArray(aroma));
-      console.log("아로마 데이터 값:", aroma);
-      console.log("아로마 데이터 예시 값:", aroma.length > 0 ? aroma[0] : "없음");
-
-      // 서버가 기대하는 아로마 형식으로 변환 시도
-      // 아로마 값을 문자열로 변환 (서버가 필요로 하는 형식에 따라)
       const aromaValues = aroma; // 리뷰 데이터 구성
       const reviewData: CreateReviewData = {
         wineId: wine.id,
-        rating, // UI에서는 소수점(3.5 등)이 허용되지만 서버에 전송될 때는 정수로 변환됨
+        rating,
         content,
         lightBold,
         smoothTannic,
@@ -69,36 +80,45 @@ export default function ReviewModal() {
         aroma: aromaValues,
       };
 
-      // 서버에 전송될 rating 값 안내 (소수점 별점이 정수로 변환됨)
-      if (rating % 1 !== 0) {
-        console.log(
-          `선택한 별점 ${rating}는 서버 요청 시 ${Math.round(rating)}(으)로 변환되어 전송됩니다.`
-        );
-      }
-      console.log("서버로 전송할 리뷰 데이터:", JSON.stringify(reviewData, null, 2));
-      console.log("인증 토큰:", accessToken ? "토큰 있음" : "토큰 없음"); // API 호출 및 응답 처리
+      console.log("리뷰 제출 시도:", {
+        와인ID: wine.id,
+        별점: rating,
+        내용길이: content.length,
+        향: aroma.length,
+      });
+
       const response = await postReview(reviewData);
-      console.log("리뷰 작성 성공:", response); // 성공 시 React Query 캐시 무효화하여 와인 데이터 다시 로드
+      console.log("리뷰 작성 성공:", response);
+
       if (wine?.id) {
         console.log(`와인 ID ${wine.id}에 대한 쿼리 캐시를 무효화합니다.`);
 
-        // 캐시 무효화 강화 - 모든 관련 쿼리 무효화
+        // 캐시 무효화 및 데이터 다시 가져오기
         await queryClient.invalidateQueries({ queryKey: ["wine", String(wine.id)] });
-        await queryClient.refetchQueries({ queryKey: ["wine", String(wine.id)] });
 
-        console.log(`와인 ID ${wine.id}에 대한 쿼리 캐시를 무효화하고 데이터를 다시 가져왔습니다.`);
+        // 명시적으로 데이터 다시 가져오기
+        console.log(`와인 ID ${wine.id}에 대한 데이터를 다시 가져옵니다.`);
+        await queryClient.refetchQueries({
+          queryKey: ["wine", String(wine.id)],
+          exact: true, // 정확한 키 매치로 리페치
+        });
 
-        // 안정적인 UI 업데이트를 위해 페이지 새로고침
-        window.location.reload();
+        console.log("리뷰가 성공적으로 추가되었습니다. 모달을 닫습니다.");
       }
 
       // 응답 데이터 검증
       if (!response || !response.id) {
-        console.warn("리뷰가 생성되었지만 ID가 없습니다. 페이지를 새로고침하세요.");
+        console.warn("리뷰가 생성되었지만 ID가 없습니다. API 응답 이슈가 있을 수 있습니다.");
+
+        // 응답 데이터가 없어도 정상 처리 시도
+        // 캐시를 무효화하여 다음에 데이터를 가져올 때 최신 상태를 반영
+        if (wine?.id) {
+          await queryClient.invalidateQueries({ queryKey: ["wine", String(wine.id)] });
+        }
       }
 
       // 성공 시 모달 닫기
-      handleClose();
+      handleSuccessClose();
     } catch (err: any) {
       console.error("리뷰 제출 실패:", err);
 

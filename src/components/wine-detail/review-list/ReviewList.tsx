@@ -11,7 +11,6 @@ interface ReviewListProps {
 
 export default function ReviewList({ wine }: ReviewListProps) {
   const [reviews, setReviews] = useState(wine.reviews);
-
   const isPC = useMediaQuery("(min-width: 745px)");
 
   useEffect(() => {
