@@ -4,6 +4,7 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { MyReview } from "@/types/ReviewList";
 import { timeForToday } from "@/utils/timeForToday";
 
+import Spinner from "../Spinner";
 import Rating from "../wine-detail/review-list/Rating";
 import { BaseCard } from "./BaseCard";
 
@@ -49,8 +50,8 @@ export default function MyReviewCard({
   // 초기 로딩 상태 처리
   if (loading) {
     return (
-      <div className="flex justify-center items-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
+      <div className="flex justify-center items-center">
+        <Spinner />
         <div className="ml-3 text-gray-500">리뷰를 불러오는 중...</div>
       </div>
     );

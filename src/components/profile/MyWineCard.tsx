@@ -3,6 +3,7 @@
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { BaseWineData } from "@/types/Wine";
 
+import Spinner from "../Spinner";
 import { BaseCard } from "./BaseCard";
 
 interface MyWineCardProps {
@@ -46,8 +47,8 @@ export default function MyWineCard({
   // 로딩 상태 처리
   if (loading) {
     return (
-      <div className="flex justify-center items-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
+      <div className="flex justify-center items-center">
+        <Spinner />
         <div className="ml-3 text-gray-500">와인 목록을 불러오는 중...</div>
       </div>
     );
