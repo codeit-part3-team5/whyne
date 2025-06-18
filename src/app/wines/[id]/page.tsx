@@ -17,20 +17,28 @@ export default function WineDetailPage() {
   const { id } = useParams();
   const wineId = typeof id === "string" ? id : "";
   const open = useModalStore((state) => state.open);
-
-  const handleClick = () => {
+  const handleClick = async () => {
+    // 최신 데이터로 리프레시 후 모달 열기
+    try {
+      await refetch();
+      console.log("리뷰 모달 열기 전 데이터 리프레시 완료");
+    } catch (err) {
+      console.error("데이터 리프레시 실패:", err);
+    }
     open("addReview", <ReviewModal />);
   };
   const {
     data: wineData,
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["wine", wineId],
     queryFn: async () => {
       try {
+        console.log(`[Query] 와인 상세 데이터 요청: ID=${wineId}`);
         const data = await getWineDetail(wineId);
-
+        console.log(`[Query] 와인 상세 데이터 수신 완료`);
         return data;
       } catch (err) {
         console.error("API 호출 오류:", err);
@@ -38,6 +46,7 @@ export default function WineDetailPage() {
       }
     },
     select: (data) => {
+      console.log(`[Query] 와인 데이터 변환 중: 리뷰 수=${data.reviews?.length || 0}`);
       return {
         ...data,
         type: data.type as WineType,
@@ -52,6 +61,8 @@ export default function WineDetailPage() {
     },
     enabled: !!wineId,
     retry: 1, // 실패 시 한 번만 재시도
+    refetchOnWindowFocus: true, // 윈도우 포커스 시 데이터 리프레시
+    staleTime: 10000, // 10초 후 데이터를 stale로 간주
   });
 
   // 로딩 중 UI

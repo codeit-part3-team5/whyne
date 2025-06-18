@@ -31,7 +31,13 @@ const getAuthValue = async (token: string | undefined | null): Promise<string> =
 };
 
 axiosAuthClient.interceptors.request.use(async (config) => {
-  config.headers.Authorization = await getAuthValue(null);
+  const token = await getAuthValue(null);
+  config.headers.Authorization = token;
+  console.log("[Auth] 요청 헤더:", {
+    Authorization: token ? `${token.substring(0, 15)}...` : "없음", // 토큰 일부만 로깅
+    url: config.url,
+    method: config.method,
+  });
   return config;
 });
 

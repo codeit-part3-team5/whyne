@@ -4,7 +4,6 @@ import { aromaToKorean } from "@/utils/aromaConverter";
 
 export default function AromaSelector() {
   const { aroma, setAroma } = useReviewStore();
-
   const toggleAroma = (aromaValue: Aroma) => {
     const newAroma = [...aroma];
     const index = newAroma.indexOf(aromaValue);
@@ -13,10 +12,13 @@ export default function AromaSelector() {
       // 최대 5개까지만 선택 가능
       if (newAroma.length >= 5) return;
       newAroma.push(aromaValue);
+      console.log(`아로마 추가: ${aromaValue}, 타입: ${typeof aromaValue}`);
     } else {
       newAroma.splice(index, 1);
+      console.log(`아로마 제거: ${aromaValue}`);
     }
 
+    console.log("아로마 상태 업데이트:", newAroma);
     setAroma(newAroma);
   };
 

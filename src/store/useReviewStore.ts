@@ -28,8 +28,7 @@ export const useReviewStore = create<ReviewState>((set) => ({
   drySweet: 5,
   softAcidic: 5,
   aroma: [],
-
-  setRating: (rating) => set({ rating }),
+  setRating: (rating) => set({ rating: Math.round(rating) }), // 항상 정수로 반올림하여 저장
   setContent: (content) => set({ content }),
   setWineTaste: (type, value) =>
     set((state) => ({
