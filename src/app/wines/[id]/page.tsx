@@ -29,9 +29,8 @@ export default function WineDetailPage() {
     queryKey: ["wine", wineId],
     queryFn: async () => {
       try {
-        console.log("API 호출 시작, ID:", wineId);
         const data = await getWineDetail(wineId);
-        console.log("API 응답 데이터:", data);
+
         return data;
       } catch (err) {
         console.error("API 호출 오류:", err);
@@ -42,7 +41,7 @@ export default function WineDetailPage() {
       return {
         ...data,
         type: data.type as WineType,
-        reviews: data.reviews.map((r) => ({
+        reviews: (data.reviews ?? []).map((r) => ({
           ...r,
           aroma: convertStringsToAroma(r.aroma),
         })),
@@ -67,24 +66,20 @@ export default function WineDetailPage() {
   // 에러 UI
   if (error) {
     return (
-      <div className="flex justify-center items-center min-h-screen text-red-500">
-        데이터를 불러오는 중 오류가 발생했습니다
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <div className="text-red-500 text-xl font-bold mb-4">와인 정보를 찾을 수 없습니다</div>
       </div>
     );
   }
 
-  // 데이터가 없을 때 UI
   if (!wineData) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        와인 정보를 찾을 수 없습니다
-      </div>
-    );
+    return null;
   }
+
   if (!wineData.reviews || wineData.reviews.length === 0) {
     return <NoReviewSection wineData={wineData} onAddReview={handleClick} />;
   }
-  // 메인 UI
+
   return (
     <main className="flex flex-col items-center py-10 gap-[3.75rem] max-mb:gap-[2.5rem]">
       <WineCard data={wineData} />

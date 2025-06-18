@@ -10,7 +10,8 @@ export const setDevelopmentToken = (token: string): void => {
 
 // 로그인 상태 확인 함수
 export const isAuthenticated = (): boolean => {
-  const token = localStorage.getItem("accessToken");
+  if (typeof window === "undefined") return false;
+  const token = window.localStorage.getItem("accessToken");
   return !!token; // 토큰이 존재하면 true, 없으면 false
 };
 
