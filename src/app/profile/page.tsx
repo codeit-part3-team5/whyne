@@ -6,17 +6,28 @@ import MyReviewCard from "@/components/profile/MyReviewCard";
 import MyWineCard from "@/components/profile/MyWineCard";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileTabs from "@/components/profile/ProfileTabs";
-import myReviewsData from "@/mocks/myReviewsData.json";
+import { useMyReviews } from "@/hooks/useMyReviews";
 import myWinesData from "@/mocks/myWinesData.json";
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState(1);
 
+  // useMyReviews 훅
+  const {
+    reviews: myReviews,
+    loading: reviewsLoading,
+    error: reviewsError,
+    hasNext,
+    loadMore,
+    refresh,
+    loadingMore,
+    totalCount: reviewCount,
+  } = useMyReviews(10);
+
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
   };
 
-  const reviewCount = myReviewsData.totalCount;
   const wineCount = myWinesData.totalCount; // TODO: 와인 데이터가 있을 때 실제 값으로 변경
 
   return (
@@ -30,7 +41,17 @@ export default function ProfilePage() {
             reviewCount={reviewCount}
             wineCount={wineCount}
           />
-          {activeTab === 1 && <MyReviewCard myReviews={myReviewsData.list} />}
+          {activeTab === 1 && (
+            <MyReviewCard
+              error={reviewsError}
+              hasNext={hasNext}
+              loadMore={loadMore}
+              loading={reviewsLoading}
+              loadingMore={loadingMore}
+              myReviews={myReviews}
+              refresh={refresh}
+            />
+          )}
           {activeTab === 2 && <MyWineCard myWines={myWinesData.list} />}
         </div>
       </div>
