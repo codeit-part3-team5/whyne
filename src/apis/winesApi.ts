@@ -22,9 +22,7 @@ export const getWineDetail = async (wineId: string): Promise<WineDetailData> => 
   }
 
   try {
-    console.log(`API 호출: /wines/${wineId}`);
-    const res = await axiosAuthClient.get(`/wines/${wineId}`);
-    console.log("API 응답:", res);
+    const res = await axiosAuthClient.get<WineDetailData>(`/wines/${wineId}`);
     return res.data;
   } catch (error) {
     console.error("Wine API 호출 오류:", error);
