@@ -15,7 +15,7 @@ export default function WinePostModal() {
   const { close } = useModalStore();
 
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState<number>();
   const [region, setRegion] = useState("");
   const [type, setType] = useState<"Red" | "White" | "Sparkling">("Red");
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -69,10 +69,10 @@ export default function WinePostModal() {
       <div className="font-[500] text-[1rem] py-[0.425rem]">가격</div>
       <BaseInput
         className="mb-2"
-        placeholder="가격을 입력해 주세요."
+        placeholder="가격은 숫자만 입력이 가능합니다."
         type="text"
         value={price}
-        onChange={(e) => setPrice(e.target.value)}
+        onChange={(e) => setPrice(Number(e.target.value))}
       />
 
       <div className="font-[500] text-[1rem] py-[0.425rem]">원산지</div>
