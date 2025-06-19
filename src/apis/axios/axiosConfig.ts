@@ -19,7 +19,7 @@ const axiosAuthClient: AxiosInstance = axios.create(DEFAULT_CONFIG);
 const getAuthValue = async (token: string | undefined | null): Promise<string> => {
   const accessToken = token ?? useLogin.getState().accessToken;
   let authValue = accessToken;
-  if (authValue !== undefined) {
+  if (authValue && authValue.trim() !== "") {
     const jwtToken = jwtDecode(authValue);
     if (jwtToken.exp !== undefined && jwtToken.exp < Date.now() / 1000) {
       const responseData = (

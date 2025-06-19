@@ -50,7 +50,20 @@ const Header: React.FC = () => {
           <Spinner className="border-white border-r-black" />
         ) : accessToken !== undefined ? (
           <div className="max-mb:flex max-mb:w-[1.25rem]">
-            <div className="cursor-pointer" onClick={() => setIsOpen((prev) => !prev)}>
+            <div
+              aria-expanded={isOpen}
+              aria-haspopup="true"
+              className="cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onClick={() => setIsOpen((prev) => !prev)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setIsOpen((prev) => !prev);
+                }
+              }}
+            >
               <ProfileCircle size="mobile" />
             </div>
             <div ref={containerRef} aria-expanded={isOpen} className="relative">
