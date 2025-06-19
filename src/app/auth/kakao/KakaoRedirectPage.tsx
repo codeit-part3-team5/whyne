@@ -4,10 +4,12 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 import { signInWithProvider } from "@/apis/authApi";
+import useLogin from "@/components/Login/useLogin";
 import Spinner from "@/components/Spinner";
 
 const KakaoRedirectPage = () => {
   const searchParams = useSearchParams();
+  const { setToken } = useLogin();
 
   useEffect(() => {
     const callApi = async () => {
@@ -15,8 +17,7 @@ const KakaoRedirectPage = () => {
         const code = searchParams.get("code")!;
         const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/kakao`;
         const res = await signInWithProvider("KAKAO", code, redirectUri);
-        localStorage.setItem("accessToken", res.accessToken);
-        localStorage.setItem("refreshToken", res.refreshToken);
+        setToken(res.accessToken, res.refreshToken);
       }
     };
     callApi();

@@ -1,33 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/utils/cn";
 
+import useLogin from "../Login/useLogin";
 import ProfileCircle from "../profile/ProfileCircle";
 import Spinner from "../Spinner";
+import ProfileDropDown from "./ProfileDropDown";
 
 const Header: React.FC = () => {
   const [loading, setLoading] = useState(true);
-  const [login, setLogin] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { accessToken } = useLogin();
+
   useEffect(() => {
     const checkAuthStatus = () => {
-      try {
-        if (typeof window !== "undefined") {
-          const token = localStorage.getItem("accessToken");
-          setLogin(token !== null);
-        }
-      } catch (error) {
-        console.error("Error accessing localStorage:", error);
-      } finally {
-        setLoading(false);
+      setLoading(false);
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
       }
     };
+    document.addEventListener("mousedown", handleClickOutside);
 
     const DELAY_TO_SHOW_LOADING_STATE = 300;
     const timer = setTimeout(checkAuthStatus, DELAY_TO_SHOW_LOADING_STATE);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
   return (
     <div
@@ -43,9 +48,27 @@ const Header: React.FC = () => {
         </Link>
         {loading ? (
           <Spinner className="border-white border-r-black" />
-        ) : login ? (
+        ) : accessToken !== undefined ? (
           <div className="max-mb:flex max-mb:w-[1.25rem]">
-            <ProfileCircle size="mobile" />
+            <div
+              aria-expanded={isOpen}
+              aria-haspopup="true"
+              className="cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onClick={() => setIsOpen((prev) => !prev)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setIsOpen((prev) => !prev);
+                }
+              }}
+            >
+              <ProfileCircle size="mobile" />
+            </div>
+            <div ref={containerRef} aria-expanded={isOpen} className="relative">
+              {isOpen && <ProfileDropDown />}
+            </div>
           </div>
         ) : (
           <div className="flex gap-[2.5rem]">

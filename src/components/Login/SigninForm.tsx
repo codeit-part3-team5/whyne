@@ -7,6 +7,7 @@ import { signIn } from "@/apis/authApi";
 
 import Button from "../Button";
 import Input from "../input/Input";
+import useLogin from "./useLogin";
 
 interface LoginFormInput {
   email: string;
@@ -21,13 +22,13 @@ const SigninForm = () => {
     handleSubmit,
   } = useForm<LoginFormInput>({ mode: "all" });
   const router = useRouter();
+  const { setToken } = useLogin();
 
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
     const res = await signIn(data.email, data.password, () =>
       setError("email", { type: "custom", message: "이메일 혹은 비밀번호를 확인해주세요." })
     );
-    localStorage.setItem("accessToken", res.accessToken);
-    localStorage.setItem("refreshToken", res.refreshToken);
+    setToken(res.accessToken, res.refreshToken);
     router.push("/");
   };
 

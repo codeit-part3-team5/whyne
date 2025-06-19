@@ -8,6 +8,7 @@ import { signUp } from "@/apis/authApi";
 
 import Button from "../Button";
 import Input from "../input/Input";
+import useLogin from "./useLogin";
 
 interface FormInput {
   email: string;
@@ -28,12 +29,10 @@ const SignupForm: React.FC = () => {
   } = useForm<FormInput>({ mode: "all" });
   const password = watch("password");
   const router = useRouter();
+  const { login, setToken } = useLogin();
 
   useEffect(() => {
-    if (
-      localStorage.getItem("accessToken") !== null &&
-      localStorage.getItem("refreshToken") !== null
-    ) {
+    if (login()) {
       router.push("/");
     }
   }, []);
@@ -48,8 +47,7 @@ const SignupForm: React.FC = () => {
         alert("회원가입에 실패하였습니다.");
       }
     );
-    localStorage.setItem("accessToken", res.accessToken);
-    localStorage.setItem("refreshToken", res.refreshToken);
+    setToken(res.accessToken, res.refreshToken);
     router.push("/");
   };
 
