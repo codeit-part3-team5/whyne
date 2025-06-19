@@ -66,8 +66,8 @@ export const useInfiniteScroll = ({
    * @param entries - IntersectionObserverEntry 배열
    */
   const handleObserver = useCallback(
-    (entrise: IntersectionObserverEntry[]) => {
-      const [entry] = entrise;
+    (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
       // 요소가 교차하고, 더 로드할 데이터가 있으며, 현재 로딩 중이 아닐 때만 실행
       if (entry.isIntersecting && hasNext && !isLoading) {
         onLoadMore();
