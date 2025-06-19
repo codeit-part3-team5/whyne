@@ -26,9 +26,14 @@ declare interface MeApiResponse {
 }
 
 type ProviderType = "KAKAO" | "GOOGLE" | "NAVER";
+type CallbackFunction = (...args: any[]) => void;
 
 declare type RefreshTokenApi = (refreshToken: string) => Promise<RefreshTokenApiResponse>;
-declare type SignInApi = (email: string, password: string) => Promise<SigningApiResponse>;
+declare type SignInApi = (
+  email: string,
+  password: string,
+  callback?: CallbackFunction
+) => Promise<SigningApiResponse>;
 declare type signInWithProviderApi = (
   provider: ProviderType,
   token: string,
@@ -39,6 +44,7 @@ declare type SignUpApi = (
   email: string,
   nickname: string,
   password: string,
-  passwordConfirmation: string
+  passwordConfirmation: string,
+  callback?: CallbackFunction
 ) => Promise<SigningApiResponse>;
 declare type MeApi = () => Promise<MeApiResponse>;
