@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
+import { extractUserIdFromToken, isTokenExpired } from "@/utils/tokenUtils";
 interface DecodedToken {
   id?: number;
   userId?: number;
@@ -68,11 +69,7 @@ export function useAuth() {
           return;
         }
 
-        const decoded = jwtDecode<DecodedToken>(accessToken);
-
-        // 토큰 만료 확인
-        const currentTime = Date.now() / 1000;
-        if (decoded.exp && decoded.exp < currentTime) {
+        if (isTokenExpired(accessToken)) {
           console.warn("토큰이 만료되었습니다.");
           localStorage.removeItem("accessToken");
           setUser({
@@ -83,23 +80,13 @@ export function useAuth() {
           });
           return;
         }
-
-        // 사용자 ID 추출 (토큰 구조에 따라 필드명이 다를 수 있음)
-        const userId = decoded.id || decoded.userId || Number(decoded.sub);
-
+        const decoded = jwtDecode<DecodedToken>(accessToken);
+        const userId = extractUserIdFromToken(accessToken);
         setUser({
           id: userId ? Number(userId) : null,
           email: decoded.email || null,
           nickname: decoded.nickname || null,
           isAuthenticated: true,
-        });
-      } catch (error) {
-        console.error("토큰 디코딩 또는 사용자 정보 추출 중 오류:", error);
-        setUser({
-          id: null,
-          email: null,
-          nickname: null,
-          isAuthenticated: false,
         });
       } finally {
         setIsLoading(false);
