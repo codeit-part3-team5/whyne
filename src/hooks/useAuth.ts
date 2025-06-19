@@ -1,17 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
-import { extractUserIdFromToken, isTokenExpired } from "@/utils/tokenUtils";
-interface DecodedToken {
-  id?: number;
-  userId?: number;
-  sub?: string;
-  exp?: number;
-  iat?: number;
-  email?: string;
-  nickname?: string;
-  // 기타 토큰에 포함된 필드들
-}
+import { DecodedToken, extractUserIdFromToken, isTokenExpired } from "@/utils/tokenUtils";
 
 interface AuthUser {
   id: number | null;
