@@ -14,7 +14,9 @@ export interface CreateReviewData {
 }
 
 // 요청 데이터 검증 및 변환 함수
-const prepareReviewData = (data: CreateReviewData): any => {
+const prepareReviewData = (
+  data: CreateReviewData
+): Omit<CreateReviewData, "wineId"> & { wineId: number } => {
   // 서버가 기대하는 형식으로 데이터 변환
   return {
     rating: Number(data.rating), // 이미 useReviewStore에서 정수로 저장됨
@@ -40,35 +42,14 @@ export const getReviews = async (reviewId: string): Promise<Review> => {
 
 export const postReview = async (reviewData: CreateReviewData): Promise<Review> => {
   try {
-    // 데이터 준비
     const preparedData = prepareReviewData(reviewData);
-    const wineId = preparedData.wineId;
-    const { wineId: _, ...dataWithoutWineId } = preparedData;
-
-    // 디버깅 정보 추가
-    console.log("API 요청 시도 (리뷰 작성):", {
-      wineId,
-      url: `/wines/${wineId}/reviews`,
-      data: dataWithoutWineId,
-    });
-
-    try {
-      // 첫 번째 접근 방식: "/wines/{wineId}/reviews" 엔드포인트
-      const response = await axiosAuthClient.post<Review>("/reviews", preparedData);
-      console.log("리뷰 작성 성공 (방법 1):", response.status);
-      return response.data;
-    } catch (err: any) {
-      throw err;
-    }
+    const response = await axiosAuthClient.post<Review>("/reviews", preparedData);
+    return response.data;
   } catch (error: any) {
-    console.error("리뷰 남기기 API 오류:", error.message);
-
-    if (error.response) {
-      console.error("상태 코드:", error.response.status);
-      console.error("응답 데이터:", error.response.data);
-      console.error("요청 URL:", error.config?.url);
-    }
-
+    console.error("리뷰 남기기 API 오류:", {
+      status: error.response?.status,
+      message: error.response?.data?.message || error.message,
+    });
     throw error;
   }
 };
@@ -86,7 +67,7 @@ export const patchReview = async (
   }
 };
 
-export const postReviewLike = async (reviewId: string): Promise<void> => {
+export const postReviewLike = async (reviewId: number): Promise<void> => {
   try {
     await axiosAuthClient.post(`/reviews/${reviewId}/like`);
   } catch (error) {
@@ -95,7 +76,7 @@ export const postReviewLike = async (reviewId: string): Promise<void> => {
   }
 };
 
-export const deleteReviewLike = async (reviewId: string): Promise<void> => {
+export const deleteReviewLike = async (reviewId: number): Promise<void> => {
   try {
     await axiosAuthClient.delete(`/reviews/${reviewId}/like`);
   } catch (error) {

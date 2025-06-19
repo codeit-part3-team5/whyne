@@ -44,29 +44,18 @@ export default function ReviewModal() {
       return;
     }
 
-    console.log("리뷰 작성 - 와인 정보:", {
-      id: wine.id,
-      name: wine.name,
-      type: wine.type,
-    });
-
     setIsSubmitting(true);
     setError(null);
 
     // 토큰 확인
     const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-
-    console.log("인증 상태 확인:", {
-      accessToken: accessToken ? "있음" : "없음",
-      refreshToken: refreshToken ? "있음" : "없음",
-    });
 
     if (!accessToken) {
       setError("인증 토큰이 없습니다. 로그인이 필요합니다.");
       setIsSubmitting(false);
       return;
     }
+
     try {
       const aromaValues = aroma; // 리뷰 데이터 구성
       const reviewData: CreateReviewData = {
@@ -80,30 +69,16 @@ export default function ReviewModal() {
         aroma: aromaValues,
       };
 
-      console.log("리뷰 제출 시도:", {
-        와인ID: wine.id,
-        별점: rating,
-        내용길이: content.length,
-        향: aroma.length,
-      });
-
       const response = await postReview(reviewData);
-      console.log("리뷰 작성 성공:", response);
 
       if (wine?.id) {
-        console.log(`와인 ID ${wine.id}에 대한 쿼리 캐시를 무효화합니다.`);
-
         // 캐시 무효화 및 데이터 다시 가져오기
         await queryClient.invalidateQueries({ queryKey: ["wine", String(wine.id)] });
 
-        // 명시적으로 데이터 다시 가져오기
-        console.log(`와인 ID ${wine.id}에 대한 데이터를 다시 가져옵니다.`);
         await queryClient.refetchQueries({
           queryKey: ["wine", String(wine.id)],
           exact: true, // 정확한 키 매치로 리페치
         });
-
-        console.log("리뷰가 성공적으로 추가되었습니다. 모달을 닫습니다.");
       }
 
       // 응답 데이터 검증

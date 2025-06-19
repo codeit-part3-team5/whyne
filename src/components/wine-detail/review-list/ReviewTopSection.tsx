@@ -1,9 +1,9 @@
-import { MouseEvent } from "react";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 
 import Ellipse from "@/assets/ellipse-icon.svg";
 import DropDown from "@/components/DropDown";
 import ProfileCircle from "@/components/profile/ProfileCircle";
+import { useAuth } from "@/hooks/useAuth";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { User } from "@/types/User";
 
@@ -14,7 +14,7 @@ interface ReviewTopSectionProps {
   user: User;
   isLiked?: boolean;
   onLikeClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-  reviewId?: number; // 리뷰 ID 추가
+  reviewId: number;
 }
 
 export default function ReviewTopSection({
@@ -26,6 +26,11 @@ export default function ReviewTopSection({
 }: ReviewTopSectionProps) {
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
   const [isOpen, setIsOpen] = useState(false);
+  const { checkIsOwnContent } = useAuth();
+
+  // 현재 로그인한 사용자가 리뷰 작성자인지 확인
+  const isOwnReview = checkIsOwnContent(user.id);
+
   return (
     <section className="flex items-center justify-between w-full relative">
       <div className="flex items-center gap-4">
@@ -34,16 +39,18 @@ export default function ReviewTopSection({
       </div>
       <div className="flex items-start gap-6 mb-6 max-mb:mb-4.5 max-mb:gap-[1.125rem]">
         <LikeButton
-          authorId={user.id} // 작성자 ID 전달
+          authorId={user.id}
           isLiked={isLiked}
           reviewId={reviewId}
           size={isMobile ? 32 : 38}
           onLikeClick={(e) => onLikeClick?.(e)}
         />
+
         <button
           aria-expanded={isOpen}
           aria-haspopup="menu"
           className="relative"
+          disabled={!isOwnReview}
           onClick={() => setIsOpen((prev) => !prev)}
         >
           <Ellipse height="38" width="38" />
