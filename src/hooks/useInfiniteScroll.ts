@@ -104,16 +104,5 @@ export const useInfiniteScroll = ({
     };
   }, [handleObserver, threshold, rootMargin]);
 
-  /**
-   * 컴포넌트 언마운트 시 observer 정리
-   */
-  useEffect(() => {
-    return () => {
-      if (observerInstanceRef.current) {
-        observerInstanceRef.current.disconnect();
-      }
-    };
-  }, []);
-
   return { observerRef };
 };
