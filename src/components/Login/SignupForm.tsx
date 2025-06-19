@@ -43,8 +43,8 @@ const SignupForm: React.FC = () => {
       data.nickname,
       data.password,
       data.passwordConfirmation,
-      () => {
-        alert("회원가입에 실패하였습니다.");
+      (message?: string) => {
+        alert(message ?? "회원가입에 실패하였습니다.");
       }
     );
     setToken(res.accessToken, res.refreshToken);
