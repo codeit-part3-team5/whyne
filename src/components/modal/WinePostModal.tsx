@@ -11,7 +11,7 @@ import Button from "@/components/Button";
 import BaseInput from "@/components/input/BaseInput";
 import useModalStore from "@/store/useModalStore";
 
-export default function WinePostModal() {
+export default function WinePostModal({ onSuccess }: { onSuccess?: () => void }) {
   const { close } = useModalStore();
 
   const [name, setName] = useState("");
@@ -60,6 +60,8 @@ export default function WinePostModal() {
       });
 
       alert("와인이 등록되었습니다.");
+
+      onSuccess?.();
       close();
     } catch (err) {
       console.error("등록 실패", err);
@@ -108,7 +110,6 @@ export default function WinePostModal() {
         onChange={handleImageChange}
       />
 
-      {/* 이미지 클릭 시 input 활성화 */}
       <div className="w-[140px] h-[140px] mb-4 rounded-md border-gray-300">
         <label className="cursor-pointer block w-full h-full" htmlFor="image-upload">
           {imagePreview ? (

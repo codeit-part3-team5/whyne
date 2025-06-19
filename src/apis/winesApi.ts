@@ -1,12 +1,16 @@
-import type { BaseWineData, WineDetailData } from "@/types/Wine";
+import type { WineDetailData } from "@/types/Wine";
 
 import { axiosAuthClient, axiosClient } from "./axios/axiosConfig";
 
 // 와인 목록 페이지
-export const getWines = async (limit = 10): Promise<BaseWineData[]> => {
+export const getWines = async (limit = 10, cursor?: number) => {
   try {
-    const response = await axiosClient.get(`/wines?limit=${limit}`);
-    return response.data.list;
+    const query = cursor ? `?limit=${limit}&cursor=${cursor}` : `?limit=${limit}`;
+    const response = await axiosClient.get(`/wines${query}`);
+    return {
+      list: response.data.list,
+      nextCursor: response.data.nextCursor ?? null,
+    };
   } catch (error) {
     console.error("와인 목록을 불러오는데 실패했습니다.", error);
     throw error;

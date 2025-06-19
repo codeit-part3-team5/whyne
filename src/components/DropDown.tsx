@@ -36,14 +36,14 @@ export default function DropDown({ firstText, secondText, size = "default" }: Dr
       className={`${containerSize} border border-gray-300 flex flex-col rounded-[1rem] bg-white`}
     >
       <button
-        className={`cursor-pointer bg-light-purple rounded-[0.75rem] text-center text-purple font-[500] my-[0.25rem] mx-[0.25rem] ${padding}`}
+        className={`hover:bg-light-purple cursor-pointer bg-light-purple rounded-[0.75rem] text-center text-purple font-[500] my-[0.25rem] mx-[0.25rem] ${padding}`}
         type="button"
         onClick={handleFirstClick}
       >
         {firstText}
       </button>
       <button
-        className={`cursor-pointer text-center font-[500] ${padding}`}
+        className={`hover:bg-light-purple hover: rounded-[0.75rem] cursor-pointer text-center font-[500] ${padding}`}
         type="button"
         onClick={handleSecondClick}
       >

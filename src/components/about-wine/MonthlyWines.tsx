@@ -23,7 +23,7 @@ export default function MonthlyWines() {
     const fetchWines = async () => {
       try {
         const data = await getWines(8);
-        setWines(data);
+        setWines(data.list);
       } catch (error) {
         console.error("이 달의 추천 와인을 불러오는데 실패했습니다.:", error);
       }
