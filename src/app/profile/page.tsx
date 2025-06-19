@@ -12,7 +12,7 @@ import { useMyReviews } from "@/hooks/useMyReviews";
 import { useMyWines } from "@/hooks/useMyWines";
 
 export default function ProfilePage() {
-  const { isLogin, isCheckingAuth } = useAuth();
+  const { isLoading, isAuthenticated } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -32,7 +32,7 @@ export default function ProfilePage() {
     refresh: reviewsRefresh,
     loadingMore: reviewsLoadingMore,
     totalCount: reviewCount,
-  } = useMyReviews(10, { enabled: isLogin });
+  } = useMyReviews(10, { enabled: isAuthenticated });
 
   // useMyWines 훅
   const {
@@ -44,7 +44,7 @@ export default function ProfilePage() {
     refresh: winesRefresh,
     loadingMore: winesLoadingMore,
     totalCount: wineCount,
-  } = useMyWines(10, { enabled: isLogin });
+  } = useMyWines(10, { enabled: isAuthenticated });
 
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
@@ -66,7 +66,7 @@ export default function ProfilePage() {
   }, [searchParams]);
 
   // 인증 체크 중일 때 로딩 화면
-  if (isCheckingAuth) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
         <div>로딩 중...</div>
@@ -75,7 +75,7 @@ export default function ProfilePage() {
   }
 
   // 로그인하지 않은 경우 (useAuth에서 이미 리다이렉트 처리됨)
-  if (!isLogin) {
+  if (!isAuthenticated) {
     return null;
   }
 
