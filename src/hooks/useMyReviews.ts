@@ -1,9 +1,22 @@
 import { getMyReviews } from "@/apis/usersApi";
 import { MyReview } from "@/types/ReviewList";
 
-import { usePagination } from "./usePagination";
+import { PaginationResponse, usePagination } from "./usePagination";
 
-export const useMyReviews = (limit: number = 10) => {
+const dummyFetcher = async (
+  _limit: number,
+  _cursor?: number | null
+): Promise<PaginationResponse<MyReview>> => {
+  return {
+    list: [],
+    totalCount: 0,
+    nextCursor: null,
+  };
+};
+
+export const useMyReviews = (limit: number = 10, options?: { enabled?: boolean }) => {
+  const { enabled = true } = options || {};
+
   const {
     data: reviews,
     loading,
@@ -13,7 +26,11 @@ export const useMyReviews = (limit: number = 10) => {
     refresh,
     loadingMore,
     totalCount,
-  } = usePagination<MyReview>(getMyReviews, limit, "리뷰를 불러오는데 실패했습니다.");
+  } = usePagination<MyReview>(
+    enabled ? getMyReviews : dummyFetcher,
+    limit,
+    "리뷰를 불러오는데 실패했습니다."
+  );
 
   return {
     reviews,

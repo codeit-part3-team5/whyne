@@ -32,7 +32,7 @@ export const useProfile = (): UseProfileReturn => {
   const [error, setError] = useState<string | null>(null);
 
   // 사용자 정보 가져오기
-  const fetchUserInfo = async () => {
+  const getUserInfo = async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -51,7 +51,7 @@ export const useProfile = (): UseProfileReturn => {
 
   // 초기 데이터 로드
   useEffect(() => {
-    fetchUserInfo();
+    getUserInfo();
   }, []);
 
   // 이미지 변경 핸들러
@@ -89,15 +89,20 @@ export const useProfile = (): UseProfileReturn => {
       setUserInfo(updatedUserInfo);
       setProfileImage(uploadedImageUrl);
       setSelectedFile(null);
+
+      // 성공 alert
+      alert("프로필이 성공적으로 업데이트되었습니다.");
     } catch (error: any) {
       console.error("프로필 변경 실패:", error);
 
       // 에러 메시지 설정
-      if (error.message?.includes("로그인") || error.message?.includes("인증")) {
-        setError(error.message);
-      } else {
-        setError("프로필 변경에 실패했습니다.");
-      }
+      const errorMessage =
+        error.message?.includes("로그인") || error.message?.includes("인증")
+          ? error.message
+          : "프로필 변경에 실패했습니다.";
+
+      setError(errorMessage);
+      alert(errorMessage);
 
       // 실패 시 상태 되돌리기
       if (userInfo) {
