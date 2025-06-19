@@ -19,10 +19,11 @@ export default function ReviewTitle({ wineName }: ReviewTitleProps) {
       <div className="flex flex-col items-start w-full gap-2 max-mb:w-[11.9375rem] ">
         <h2 className="text-lg font-semibold text-gray800 leading-6.5">{wineName}</h2>
         <div className="flex items-center gap-2">
-          <RatingStars allowHalfStar initialRating={rating} onChange={setRating} />
+          {" "}
+          <RatingStars initialRating={rating} onChange={setRating} />
           {rating > 0 && (
-            <span className="text-base max-mb:text-sm  font-medium text-center text-gray500">
-              {rating.toFixed(1)} 점
+            <span className="text-base max-mb:text-sm font-medium text-center text-gray500">
+              {rating} 점
             </span>
           )}
         </div>

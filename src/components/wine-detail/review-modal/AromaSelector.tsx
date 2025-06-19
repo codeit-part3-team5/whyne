@@ -4,7 +4,6 @@ import { aromaToKorean } from "@/utils/aromaConverter";
 
 export default function AromaSelector() {
   const { aroma, setAroma } = useReviewStore();
-
   const toggleAroma = (aromaValue: Aroma) => {
     const newAroma = [...aroma];
     const index = newAroma.indexOf(aromaValue);
