@@ -30,7 +30,7 @@ export default function Rating({ rating }: { rating: number }) {
           "text-[1.125rem] max-tb:text-[.875rem] max-mb:text-[.875rem]"
         )}
       >
-        {rating.toFixed(1)}
+        {Math.round(rating)}
       </span>
     </div>
   );
