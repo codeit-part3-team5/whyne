@@ -96,12 +96,12 @@ export const useProfile = (): UseProfileReturn => {
       console.error("프로필 변경 실패:", error);
 
       // 에러 메시지 설정
-      let errorMessage = "프로필 변경에 실패했습니다.";
-      if (error.message?.includes("로그인") || error.message?.includes("인증")) {
-        errorMessage = error.message;
-      }
+      const errorMessage =
+        error.message?.includes("로그인") || error.message?.includes("인증")
+          ? error.message
+          : "프로필 변경에 실패했습니다.";
 
-      setError(error.message);
+      setError(errorMessage);
       alert(errorMessage);
 
       // 실패 시 상태 되돌리기
