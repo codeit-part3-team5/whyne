@@ -27,9 +27,9 @@ export const signUp: SignUpApi = async (
       passwordConfirmation,
     });
     return res.data;
-  } catch (error) {
+  } catch (error: any) {
     if (callback !== undefined) {
-      callback();
+      callback(error.response.data.message);
     }
     throw error;
   }
