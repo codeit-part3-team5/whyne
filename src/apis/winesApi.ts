@@ -1,4 +1,4 @@
-import type { BaseWineData } from "@/types/Wine";
+import type { BaseWineData, WineDetailData } from "@/types/Wine";
 
 import { axiosAuthClient, axiosClient } from "./axios/axiosConfig";
 
@@ -19,7 +19,7 @@ export const postWines = async (newWine: WinePostRequest) => {
     const response = await axiosAuthClient.post("/wines", newWine);
     return response.data;
   } catch (error) {
-    console.error("와인 목록을 불러오는데 실패했습니다.", error);
+    console.error("와인 등록하는데 실패했습니다.", error);
     throw error;
   }
 };
@@ -31,8 +31,6 @@ export type WinePostRequest = {
   type: "RED" | "WHITE" | "SPARKLING";
   image: string;
 };
-
-import { WineDetailData } from "@/types/Wine";
 
 // 개발용 테스트 토큰 설정 함수
 export const setDevelopmentToken = (token: string): void => {
