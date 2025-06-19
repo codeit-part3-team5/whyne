@@ -2,7 +2,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
 import { deleteReview } from "@/apis/reviewsApi";
+import DeleteConfirmModal from "@/components/delete-confirm-modal/DeleteConfirmModal";
 import { useAuth } from "@/hooks/useAuth";
+import useModalStore from "@/store/useModalStore";
 
 type DropDownProps = {
   firstText: string;
@@ -23,6 +25,7 @@ export default function DropDown({
   const queryClient = useQueryClient();
   const params = useParams();
   const wineId = params.id as string;
+  const { open, close } = useModalStore();
 
   const containerSize =
     size === "small"
@@ -59,17 +62,30 @@ export default function DropDown({
         return;
       }
 
-      try {
-        await deleteReview(reviewId);
+      // 삭제 확인 모달 열기
+      open(
+        "delete",
+        <DeleteConfirmModal
+          onCancel={() => {
+            close();
+          }}
+          onConfirm={async () => {
+            try {
+              await deleteReview(reviewId);
 
-        // 리뷰 삭제 성공 후 와인 데이터 쿼리 무효화하여 재요청
-        if (wineId) {
-          await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
-        }
-      } catch (error) {
-        console.error("리뷰 삭제 중 오류 발생:", error);
-        alert("리뷰 삭제에 실패했습니다. 다시 시도해주세요.");
-      }
+              if (wineId) {
+                await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
+              }
+
+              close();
+            } catch (error) {
+              console.error("리뷰 삭제 중 오류 발생:", error);
+              alert("리뷰 삭제에 실패했습니다. 다시 시도해주세요.");
+              close();
+            }
+          }}
+        />
+      );
     } else if (secondText === "로그아웃") {
       console.log("로그아웃");
     }
