@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 /**
  * 페이지네이션 응답 타입
  */
-interface PaginationResponse<T> {
+export interface PaginationResponse<T> {
   list: T[];
   totalCount: number;
   nextCursor: number | null;

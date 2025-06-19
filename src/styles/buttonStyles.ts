@@ -65,7 +65,7 @@ export const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
     "bg-[var(--color-light-purple)] text-[var(--color-purple)] hover:enabled:bg-[var(--color-purple-200)]",
   social: "bg-[var(--color-white)] text-gray-800 hover:enabled:bg-[var(--color-gray100)]",
   cancel:
-    "bg-[var(--color-white)] text-[var(--color-gray500)] min-w-[108px] hover:enabled:bg-[var(--color-gray100)]",
+    "bg-[var(--color-white)] text-[var(--color-gray500)] min-w-[108px] border border-gray300 hover:enabled:bg-[var(--color-gray100)]",
 } as const;
 
 /**

@@ -1,5 +1,4 @@
-import { MouseEvent } from "react";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 
 import Ellipse from "@/assets/ellipse-icon.svg";
 import DropDown from "@/components/DropDown";
@@ -14,6 +13,7 @@ interface ReviewTopSectionProps {
   user: User;
   isLiked?: boolean;
   onLikeClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+  reviewId: number;
 }
 
 export default function ReviewTopSection({
@@ -21,6 +21,7 @@ export default function ReviewTopSection({
   user,
   isLiked = false,
   onLikeClick,
+  reviewId,
 }: ReviewTopSectionProps) {
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +34,13 @@ export default function ReviewTopSection({
       </div>
       <div className="flex items-start gap-6 mb-6 max-mb:mb-4.5 max-mb:gap-[1.125rem]">
         <LikeButton
+          authorId={user.id}
           isLiked={isLiked}
+          reviewId={reviewId}
           size={isMobile ? 32 : 38}
           onLikeClick={(e) => onLikeClick?.(e)}
         />
+
         <button
           aria-expanded={isOpen}
           aria-haspopup="menu"
@@ -48,7 +52,9 @@ export default function ReviewTopSection({
         {isOpen && (
           <div className="absolute right-0 top-12 z-11">
             <DropDown
+              authorId={user.id}
               firstText="수정하기"
+              reviewId={reviewId}
               secondText="삭제하기"
               size={isMobile ? "small" : "default"}
             />

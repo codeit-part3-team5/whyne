@@ -1,3 +1,4 @@
+import useLogin from "@/components/Login/useLogin";
 import type { WineDetailData } from "@/types/Wine";
 
 import { axiosAuthClient, axiosClient } from "./axios/axiosConfig";
@@ -38,14 +39,14 @@ export type WinePostRequest = {
 
 // 개발용 테스트 토큰 설정 함수
 export const setDevelopmentToken = (token: string): void => {
-  localStorage.setItem("accessToken", token);
+  useLogin.setState({ accessToken: token });
   console.log("개발용 토큰이 설정되었습니다.");
 };
 
 // 로그인 상태 확인 함수
 export const isAuthenticated = (): boolean => {
-  if (typeof window === "undefined") return false;
-  const token = window.localStorage.getItem("accessToken");
+  const { accessToken } = useLogin.getState();
+  const token = accessToken;
   return !!token; // 토큰이 존재하면 true, 없으면 false
 };
 
