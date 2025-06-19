@@ -3,7 +3,6 @@ import { MouseEvent, useState } from "react";
 import Ellipse from "@/assets/ellipse-icon.svg";
 import DropDown from "@/components/DropDown";
 import ProfileCircle from "@/components/profile/ProfileCircle";
-import { useAuth } from "@/hooks/useAuth";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { User } from "@/types/User";
 
@@ -26,10 +25,6 @@ export default function ReviewTopSection({
 }: ReviewTopSectionProps) {
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
   const [isOpen, setIsOpen] = useState(false);
-  const { checkIsOwnContent } = useAuth();
-
-  // 현재 로그인한 사용자가 리뷰 작성자인지 확인
-  const isOwnReview = checkIsOwnContent(user.id);
 
   return (
     <section className="flex items-center justify-between w-full relative">
@@ -50,7 +45,6 @@ export default function ReviewTopSection({
           aria-expanded={isOpen}
           aria-haspopup="menu"
           className="relative"
-          disabled={!isOwnReview}
           onClick={() => setIsOpen((prev) => !prev)}
         >
           <Ellipse height="38" width="38" />
@@ -58,7 +52,9 @@ export default function ReviewTopSection({
         {isOpen && (
           <div className="absolute right-0 top-12 z-11">
             <DropDown
+              authorId={user.id}
               firstText="수정하기"
+              reviewId={reviewId}
               secondText="삭제하기"
               size={isMobile ? "small" : "default"}
             />

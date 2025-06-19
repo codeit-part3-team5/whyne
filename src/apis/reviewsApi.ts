@@ -67,6 +67,15 @@ export const patchReview = async (
   }
 };
 
+export const deleteReview = async (reviewId: string): Promise<void> => {
+  try {
+    await axiosAuthClient.delete(`/reviews/${reviewId}`);
+  } catch (error) {
+    console.log("리뷰 삭제 API 호출 오류:", error);
+    throw error;
+  }
+};
+
 export const postReviewLike = async (reviewId: number): Promise<void> => {
   try {
     await axiosAuthClient.post(`/reviews/${reviewId}/like`);
