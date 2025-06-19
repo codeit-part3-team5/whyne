@@ -17,9 +17,10 @@ export default function WinePostModal() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [region, setRegion] = useState("");
-  const [type, setType] = useState<"Red" | "White" | "Sparkling">("Red");
+  const [type, setType] = useState<"Red" | "White" | "Sparkling" | "Rose">("Red");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -31,8 +32,20 @@ export default function WinePostModal() {
 
   const handleSubmit = async () => {
     try {
-      if (!name || !price || !region || !type || !imageFile) {
-        alert("모든 정보를 입력해 주세요.");
+      if (!name.trim()) {
+        alert("와인 이름을 입력해 주세요.");
+        return;
+      }
+      if (!price || isNaN(Number(price)) || Number(price) <= 0) {
+        alert("올바른 가격을 입력해 주세요.");
+        return;
+      }
+      if (!region.trim()) {
+        alert("원산지를 입력해 주세요.");
+        return;
+      }
+      if (!imageFile) {
+        alert("와인 이미지를 선택해 주세요.");
         return;
       }
 

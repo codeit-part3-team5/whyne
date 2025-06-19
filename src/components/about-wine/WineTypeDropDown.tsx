@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import dropdownicon from "@/assets/dropdown-icon.png";
 
-type WineType = "Red" | "White" | "Sparkling";
+type WineType = "Red" | "White" | "Sparkling" | "Rose";
 
 interface WineTypeDropDownProps {
   selected: WineType;

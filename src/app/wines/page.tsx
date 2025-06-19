@@ -47,6 +47,7 @@ export default function WinesPage() {
         setWines(data);
       } catch (error) {
         console.error("와인 데이터를 불러오는 중 오류:", error);
+      } finally {
       }
     };
     fetchWines();
