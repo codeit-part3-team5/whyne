@@ -67,7 +67,7 @@ export const patchReview = async (
   }
 };
 
-export const deleteReview = async (reviewId: number): Promise<void> => {
+export const deleteReview = async (reviewId: string): Promise<void> => {
   try {
     await axiosAuthClient.delete(`/reviews/${reviewId}`);
   } catch (error) {
