@@ -1,8 +1,9 @@
+import Landing from "@/components/landing/Landing";
+
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-pink-400">Hello, Next.js!</h1>
-      <div className="text-light-purple">안녕하세요</div>
+    <div className="mt-[5rem] max-tb:mt-[1.5rem]">
+      <Landing />
     </div>
   );
 }

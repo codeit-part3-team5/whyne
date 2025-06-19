@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/utils/cn";
 
+import ProfileCircle from "../profile/ProfileCircle";
 import Spinner from "../Spinner";
 
 const Header: React.FC = () => {
@@ -36,13 +38,24 @@ const Header: React.FC = () => {
       )}
     >
       <div className="w-full flex items-center justify-between">
-        <img alt="logo image" className="w-[3.25rem]" src="/images/logo.png" />
+        <Link href="/">
+          <img alt="logo image" className="w-[3.25rem]" src="/images/logo.png" />
+        </Link>
         {loading ? (
           <Spinner className="border-white border-r-black" />
         ) : login ? (
-          <div className="text-white">프로필</div>
+          <div className="max-mb:flex max-mb:w-[1.25rem]">
+            <ProfileCircle size="mobile" />
+          </div>
         ) : (
-          <div className="text-white">로그인</div>
+          <div className="flex gap-[2.5rem]">
+            <Link className="text-white" href="/signin">
+              로그인
+            </Link>
+            <Link className="text-white" href="/signup">
+              회원가입
+            </Link>
+          </div>
         )}
       </div>
     </div>
