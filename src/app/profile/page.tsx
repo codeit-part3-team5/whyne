@@ -7,12 +7,12 @@ import MyReviewCard from "@/components/profile/MyReviewCard";
 import MyWineCard from "@/components/profile/MyWineCard";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileTabs from "@/components/profile/ProfileTabs";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 import { useMyReviews } from "@/hooks/useMyReviews";
 import { useMyWines } from "@/hooks/useMyWines";
 
 export default function ProfilePage() {
-  const { isLoading, isAuthenticated } = useAuth();
+  const { isLoading, isAuthenticated } = useAuthGuard();
   const router = useRouter();
   const searchParams = useSearchParams();
 
