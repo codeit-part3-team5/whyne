@@ -6,7 +6,7 @@
 export type IconPosition = "left" | "right";
 
 /** 입력 필드 타입 */
-export type InputType = "text" | "email" | "password" | "search";
+export type InputType = "text" | "email" | "password" | "search" | "number";
 
 /** 입력 필드 상태 타입 */
 export type InputState = "default" | "error" | "disabled";

@@ -3,21 +3,34 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+import { getWines } from "@/apis/winesApi";
 import leftArrow from "@/assets/left-button-icon.png";
 import rightArrow from "@/assets/right-botton-icon.png";
-import winesData from "@/mocks/winesData.json";
 import type { BaseWineData } from "@/types/Wine";
 
 import MiniWineCard from "./MiniWineCard";
 
 export default function MonthlyWines() {
-  const wines = winesData.list as BaseWineData[];
+  const [wines, setWines] = useState<BaseWineData[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
   const [randomWines, setRandomWines] = useState<BaseWineData[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const CARD_WIDTH = 232 + 16;
+
+  useEffect(() => {
+    const fetchWines = async () => {
+      try {
+        const data = await getWines(8);
+        setWines(data);
+      } catch (error) {
+        console.error("이 달의 추천 와인을 불러오는데 실패했습니다.:", error);
+      }
+    };
+
+    fetchWines();
+  }, []);
 
   // 랜덤 와인 설정
   useEffect(() => {
@@ -26,6 +39,7 @@ export default function MonthlyWines() {
   }, [wines]);
 
   // 브레이크포인트별 보여줄 카드 수 설정
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;

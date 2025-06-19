@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import { getWines } from "@/apis/winesApi";
 import filterIcon from "@/assets/filter-icon.png";
 import MonthlyWines from "@/components/about-wine/MonthlyWines";
 import WineInfoCard from "@/components/about-wine/WineInfoCard";
@@ -13,18 +14,44 @@ import TypeFilter from "@/components/Filters/TypeFilter";
 import SearchInput from "@/components/input/SearchInput";
 import FilterModal from "@/components/modal/FilterModal";
 import WinePostModal from "@/components/modal/WinePostModal";
-import winesData from "@/mocks/winesData.json";
 import useModalStore from "@/store/useModalStore";
 import type { BaseWineData } from "@/types/Wine";
 
 export default function WinesPage() {
-  const wines = winesData.list as BaseWineData[];
   const [search, setSearch] = useState("");
   const [selectedType, setSelectedType] = useState<string>("");
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [selectedRating, setSelectedRating] = useState<string | null>(null);
+  const [isLogin, setIsLogin] = useState(false);
+
+  const handleOpenPostModal = () => {
+    if (!isLogin) {
+      alert("로그인 후 이용이 가능합니다.");
+      return;
+    }
+    openModal("addWine", <WinePostModal />);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    setIsLogin(!!token);
+  }, []);
 
   const openModal = useModalStore((state) => state.open);
+  const [wines, setWines] = useState<BaseWineData[]>([]); //get api
+
+  useEffect(() => {
+    const fetchWines = async () => {
+      try {
+        const data = await getWines(10);
+        setWines(data);
+      } catch (error) {
+        console.error("와인 데이터를 불러오는 중 오류:", error);
+      } finally {
+      }
+    };
+    fetchWines();
+  }, []);
 
   const filteredWines = useMemo(() => {
     return wines.filter((wine) => {
@@ -51,12 +78,7 @@ export default function WinesPage() {
       <MonthlyWines />
       {/* 모바일 등록하기 버튼 */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-full px-4 z-50 md:hidden">
-        <Button
-          className="w-full"
-          size="lg"
-          variant="primary"
-          onClick={() => openModal("addWine", <WinePostModal />)}
-        >
+        <Button className="w-full" size="lg" variant="primary" onClick={handleOpenPostModal}>
           와인 등록하기
         </Button>
       </div>
@@ -71,7 +93,7 @@ export default function WinesPage() {
             className="rounded-2xl max-w-[284px] mt-6"
             size="lg"
             variant="primary"
-            onClick={() => openModal("addWine", <WinePostModal />)}
+            onClick={handleOpenPostModal}
           >
             와인 등록하기
           </Button>
@@ -108,7 +130,7 @@ export default function WinesPage() {
                 className="h-[2.375rem] px-5 rounded-2xl"
                 size="lg"
                 variant="primary"
-                onClick={() => openModal("addWine", <WinePostModal />)}
+                onClick={handleOpenPostModal}
               >
                 와인 등록하기
               </Button>

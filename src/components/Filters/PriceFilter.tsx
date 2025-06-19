@@ -7,9 +7,9 @@ interface PriceFilterProps {
 
 export default function PriceFilter({ selectedRange, onChange }: PriceFilterProps) {
   const [minValue, maxValue] = selectedRange;
-  const maxPrice = 100000;
+  const maxPrice = 1000000;
   const minPrice = 0;
-  const steps = 1000;
+  const steps = 100000;
 
   const getSafeLeft = (value: number) => {
     const percent = (value / maxPrice) * 100;
@@ -41,7 +41,7 @@ export default function PriceFilter({ selectedRange, onChange }: PriceFilterProp
           ₩ {minValue.toLocaleString()}
         </span>
         <span
-          className="absolute -top-3 text-purple text-[1rem] font-[500] min-w-[80px] text-center"
+          className="absolute -top-3 text-purple text-[1rem] font-[500] min-w-[100px] text-center"
           style={{
             left: `${getSafeLeft(maxValue)}%`,
             transform: "translateX(-50%)",
@@ -62,7 +62,7 @@ export default function PriceFilter({ selectedRange, onChange }: PriceFilterProp
 
         <input
           aria-label="최소가격"
-          className="absolute w-full max-w-[284px] h-[6px] appearance-none cursor-pointer"
+          className="absolute w-full max-w-[230px] h-[6px] appearance-none cursor-pointer"
           max={maxPrice}
           min={minPrice}
           step={steps}

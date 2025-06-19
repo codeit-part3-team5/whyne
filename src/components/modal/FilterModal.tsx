@@ -42,7 +42,7 @@ export default function FilterModal({
   //  초기화 버튼 클릭 시 - 로컬 상태만 리셋
   const handleReset = () => {
     setLocalType("");
-    setLocalPrice([0, 100000]);
+    setLocalPrice([0, 1000000]);
     setLocalRating(null);
   };
 
