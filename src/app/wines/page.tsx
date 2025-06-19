@@ -12,6 +12,7 @@ import PriceFilter from "@/components/Filters/PriceFilter";
 import RatingFilter from "@/components/Filters/RatingFilter";
 import TypeFilter from "@/components/Filters/TypeFilter";
 import SearchInput from "@/components/input/SearchInput";
+import useLogin from "@/components/Login/useLogin";
 import FilterModal from "@/components/modal/FilterModal";
 import WinePostModal from "@/components/modal/WinePostModal";
 import useModalStore from "@/store/useModalStore";
@@ -33,7 +34,7 @@ export default function WinesPage() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = useLogin.getState().accessToken;
     setIsLogin(!!token);
   }, []);
 
