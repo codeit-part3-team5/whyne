@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-
+import { useRef } from "react";
 /**
  * 페이지네이션 응답 타입
  */
@@ -34,21 +34,21 @@ export const usePagination = <T>(
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasNext, setHasNext] = useState(false);
-  const [cursor, setCursor] = useState<number | null>(null);
   const [totalCount, setTotalCount] = useState(0);
+  const cursorRef = useRef<number | null>(null);
 
   const loadData = useCallback(
     async (isRefresh = false) => {
       try {
         if (isRefresh) {
           setLoading(true);
-          setCursor(null);
+          cursorRef.current = null;
         } else {
           setLoadingMore(true);
         }
         setError(null);
 
-        const response = await fetcher(limit, isRefresh ? null : cursor);
+        const response = await fetcher(limit, isRefresh ? null : cursorRef.current);
 
         if (isRefresh) {
           setData(response.list);
@@ -56,8 +56,8 @@ export const usePagination = <T>(
           setData((prev) => [...prev, ...response.list]);
         }
 
+        cursorRef.current = response.nextCursor; // ✅ 최신 커서 저장
         setHasNext(response.nextCursor !== null);
-        setCursor(response.nextCursor);
         setTotalCount(response.totalCount);
       } catch (error) {
         setError(error instanceof Error ? error.message : errorMessage);
@@ -66,7 +66,7 @@ export const usePagination = <T>(
         setLoadingMore(false);
       }
     },
-    [fetcher, limit, cursor, errorMessage]
+    [fetcher, limit, errorMessage] // ✅ cursor 빠짐!
   );
 
   const loadMore = useCallback(async () => {
