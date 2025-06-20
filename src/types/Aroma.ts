@@ -13,7 +13,7 @@ export enum Aroma {
   MINERAL = "MINERAL",
   FLOWER = "FLOWER",
   TOBACCO = "TOBACCO",
-  SOIL = "SOIL",
+  EARTH = "EARTH",
   CHOCOLATE = "CHOCOLATE",
   SPICE = "SPICE",
   CARAMEL = "CARAMEL",
