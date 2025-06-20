@@ -34,13 +34,13 @@ export default function ReviewDropDown({
   const { checkIsOwnContent } = useAuth();
   const isSelfReview = checkIsOwnContent(authorId);
   const MESSAGES = {
-    UNAUTDHORIZED_EIT: "자신의 리뷰만 수정할 수 있습니다.",
+    UNAUTHORIZED_EDIT: "자신의 리뷰만 수정할 수 있습니다.",
     UNAUTHORIZED_DELETE: "자신의 리뷰만 삭제할 수 있습니다.",
   } as const;
 
   const handleEdit = async () => {
     if (!isSelfReview) {
-      alert(MESSAGES.UNAUTDHORIZED_EIT);
+      alert(MESSAGES.UNAUTHORIZED_EDIT);
       return;
     }
     open("editReview", <ReviewEditModal reviewId={reviewId} />);
