@@ -8,6 +8,8 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModalStore from "@/store/useModalStore";
 import { useReviewStore } from "@/store/useReviewStore";
 import { useWineStore } from "@/store/useWineStore";
+import { Review } from "@/types/ReviewList";
+import { WineDetailData } from "@/types/Wine";
 
 import ReviewMiddle from "./ReviewMiddle";
 import ReviewTop from "./ReviewTop";
@@ -43,6 +45,7 @@ export default function ReviewEditModal({ reviewId }: ReviewEditModalProps) {
     data: reviewData,
     isLoading,
     error: queryError,
+    refetch,
   } = useQuery({
     queryKey: ["review", reviewId],
     queryFn: () => getReviews(String(reviewId)),
@@ -92,7 +95,7 @@ export default function ReviewEditModal({ reviewId }: ReviewEditModalProps) {
 
   // 캐시 업데이트 함수
   const updateCaches = useCallback(
-    async (updatedReview: any) => {
+    async (updatedReview: Review) => {
       if (!wine?.id) return;
 
       try {
@@ -108,8 +111,8 @@ export default function ReviewEditModal({ reviewId }: ReviewEditModalProps) {
           typeof currentWineData === "object" &&
           "reviews" in currentWineData
         ) {
-          const wineData = currentWineData as any;
-          const updatedReviews = wineData.reviews.map((review: any) =>
+          const wineData = currentWineData as WineDetailData;
+          const updatedReviews = wineData.reviews.map((review) =>
             review.id === reviewId ? updatedReview : review
           );
 
@@ -230,7 +233,7 @@ export default function ReviewEditModal({ reviewId }: ReviewEditModalProps) {
     return (
       <div className="flex flex-col items-center justify-center gap-5 w-full max-w-[30rem] h-96">
         <div className="text-red-500 text-center">리뷰 데이터를 불러오는데 실패했습니다.</div>
-        <Button size={size} onClick={() => window.location.reload()}>
+        <Button size={size} onClick={() => refetch()}>
           새로고침
         </Button>
       </div>

@@ -36,15 +36,11 @@ export default function WineDropDown({
         onConfirm={async () => {
           try {
             await deleteWine(wineId);
-
-            // 쿼리 무효화
-            if (wineId) {
-              await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
-            }
+            await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
             await queryClient.invalidateQueries({ queryKey: ["myWines"] });
 
             await queryClient.refetchQueries({
-              queryKey: ["wine", String(wineId)],
+              queryKey: ["wine", wineId],
               exact: true, // 정확한 키 매치로 리페치
             });
 

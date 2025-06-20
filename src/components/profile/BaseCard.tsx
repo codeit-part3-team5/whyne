@@ -33,6 +33,16 @@ export function BaseCard<T>({
       {items.map((item) => {
         const itemId = getId(item);
         const userId = getUserId(item);
+        const dropdownComponents = {
+          review: (
+            <ReviewDropDown
+              authorId={userId}
+              reviewId={itemId}
+              size={isMobile ? "small" : "default"}
+            />
+          ),
+          wine: <WineDropDown size={isMobile ? "small" : "default"} wineId={itemId} />,
+        };
         return (
           <div
             key={itemId}
@@ -60,15 +70,7 @@ export function BaseCard<T>({
                   </button>
                   {openDropdownId === itemId && (
                     <div className="absolute right-0 top-8 z-10">
-                      {dropdownOptions.type === "review" ? (
-                        <ReviewDropDown
-                          authorId={userId}
-                          reviewId={itemId}
-                          size={isMobile ? "small" : "default"}
-                        />
-                      ) : (
-                        <WineDropDown size={isMobile ? "small" : "default"} wineId={itemId} />
-                      )}
+                      {dropdownComponents[dropdownOptions.type]}
                     </div>
                   )}
                 </div>

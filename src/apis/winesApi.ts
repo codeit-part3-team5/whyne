@@ -78,9 +78,9 @@ export const deleteWine = async (wineId: number): Promise<void> => {
 export const patchWine = async (
   wineId: number,
   wineData: Partial<BaseWineData>
-): Promise<WinePostRequest> => {
+): Promise<BaseWineData> => {
   try {
-    const { data } = await axiosAuthClient.patch<WinePostRequest>(`/wines/${wineId}`, wineData);
+    const { data } = await axiosAuthClient.patch<BaseWineData>(`/wines/${wineId}`, wineData);
     return data;
   } catch (error) {
     console.error("와인 수정 API 호출 오류:", error);

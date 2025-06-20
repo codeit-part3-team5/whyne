@@ -40,6 +40,13 @@ export default function WineEditModal({ wineId, initialWineData }: WineEditModal
   const [existingImageUrl, setExistingImageUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const WINE_TYPE_MAP: Record<WineType, DisplayWineType> = {
+    RED: "Red",
+    WHITE: "White",
+    SPARKLING: "Sparkling",
+    ROSE: "Rose",
+  } as const;
+
   // 와인 데이터 로드
   useEffect(() => {
     const loadWineData = async () => {
@@ -68,22 +75,26 @@ export default function WineEditModal({ wineId, initialWineData }: WineEditModal
     setName(wineData.name);
     setPrice(wineData.price.toString());
     setRegion(wineData.region);
-
-    const typeMap: Record<string, DisplayWineType> = {
-      RED: "Red",
-      WHITE: "White",
-      SPARKLING: "Sparkling",
-      ROSE: "Rose",
-    };
-    setType(typeMap[wineData.type] || "Red");
-
+    setType(WINE_TYPE_MAP[wineData.type] || "Red");
     setExistingImageUrl(wineData.image);
     setImagePreview(wineData.image);
   };
 
+  useEffect(() => {
+    return () => {
+      if (imagePreview && imagePreview.startsWith("blob:")) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // 이전 미리보기 URL 정리
+      if (imagePreview && imagePreview.startsWith("blob:")) {
+        URL.revokeObjectURL(imagePreview);
+      }
       setImageFile(file);
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);

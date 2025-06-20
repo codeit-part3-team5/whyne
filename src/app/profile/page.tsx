@@ -15,6 +15,7 @@ export default function ProfilePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { login } = useLogin();
 
   // URL에서 탭 상태 가져오기 (기본값: 1)
@@ -26,18 +27,17 @@ export default function ProfilePage() {
   // 컴포넌트 마운트 후 상태 설정
   useEffect(() => {
     setMounted(true);
+    // 마운트 후 인증 상태 확인
+    const checkAuth = async () => {
+      const loggedIn = login();
+      setIsLoggedIn(loggedIn);
+      if (!loggedIn) {
+        alert("로그인 후 이용이 가능합니다.");
+        router.push("/signin");
+      }
+    };
+    checkAuth();
   }, []);
-
-  // 마운트 후 인증 상태 확인
-  const isLoggedIn = mounted ? login() : false;
-
-  // 인증 체크 및 리다이렉트
-  useEffect(() => {
-    if (mounted && !isLoggedIn) {
-      alert("로그인 후 이용이 가능합니다.");
-      router.push("/signin");
-    }
-  }, [mounted, isLoggedIn, router]);
 
   // useMyReviews 훅
   const {
@@ -83,10 +83,19 @@ export default function ProfilePage() {
   }, [searchParams]);
 
   // 인증 체크 중일 때 로딩 화면
-  if (!mounted || !isLoggedIn) {
+  if (!mounted || isLoggedIn === null) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
-        <div>로딩 중...</div>
+        <div>인증 상태 확인 중...</div>
+      </div>
+    );
+  }
+
+  // 인증되지 않은 경우 (리다이렉트 진행 중)
+  if (isLoggedIn === false) {
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div>로그인 페이지로 이동 중...</div>
       </div>
     );
   }

@@ -31,10 +31,14 @@ export default function ReviewDropDown({
 
   const { checkIsOwnContent } = useAuth();
   const isSelfReview = checkIsOwnContent(authorId);
+  const MESSAGES = {
+    UNAUTDHORIZED_EIT: "자신의 리뷰만 수정할 수 있습니다.",
+    UNAUTHORIZED_DELETE: "자신의 리뷰만 삭제할 수 있습니다.",
+  } as const;
 
   const handleEdit = async () => {
     if (!isSelfReview) {
-      alert("자신의 리뷰만 수정할 수 있습니다.");
+      alert(MESSAGES.UNAUTDHORIZED_EIT);
       return;
     }
     open("editReview", <ReviewEditModal reviewId={reviewId} />);
@@ -43,7 +47,7 @@ export default function ReviewDropDown({
 
   const handleDelete = async () => {
     if (!isSelfReview) {
-      alert("자신의 리뷰만 삭제할 수 있습니다.");
+      alert(MESSAGES.UNAUTHORIZED_DELETE);
       return;
     }
     open(
@@ -54,24 +58,13 @@ export default function ReviewDropDown({
           try {
             await deleteReview(reviewId);
 
-            // 쿼리 무효화 및 리페치
-            if (reviewId) {
-              await queryClient.invalidateQueries({ queryKey: ["review", String(reviewId)] });
-            }
-
-            if (wineId) {
-              await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
-              await queryClient.refetchQueries({
-                queryKey: ["wine", wineId],
-                exact: true,
-              });
-            }
-
-            await queryClient.invalidateQueries({ queryKey: ["myReviews"] });
-            await queryClient.refetchQueries({
-              queryKey: ["myReviews"],
-              exact: true,
-            });
+            await Promise.all(
+              [
+                queryClient.invalidateQueries({ queryKey: ["review", String(reviewId)] }),
+                wineId && queryClient.invalidateQueries({ queryKey: ["wine", wineId] }),
+                queryClient.invalidateQueries({ queryKey: ["myReviews"] }),
+              ].filter(Boolean)
+            );
 
             onDelete?.();
             close();
@@ -87,7 +80,6 @@ export default function ReviewDropDown({
 
   return (
     <DropDown
-      authorId={authorId}
       firstText="수정하기"
       secondText="삭제하기"
       size={size}
