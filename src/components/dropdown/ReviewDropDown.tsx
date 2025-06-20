@@ -1,3 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
+
 import { deleteReview } from "@/apis/reviewsApi";
 import DeleteConfirmModal from "@/components/delete-confirm-modal/DeleteConfirmModal";
 import DropDown from "@/components/DropDown";
@@ -23,6 +26,9 @@ export default function ReviewDropDown({
   onEdit,
   onDelete,
 }: ReviewDropDownProps) {
+  const queryClient = useQueryClient();
+  const params = useParams();
+  const wineId = params.id as string;
   const { open, close } = useModalStore();
 
   const { checkIsOwnContent } = useAuth();
@@ -53,7 +59,17 @@ export default function ReviewDropDown({
         onConfirm={async () => {
           try {
             await deleteReview(reviewId);
-            await refresh?.();
+            if (wineId) {
+              await Promise.all(
+                [
+                  queryClient.invalidateQueries({ queryKey: ["review", String(reviewId)] }),
+                  wineId && queryClient.invalidateQueries({ queryKey: ["wine", wineId] }),
+                  queryClient.invalidateQueries({ queryKey: ["myReviews"] }),
+                ].filter(Boolean)
+              );
+            } else {
+              await refresh?.();
+            }
             onDelete?.();
             close();
           } catch (error) {
