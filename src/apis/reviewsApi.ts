@@ -1,6 +1,6 @@
 import { Review } from "@/types/ReviewList";
 
-import { axiosAuthClient, axiosClient } from "./axios/axiosConfig";
+import { axiosAuthClient } from "./axios/axiosConfig";
 
 export interface CreateReviewData {
   rating: number;
@@ -32,7 +32,7 @@ const prepareReviewData = (
 
 export const getReviews = async (reviewId: string): Promise<Review> => {
   try {
-    const { data } = await axiosClient.get<Review>(`/reviews/${reviewId}`);
+    const { data } = await axiosAuthClient.get<Review>(`/reviews/${reviewId}`);
     return data;
   } catch (error) {
     console.log("리뷰 API 호출 오류:", error);
@@ -55,23 +55,23 @@ export const postReview = async (reviewData: CreateReviewData): Promise<Review> 
 };
 
 export const patchReview = async (
-  reviewId: string,
+  reviewId: number,
   reviewData: Partial<CreateReviewData>
 ): Promise<Review> => {
   try {
     const { data } = await axiosAuthClient.patch<Review>(`/reviews/${reviewId}`, reviewData);
     return data;
   } catch (error) {
-    console.log("리뷰 수정 API 호출 오류:", error);
+    console.error("리뷰 수정 API 호출 오류:", error);
     throw error;
   }
 };
 
-export const deleteReview = async (reviewId: string): Promise<void> => {
+export const deleteReview = async (reviewId: number): Promise<void> => {
   try {
     await axiosAuthClient.delete(`/reviews/${reviewId}`);
   } catch (error) {
-    console.log("리뷰 삭제 API 호출 오류:", error);
+    console.error("리뷰 삭제 API 호출 오류:", error);
     throw error;
   }
 };
@@ -80,7 +80,7 @@ export const postReviewLike = async (reviewId: number): Promise<void> => {
   try {
     await axiosAuthClient.post(`/reviews/${reviewId}/like`);
   } catch (error) {
-    console.log("리뷰 좋아요 API 호출 오류:", error);
+    console.error("리뷰 좋아요 API 호출 오류:", error);
     throw error;
   }
 };
@@ -89,7 +89,7 @@ export const deleteReviewLike = async (reviewId: number): Promise<void> => {
   try {
     await axiosAuthClient.delete(`/reviews/${reviewId}/like`);
   } catch (error) {
-    console.log("리뷰 좋아요 취소 API 호출 오류:", error);
+    console.error("리뷰 좋아요 취소 API 호출 오류:", error);
     throw error;
   }
 };

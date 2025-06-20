@@ -17,6 +17,15 @@ interface ReviewState {
     value: number
   ) => void;
   setAroma: (aroma: string[]) => void;
+  setReviewData: (data: {
+    rating: number;
+    content: string;
+    lightBold: number;
+    smoothTannic: number;
+    drySweet: number;
+    softAcidic: number;
+    aroma: string[];
+  }) => void;
   resetReview: () => void;
 }
 
@@ -36,6 +45,16 @@ export const useReviewStore = create<ReviewState>((set) => ({
       [type]: value,
     })),
   setAroma: (aroma) => set({ aroma }),
+  setReviewData: (data) =>
+    set({
+      rating: Math.round(data.rating),
+      content: data.content,
+      lightBold: data.lightBold,
+      smoothTannic: data.smoothTannic,
+      drySweet: data.drySweet,
+      softAcidic: data.softAcidic,
+      aroma: data.aroma,
+    }),
   resetReview: () =>
     set({
       rating: 0,

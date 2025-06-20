@@ -36,17 +36,6 @@ export default function MyReviewCard({
     rootMargin: "0px",
   });
 
-  const handleEdit = (review: MyReview) => {
-    // 리뷰 수정 로직
-    console.warn("Edit review:", review);
-  };
-
-  const handleDelete = (review: MyReview) => {
-    // 리뷰 삭제 로직
-    console.warn("Delete review:", review);
-    refresh();
-  };
-
   // 초기 로딩 상태 처리
   if (loading) {
     return (
@@ -84,12 +73,11 @@ export default function MyReviewCard({
   return (
     <>
       <BaseCard
-        dropdownOptions={{ firstText: "수정하기", secondText: "삭제하기" }}
+        dropdownOptions={{ type: "review" }}
         getId={(review) => review.id}
+        getUserId={(review) => review.user.id}
         items={myReviews}
         renderContent={(review) => <ReviewCardContent review={review} />}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
       />
       {/* 무한 스크롤 트리거 요소 */}
       {hasNext && (

@@ -4,27 +4,25 @@ import Ellipse from "@/assets/ellipse-icon.svg";
 import { useDropdown } from "@/hooks/useDropdown";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
-import DropDown from "../DropDown";
+import ReviewDropDown from "../dropdown/ReviewDropDown";
+import WineDropDown from "../dropdown/WineDropDown";
 
 interface BaseCardProps<T> {
   items: T[];
   renderContent: (item: T) => ReactNode;
   getId: (item: T) => number;
+  getUserId: (item: T) => number;
   dropdownOptions?: {
-    firstText: string;
-    secondText: string;
+    type: "review" | "wine";
   };
-  onEdit?: (item: T) => void;
-  onDelete?: (item: T) => void;
 }
 
 export function BaseCard<T>({
   items,
   renderContent,
   getId,
+  getUserId,
   dropdownOptions,
-  onEdit: _onEdit,
-  onDelete: _onDelete,
 }: BaseCardProps<T>) {
   const { openDropdownId, dropdownRefs, handleDropdownToggle } = useDropdown(items, getId);
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
@@ -34,6 +32,17 @@ export function BaseCard<T>({
     <section className="flex flex-col gap-4">
       {items.map((item) => {
         const itemId = getId(item);
+        const userId = getUserId(item);
+        const dropdownComponents = {
+          review: (
+            <ReviewDropDown
+              authorId={userId}
+              reviewId={itemId}
+              size={isMobile ? "small" : "default"}
+            />
+          ),
+          wine: <WineDropDown size={isMobile ? "small" : "default"} wineId={itemId} />,
+        };
         return (
           <div
             key={itemId}
@@ -61,13 +70,7 @@ export function BaseCard<T>({
                   </button>
                   {openDropdownId === itemId && (
                     <div className="absolute right-0 top-8 z-10">
-                      <DropDown
-                        firstText={dropdownOptions.firstText}
-                        secondText={dropdownOptions.secondText}
-                        size={isMobile ? "small" : "default"}
-                        // onFirstClick={() => onEdit?.(item)}
-                        // onSecondClick={() => onDelete?.(item)}
-                      />
+                      {dropdownComponents[dropdownOptions.type]}
                     </div>
                   )}
                 </div>
