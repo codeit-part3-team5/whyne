@@ -105,7 +105,7 @@ export default function DropDown({
         {firstText}
       </button>
       <button
-        className={cn(buttonStyles, padding, " mx-[0.25rem] my-[.1875rem]")}
+        className={cn(buttonStyles, padding, "mx-[0.25rem] my-[.1875rem]")}
         type="button"
         onClick={handleSecondClick}
       >
