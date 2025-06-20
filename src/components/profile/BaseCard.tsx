@@ -15,6 +15,7 @@ interface BaseCardProps<T> {
   dropdownOptions?: {
     type: "review" | "wine";
   };
+  refresh?: () => Promise<void>;
 }
 
 export function BaseCard<T>({
@@ -22,6 +23,7 @@ export function BaseCard<T>({
   renderContent,
   getId,
   getUserId,
+  refresh,
   dropdownOptions,
 }: BaseCardProps<T>) {
   const { openDropdownId, dropdownRefs, handleDropdownToggle } = useDropdown(items, getId);
@@ -37,11 +39,14 @@ export function BaseCard<T>({
           review: (
             <ReviewDropDown
               authorId={userId}
+              refresh={refresh}
               reviewId={itemId}
               size={isMobile ? "small" : "default"}
             />
           ),
-          wine: <WineDropDown size={isMobile ? "small" : "default"} wineId={itemId} />,
+          wine: (
+            <WineDropDown refresh={refresh} size={isMobile ? "small" : "default"} wineId={itemId} />
+          ),
         };
         return (
           <div

@@ -13,6 +13,7 @@ type ReviewDropDownProps = {
   authorId: number;
   reviewId: number;
   size?: "default" | "small";
+  refresh?: () => Promise<void>;
   onEdit?: () => void;
   onDelete?: () => void;
 };
@@ -21,6 +22,7 @@ export default function ReviewDropDown({
   authorId,
   reviewId,
   size = "default",
+  refresh,
   onEdit,
   onDelete,
 }: ReviewDropDownProps) {
@@ -57,15 +59,17 @@ export default function ReviewDropDown({
         onConfirm={async () => {
           try {
             await deleteReview(reviewId);
-
-            await Promise.all(
-              [
-                queryClient.invalidateQueries({ queryKey: ["review", String(reviewId)] }),
-                wineId && queryClient.invalidateQueries({ queryKey: ["wine", wineId] }),
-                queryClient.invalidateQueries({ queryKey: ["myReviews"] }),
-              ].filter(Boolean)
-            );
-
+            if (wineId) {
+              await Promise.all(
+                [
+                  queryClient.invalidateQueries({ queryKey: ["review", String(reviewId)] }),
+                  wineId && queryClient.invalidateQueries({ queryKey: ["wine", wineId] }),
+                  queryClient.invalidateQueries({ queryKey: ["myReviews"] }),
+                ].filter(Boolean)
+              );
+            } else {
+              await refresh?.();
+            }
             onDelete?.();
             close();
           } catch (error) {

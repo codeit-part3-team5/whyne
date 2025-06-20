@@ -75,6 +75,7 @@ export default function MyWineCard({
         getId={(wine) => wine.id}
         getUserId={(wine) => wine.userId}
         items={myWines}
+        refresh={refresh}
         renderContent={(wine) => <WineCardContent wine={wine} />}
       />
       {/* 무한 스크롤 트리거 요소 */}
