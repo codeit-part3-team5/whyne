@@ -68,7 +68,7 @@ export default function Modal() {
           "z-50 bg-white rounded-2xl",
           defaultMobileStyle,
           type === "delete" ? deleteBackStyle : defaultMobileBackStyle,
-          "max-mb:max-h-[800px] overflow-y-auto overflow-x-hidden"
+          "max-h-[100vh] overflow-y-auto overflow-x-hidden"
         )}
         data-modal-type={type}
         onClick={(e) => e.stopPropagation()}

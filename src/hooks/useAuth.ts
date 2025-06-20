@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
+import useLogin from "@/components/Login/useLogin";
 import { DecodedToken, extractUserIdFromToken, isTokenExpired } from "@/utils/tokenUtils";
 
 interface AuthUser {
@@ -40,14 +41,14 @@ export function useAuth() {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [token, setToken] = useState<string | null>(null);
-
   // 토큰 디코딩 및 사용자 정보 추출
   useEffect(() => {
     const loadUserFromToken = () => {
       setIsLoading(true);
       try {
-        const accessToken = localStorage.getItem("accessToken");
-        setToken(accessToken);
+        // useLogin 스토어에서 accessToken 가져오기
+        const accessToken = useLogin.getState().accessToken;
+        setToken(accessToken || null);
 
         if (!accessToken) {
           setUser({
@@ -59,9 +60,11 @@ export function useAuth() {
           return;
         }
 
+        // 토큰 만료 확인
         if (isTokenExpired(accessToken)) {
           console.warn("토큰이 만료되었습니다.");
-          localStorage.removeItem("accessToken");
+          // 토큰이 만료되면 스토어에서 토큰 제거
+          useLogin.getState().clear();
           setUser({
             id: null,
             email: null,
@@ -70,8 +73,11 @@ export function useAuth() {
           });
           return;
         }
+
+        // 토큰에서 사용자 정보 추출
         const decoded = jwtDecode<DecodedToken>(accessToken);
         const userId = extractUserIdFromToken(accessToken);
+
         setUser({
           id: userId ? Number(userId) : null,
           email: decoded.email || null,
@@ -85,24 +91,24 @@ export function useAuth() {
 
     loadUserFromToken();
 
-    // 로컬 스토리지 변경 이벤트 리스너 추가
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "accessToken") {
+    // zustand persist를 사용하므로 storage 이벤트 리스너 불필요
+    // 대신 zustand 스토어 구독을 통해 변경 감지
+    const unsubscribe = useLogin.subscribe((state) => {
+      if (state.accessToken !== token) {
         loadUserFromToken();
       }
-    };
+    });
 
-    window.addEventListener("storage", handleStorageChange);
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      unsubscribe();
     };
-  }, []);
-
+  }, [token]);
   /**
    * 현재 로그인한 사용자의 토큰을 반환
    */
   const getToken = (): string | null => {
-    return token;
+    // 항상 최신 토큰을 반환하기 위해 스토어에서 직접 가져옴
+    return useLogin.getState().accessToken || null;
   };
 
   /**
@@ -114,13 +120,12 @@ export function useAuth() {
     if (!user.id || !contentAuthorId) return false;
     return Number(user.id) === Number(contentAuthorId);
   };
-
   /**
    * 로그아웃 처리
    */
   const logout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    // useLogin 스토어를 통해 토큰 제거
+    useLogin.getState().clear();
     setUser({
       id: null,
       email: null,

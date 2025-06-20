@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { CreateReviewData, postReview } from "@/apis/reviewsApi";
 import Button from "@/components/Button";
+import useLogin from "@/components/Login/useLogin";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModalStore from "@/store/useModalStore";
 import { useReviewStore } from "@/store/useReviewStore";
@@ -48,13 +49,17 @@ export default function ReviewModal() {
     setError(null);
 
     // 토큰 확인
-    const accessToken = localStorage.getItem("accessToken");
+    function checkToken() {
+      const accessToken = useLogin.getState().accessToken;
 
-    if (!accessToken) {
-      setError("인증 토큰이 없습니다. 로그인이 필요합니다.");
-      setIsSubmitting(false);
-      return;
+      if (!accessToken) {
+        setError("인증 토큰이 없습니다. 로그인이 필요합니다.");
+        setIsSubmitting(false);
+        return;
+      }
     }
+
+    checkToken();
 
     try {
       const aromaValues = aroma; // 리뷰 데이터 구성

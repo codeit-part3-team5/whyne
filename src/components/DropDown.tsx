@@ -71,7 +71,7 @@ export default function DropDown({
           }}
           onConfirm={async () => {
             try {
-              await deleteReview(reviewId);
+              await deleteReview(String(reviewId));
 
               if (wineId) {
                 await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
