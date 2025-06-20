@@ -1,5 +1,5 @@
 import useLogin from "@/components/Login/useLogin";
-import type { WineDetailData } from "@/types/Wine";
+import type { BaseWineData, WineDetailData } from "@/types/Wine";
 
 import { axiosAuthClient, axiosClient } from "./axios/axiosConfig";
 
@@ -62,6 +62,28 @@ export const getWineDetail = async (wineId: string): Promise<WineDetailData> => 
     return res.data;
   } catch (error) {
     console.error("Wine API 호출 오류:", error);
+    throw error;
+  }
+};
+
+export const deleteWine = async (wineId: number): Promise<void> => {
+  try {
+    await axiosAuthClient.delete(`/wines/${wineId}`);
+  } catch (error) {
+    console.error("와인 삭제 API 호출 오류:", error);
+    throw error;
+  }
+};
+
+export const patchWine = async (
+  wineId: number,
+  wineData: Partial<BaseWineData>
+): Promise<WinePostRequest> => {
+  try {
+    const { data } = await axiosAuthClient.patch<WinePostRequest>(`/wines/${wineId}`, wineData);
+    return data;
+  } catch (error) {
+    console.error("와인 수정 API 호출 오류:", error);
     throw error;
   }
 };
