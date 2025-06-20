@@ -22,7 +22,7 @@ interface UseInfiniteScrollOptions {
 /** 기본 임계값 - 요소의 10%가 보일 때 트리거 */
 const DEFAULT_THRESHOLD = 0.1;
 /** 기본 루트 마진 - 뷰포트 하단에서 100px(6.25rem) 전에 트리거 */
-const DEFAULT_ROOT_MARGIN = "6.25rem";
+const DEFAULT_ROOT_MARGIN = "100px";
 
 /**
  * 무한 스크롤 기능을 제공하는 커스텀 훅

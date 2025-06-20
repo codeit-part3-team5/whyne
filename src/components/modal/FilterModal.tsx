@@ -55,7 +55,10 @@ export default function FilterModal({
   };
 
   return (
-    <section aria-label="모달 열기" className="p-4">
+    <section
+      aria-label="모달 열기"
+      className="w-full max-w-[90vw] sm:max-w-[25rem] max-h-[90vh] overflow-y-auto sm:p-6 bg-white rounded-2xl"
+    >
       <TypeFilter selectedType={localType} onChange={setLocalType} />
       <PriceFilter selectedRange={localPrice} onChange={setLocalPrice} />
       <RatingFilter selected={localRating} onChange={setLocalRating} />
