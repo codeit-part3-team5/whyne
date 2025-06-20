@@ -52,10 +52,8 @@ export default function WineInfoCard({ data }: Props) {
           <ReviewSummary {...data} />
           <Image
             alt="상세페이지 이동"
-            className="cursor-pointer ml-12 mb-3"
-            height={36}
+            className="cursor-pointer ml-12 mb-3 w-[36px] h-[36px]"
             src={arrowIcon}
-            width={36}
             onClick={handleClick}
           />
         </div>

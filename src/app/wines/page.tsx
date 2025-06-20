@@ -44,7 +44,14 @@ export default function WinesPage() {
     try {
       setIsLoading(true);
       const data = await getWines(10, isReset ? undefined : (cursor ?? undefined));
-      setWines((prev) => (isReset ? data.list : [...prev, ...data.list]));
+      setWines((prev) => {
+        const all = isReset ? data.list : [...prev, ...data.list];
+        // id 기준으로 중복 제거
+        const unique = Array.from(
+          new Map(all.map((w: BaseWineData) => [w.id, w])).values()
+        ) as BaseWineData[];
+        return unique;
+      });
       setCursor(data.nextCursor);
       setHasNext(data.nextCursor !== null);
     } catch (error) {
