@@ -77,6 +77,7 @@ export default function MyReviewCard({
         getId={(review) => review.id}
         getUserId={(review) => review.user.id}
         items={myReviews}
+        refresh={refresh}
         renderContent={(review) => <ReviewCardContent review={review} />}
       />
       {/* 무한 스크롤 트리거 요소 */}

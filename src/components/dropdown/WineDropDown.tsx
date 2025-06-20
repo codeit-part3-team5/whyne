@@ -1,5 +1,3 @@
-import { useQueryClient } from "@tanstack/react-query";
-
 import { deleteWine } from "@/apis/winesApi";
 import DeleteConfirmModal from "@/components/delete-confirm-modal/DeleteConfirmModal";
 import DropDown from "@/components/DropDown";
@@ -10,6 +8,7 @@ import WineEditModal from "../modal/WineEditModal";
 type WineDropDownProps = {
   wineId: number;
   size?: "default" | "small";
+  refresh?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
 };
@@ -17,10 +16,10 @@ type WineDropDownProps = {
 export default function WineDropDown({
   wineId,
   size = "default",
+  refresh,
   onEdit,
   onDelete,
 }: WineDropDownProps) {
-  const queryClient = useQueryClient();
   const { open, close } = useModalStore();
 
   const handleEdit = async () => {
@@ -36,13 +35,7 @@ export default function WineDropDown({
         onConfirm={async () => {
           try {
             await deleteWine(wineId);
-            await queryClient.invalidateQueries({ queryKey: ["wine", wineId] });
-            await queryClient.invalidateQueries({ queryKey: ["myWines"] });
-
-            await queryClient.refetchQueries({
-              queryKey: ["wine", wineId],
-              exact: true, // 정확한 키 매치로 리페치
-            });
+            await refresh?.();
 
             onDelete?.();
             close();
