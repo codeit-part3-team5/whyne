@@ -3,24 +3,41 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
+import useLogin from "@/components/Login/useLogin";
 import MyReviewCard from "@/components/profile/MyReviewCard";
 import MyWineCard from "@/components/profile/MyWineCard";
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileTabs from "@/components/profile/ProfileTabs";
-import { useAuthGuard } from "@/hooks/useAuthGuard";
 import { useMyReviews } from "@/hooks/useMyReviews";
 import { useMyWines } from "@/hooks/useMyWines";
 
 export default function ProfilePage() {
-  const { isLoading, isAuthenticated } = useAuthGuard();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [mounted, setMounted] = useState(false);
+  const { login } = useLogin();
 
   // URL에서 탭 상태 가져오기 (기본값: 1)
   const [activeTab, setActiveTab] = useState(() => {
     const tabFromUrl = searchParams.get("tab");
     return tabFromUrl ? parseInt(tabFromUrl, 10) : 1;
   });
+
+  // 컴포넌트 마운트 후 상태 설정
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // 마운트 후 인증 상태 확인
+  const isLoggedIn = mounted ? login() : false;
+
+  // 인증 체크 및 리다이렉트
+  useEffect(() => {
+    if (mounted && !isLoggedIn) {
+      alert("로그인 후 이용이 가능합니다.");
+      router.push("/signin");
+    }
+  }, [mounted, isLoggedIn, router]);
 
   // useMyReviews 훅
   const {
@@ -32,7 +49,7 @@ export default function ProfilePage() {
     refresh: reviewsRefresh,
     loadingMore: reviewsLoadingMore,
     totalCount: reviewCount,
-  } = useMyReviews(10, { enabled: isAuthenticated });
+  } = useMyReviews(10, { enabled: isLoggedIn });
 
   // useMyWines 훅
   const {
@@ -44,7 +61,7 @@ export default function ProfilePage() {
     refresh: winesRefresh,
     loadingMore: winesLoadingMore,
     totalCount: wineCount,
-  } = useMyWines(10, { enabled: isAuthenticated });
+  } = useMyWines(10, { enabled: isLoggedIn });
 
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
@@ -66,17 +83,12 @@ export default function ProfilePage() {
   }, [searchParams]);
 
   // 인증 체크 중일 때 로딩 화면
-  if (isLoading) {
+  if (!mounted || !isLoggedIn) {
     return (
       <div className="flex justify-center items-center min-h-[400px]">
         <div>로딩 중...</div>
       </div>
     );
-  }
-
-  // 로그인하지 않은 경우 (useAuth에서 이미 리다이렉트 처리됨)
-  if (!isAuthenticated) {
-    return null;
   }
 
   return (

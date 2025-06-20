@@ -34,16 +34,6 @@ export default function MyWineCard({
     rootMargin: "6.25rem",
   });
 
-  const handleEdit = (wine: BaseWineData) => {
-    // 와인 수정 로직
-    console.log("Edit wine:", wine);
-  };
-
-  const handleDelete = (wine: BaseWineData) => {
-    // 와인 삭제 로직
-    console.log("Delete wine:", wine);
-  };
-
   // 로딩 상태 처리
   if (loading) {
     return (
@@ -81,12 +71,11 @@ export default function MyWineCard({
   return (
     <>
       <BaseCard
-        dropdownOptions={{ firstText: "수정하기", secondText: "삭제하기" }}
+        dropdownOptions={{ type: "wine" }}
         getId={(wine) => wine.id}
+        getUserId={(wine) => wine.userId}
         items={myWines}
         renderContent={(wine) => <WineCardContent wine={wine} />}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
       />
       {/* 무한 스크롤 트리거 요소 */}
       {hasNext && (

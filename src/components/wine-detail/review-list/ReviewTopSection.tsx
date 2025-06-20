@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from "react";
 
 import Ellipse from "@/assets/ellipse-icon.svg";
-import DropDown from "@/components/DropDown";
+import ReviewDropDown from "@/components/dropdown/ReviewDropDown";
 import ProfileCircle from "@/components/profile/ProfileCircle";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { User } from "@/types/User";
@@ -51,11 +51,9 @@ export default function ReviewTopSection({
         </button>
         {isOpen && (
           <div className="absolute right-0 top-12 z-11">
-            <DropDown
+            <ReviewDropDown
               authorId={user.id}
-              firstText="수정하기"
               reviewId={reviewId}
-              secondText="삭제하기"
               size={isMobile ? "small" : "default"}
             />
           </div>
