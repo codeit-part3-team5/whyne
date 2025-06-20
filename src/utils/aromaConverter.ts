@@ -15,7 +15,7 @@ export const aromaToKorean = {
   [Aroma.MINERAL]: "미네랄",
   [Aroma.FLOWER]: "꽃",
   [Aroma.TOBACCO]: "담뱃잎",
-  [Aroma.SOIL]: "흙",
+  [Aroma.EARTH]: "흙",
   [Aroma.CHOCOLATE]: "초콜릿",
   [Aroma.SPICE]: "스파이스",
   [Aroma.CARAMEL]: "카라멜",
