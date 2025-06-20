@@ -15,6 +15,7 @@ export interface Review {
   softAcidic: number;
   user: User;
   isLiked: boolean;
+  wineId?: number;
 }
 
 export interface RecentReview {
