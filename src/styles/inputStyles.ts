@@ -25,6 +25,7 @@ export const INPUT_TYPE_STYLES: Record<InputType, string> = {
   email: DEFAULT_INPUT_STYLE,
   password: DEFAULT_INPUT_STYLE,
   search: "h-[2.375rem] rounded-[3.125rem] md:h-[3rem] md:rounded-[3.125rem]",
+  number: DEFAULT_INPUT_STYLE, // 'number' 타입도 명확히 추가
 } as const;
 
 /**

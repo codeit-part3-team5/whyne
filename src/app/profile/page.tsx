@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import useLogin from "@/components/Login/useLogin";
 import MyReviewCard from "@/components/profile/MyReviewCard";
@@ -11,7 +11,7 @@ import ProfileTabs from "@/components/profile/ProfileTabs";
 import { useMyReviews } from "@/hooks/useMyReviews";
 import { useMyWines } from "@/hooks/useMyWines";
 
-export default function ProfilePage() {
+function ProfilePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
@@ -49,7 +49,7 @@ export default function ProfilePage() {
     refresh: reviewsRefresh,
     loadingMore: reviewsLoadingMore,
     totalCount: reviewCount,
-  } = useMyReviews(10, { enabled: isLoggedIn });
+  } = useMyReviews(10, { enabled: isLoggedIn ?? false });
 
   // useMyWines 훅
   const {
@@ -61,7 +61,7 @@ export default function ProfilePage() {
     refresh: winesRefresh,
     loadingMore: winesLoadingMore,
     totalCount: wineCount,
-  } = useMyWines(10, { enabled: isLoggedIn });
+  } = useMyWines(10, { enabled: isLoggedIn ?? false });
 
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
@@ -136,5 +136,13 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <ProfilePageInner />
+    </Suspense>
   );
 }
