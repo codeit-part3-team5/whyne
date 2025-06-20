@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { CreateReviewData, postReview } from "@/apis/reviewsApi";
 import Button from "@/components/Button";
-import { useAuth } from "@/hooks/useAuth";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import useModalStore from "@/store/useModalStore";
 import { useReviewStore } from "@/store/useReviewStore";
@@ -19,7 +18,7 @@ export default function ReviewModal() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const queryClient = useQueryClient();
-  const { isAuthenticated } = useAuth();
+
   const { rating, content, lightBold, smoothTannic, drySweet, softAcidic, aroma, resetReview } =
     useReviewStore();
 
@@ -49,15 +48,13 @@ export default function ReviewModal() {
     setError(null);
 
     // 토큰 확인
-    function checkToken() {
-      if (!isAuthenticated) {
-        setError("인증 토큰이 없습니다. 로그인이 필요합니다.");
-        setIsSubmitting(false);
-        return;
-      }
-    }
+    const accessToken = localStorage.getItem("accessToken");
 
-    checkToken();
+    if (!accessToken) {
+      setError("인증 토큰이 없습니다. 로그인이 필요합니다.");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const aromaValues = aroma; // 리뷰 데이터 구성
