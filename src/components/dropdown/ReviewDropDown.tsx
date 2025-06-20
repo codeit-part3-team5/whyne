@@ -10,7 +10,7 @@ type ReviewDropDownProps = {
   authorId: number;
   reviewId: number;
   size?: "default" | "small";
-  refresh?: () => void;
+  refresh?: () => Promise<void>;
   onEdit?: () => void;
   onDelete?: () => void;
 };

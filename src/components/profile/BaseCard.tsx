@@ -15,7 +15,7 @@ interface BaseCardProps<T> {
   dropdownOptions?: {
     type: "review" | "wine";
   };
-  refresh?: () => void;
+  refresh?: () => Promise<void>;
 }
 
 export function BaseCard<T>({

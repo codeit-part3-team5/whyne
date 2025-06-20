@@ -8,7 +8,7 @@ import WineEditModal from "../modal/WineEditModal";
 type WineDropDownProps = {
   wineId: number;
   size?: "default" | "small";
-  refresh?: () => void;
+  refresh?: () => Promise<void>;
   onEdit?: () => void;
   onDelete?: () => void;
 };
