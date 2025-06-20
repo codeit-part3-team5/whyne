@@ -31,7 +31,7 @@ export default function MyWineCard({
     isLoading: loadingMore,
     onLoadMore: loadMore,
     threshold: 0.1,
-    rootMargin: "6.25rem",
+    rootMargin: "100px",
   });
 
   const handleEdit = (wine: BaseWineData) => {

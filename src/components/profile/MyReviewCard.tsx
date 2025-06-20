@@ -33,7 +33,7 @@ export default function MyReviewCard({
     isLoading: loadingMore,
     onLoadMore: loadMore,
     threshold: 0.1,
-    rootMargin: "6.25rem",
+    rootMargin: "0px",
   });
 
   const handleEdit = (review: MyReview) => {
