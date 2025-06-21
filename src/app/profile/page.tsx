@@ -101,39 +101,37 @@ function ProfilePageInner() {
   }
 
   return (
-    <div>
-      <div className="flex flex-row max-tb:flex-col gap-15 max-tb:gap-10 max-mb:gap-7">
-        <ProfileHeader />
-        <div className="w-full flex flex-col gap-4">
-          <ProfileTabs
-            activeTab={activeTab}
-            handleTabClick={handleTabClick}
-            reviewCount={reviewCount}
-            wineCount={wineCount}
+    <div className="flex flex-row max-tb:flex-col gap-15 max-tb:gap-10 max-mb:gap-7">
+      <ProfileHeader />
+      <div className="w-full flex flex-col gap-4">
+        <ProfileTabs
+          activeTab={activeTab}
+          handleTabClick={handleTabClick}
+          reviewCount={reviewCount}
+          wineCount={wineCount}
+        />
+        {activeTab === 1 && (
+          <MyReviewCard
+            error={reviewsError}
+            hasNext={reviewsHasNext}
+            loadMore={reviewsLoadMore}
+            loading={reviewsLoading}
+            loadingMore={reviewsLoadingMore}
+            myReviews={myReviews}
+            refresh={reviewsRefresh}
           />
-          {activeTab === 1 && (
-            <MyReviewCard
-              error={reviewsError}
-              hasNext={reviewsHasNext}
-              loadMore={reviewsLoadMore}
-              loading={reviewsLoading}
-              loadingMore={reviewsLoadingMore}
-              myReviews={myReviews}
-              refresh={reviewsRefresh}
-            />
-          )}
-          {activeTab === 2 && (
-            <MyWineCard
-              error={winesError}
-              hasNext={winesHasNext}
-              loadMore={winesLoadMore}
-              loading={winesLoading}
-              loadingMore={winesLoadingMore}
-              myWines={myWines}
-              refresh={winesRefresh}
-            />
-          )}
-        </div>
+        )}
+        {activeTab === 2 && (
+          <MyWineCard
+            error={winesError}
+            hasNext={winesHasNext}
+            loadMore={winesLoadMore}
+            loading={winesLoading}
+            loadingMore={winesLoadingMore}
+            myWines={myWines}
+            refresh={winesRefresh}
+          />
+        )}
       </div>
     </div>
   );
