@@ -22,7 +22,7 @@ export default function MonthlyWines() {
   useEffect(() => {
     const fetchWines = async () => {
       try {
-        const data = await getWines(8);
+        const data = await getWines(50);
         setWines(data.list);
       } catch (error) {
         console.error("이 달의 추천 와인을 불러오는데 실패했습니다.:", error);
@@ -34,7 +34,8 @@ export default function MonthlyWines() {
 
   // 랜덤 와인 설정
   useEffect(() => {
-    const shuffled = [...wines].sort(() => Math.random() - 0.5);
+    const filtered = wines.filter((wine) => wine.avgRating >= 4.2);
+    const shuffled = filtered.sort(() => Math.random() - 0.5);
     setRandomWines(shuffled);
   }, [wines]);
 
