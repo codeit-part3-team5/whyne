@@ -1,9 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import useLogin from "../Login/useLogin";
 
 const ProfileDropDown: React.FC = () => {
   const { clear } = useLogin();
+  const router = useRouter();
 
   return (
     <ul className="absolute z-10 left-[-5.5rem] mt-[0.25rem] rounded-[1rem] border border-gray-300 bg-white overflow-hidden text-[1rem] text-center">
@@ -18,11 +21,15 @@ const ProfileDropDown: React.FC = () => {
         className="cursor-pointer px-[1rem] py-[0.625rem] hover:bg-light-purple"
         role="button"
         tabIndex={0}
-        onClick={() => clear()}
+        onClick={() => {
+          clear();
+          router.push("/wines");
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             clear();
+            router.push("/wines");
           }
         }}
       >
