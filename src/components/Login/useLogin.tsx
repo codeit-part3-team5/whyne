@@ -27,7 +27,7 @@ const useLogin = create<LoginState>()(
       setImageUrl: (imageUrl) => {
         set((prev) => ({
           ...prev,
-          imageUrl: imageUrl ?? get().imageUrl,
+          imageUrl,
         }));
       },
       clear: () => set({ accessToken: undefined, refreshToken: undefined }),
