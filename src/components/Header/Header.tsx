@@ -45,7 +45,11 @@ const Header: React.FC = () => {
     >
       <div className="w-full flex items-center justify-between">
         <Link href="/">
-          <img alt="logo image" className="w-[3.25rem]" src="/images/logo.png" />
+          <img
+            alt="logo image"
+            className="w-[3.25rem] select-none pointer-events-none"
+            src="/images/logo.png"
+          />
         </Link>
         {loading ? (
           <Spinner className="border-white border-r-black" />

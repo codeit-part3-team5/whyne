@@ -15,7 +15,7 @@ export default function MiniWineCard({ wine }: Props) {
       <div className="shrink-0">
         <img
           alt={wine.name}
-          className="w-[2.75rem] h-[10.0625rem] object-cover object-bottom"
+          className="w-[2.75rem] h-[10.0625rem] object-cover object-bottom select-none pointer-events-none"
           src={wine.image}
         />
       </div>

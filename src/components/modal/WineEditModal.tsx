@@ -27,9 +27,10 @@ interface Wine {
 interface WineEditModalProps {
   wineId: number;
   initialWineData?: Wine;
+  refresh?: () => Promise<void>;
 }
 
-export default function WineEditModal({ wineId, initialWineData }: WineEditModalProps) {
+export default function WineEditModal({ wineId, initialWineData, refresh }: WineEditModalProps) {
   const { close } = useModalStore();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -136,6 +137,8 @@ export default function WineEditModal({ wineId, initialWineData }: WineEditModal
       };
 
       await patchWine(wineId, wineData);
+      await refresh?.();
+
       alert("와인 정보가 수정되었습니다.");
       close();
     } catch (err) {
@@ -203,7 +206,7 @@ export default function WineEditModal({ wineId, initialWineData }: WineEditModal
           {imagePreview ? (
             <img
               alt="미리보기"
-              className="w-full h-full object-cover pointer-events-none rounded-md"
+              className="w-full h-full object-cover pointer-events-none rounded-md select-none"
               src={imagePreview}
             />
           ) : (

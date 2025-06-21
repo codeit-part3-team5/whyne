@@ -23,7 +23,7 @@ export default function WineDropDown({
   const { open, close } = useModalStore();
 
   const handleEdit = async () => {
-    open("editWine", <WineEditModal wineId={wineId} />);
+    open("editWine", <WineEditModal refresh={refresh} wineId={wineId} />);
     onEdit?.();
   };
 

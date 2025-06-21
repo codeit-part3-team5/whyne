@@ -22,7 +22,11 @@ export default function Login() {
     <div className="flex items-center justify-center">
       <div className="bg-white border border-solid border-gray300 px-[3rem] py-[5rem] rounded-2xl">
         <div className="w-[25rem] flex flex-col items-center">
-          <img alt="logo-image" className="w-[6.5rem]" src="/images/logo-2x.png" />
+          <img
+            alt="logo-image"
+            className="w-[6.5rem] select-none pointer-events-none"
+            src="/images/logo-2x.png"
+          />
           <SigninForm />
           <Button
             className="w-full mt-[0.5rem] border border-solid border-gray300"

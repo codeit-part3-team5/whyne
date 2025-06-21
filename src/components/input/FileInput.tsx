@@ -107,7 +107,7 @@ export default function FileInput({ currentImage, onImageChange }: FileInputProp
           {imagePreview && !imageError ? (
             <img
               alt="프로필 이미지"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover rounded-full select-none pointer-events-none"
               src={imagePreview}
               onError={handleImageError}
               onLoad={handleImageLoad}

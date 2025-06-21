@@ -115,7 +115,7 @@ export default function WinePostModal({ onSuccess }: { onSuccess?: () => void })
           {imagePreview ? (
             <img
               alt="미리보기"
-              className="w-full h-full object-cover pointer-events-none"
+              className="w-full h-full object-cover pointer-events-none select-none"
               src={imagePreview}
             />
           ) : (

@@ -16,7 +16,7 @@ const WineCard: React.FC<WineCardProps> = ({ data }) => {
         {data.image ? (
           <img
             alt={data.name}
-            className="w-[12.5rem] h-[13.0625rem] object-contain object-bottom"
+            className="w-[12.5rem] h-[13.0625rem] object-contain object-bottom select-none pointer-events-none"
             src={data.image}
           />
         ) : (

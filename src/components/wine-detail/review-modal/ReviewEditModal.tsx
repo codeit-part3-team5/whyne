@@ -16,9 +16,10 @@ import ReviewTop from "./ReviewTop";
 
 interface ReviewEditModalProps {
   reviewId: number;
+  refresh?: () => Promise<void>;
 }
 
-export default function ReviewEditModal({ reviewId }: ReviewEditModalProps) {
+export default function ReviewEditModal({ reviewId, refresh }: ReviewEditModalProps) {
   const { close } = useModalStore();
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
   const size = isMobile ? "lg" : "xl";
@@ -97,6 +98,11 @@ export default function ReviewEditModal({ reviewId }: ReviewEditModalProps) {
   const updateCaches = useCallback(
     async (updatedReview: Review) => {
       if (!wine?.id) return;
+
+      // 프로필 페이지의 리뷰 수정
+      if (refresh) {
+        await refresh();
+      }
 
       try {
         // 개별 리뷰 캐시 업데이트

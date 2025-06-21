@@ -106,7 +106,7 @@ function WineCardContent({ wine }: { wine: BaseWineData }) {
   return (
     <div className="flex gap-6 items-center max-md:gap-5">
       {/* 와인 이미지 - 고정 크기 */}
-      <div className="flex-shrink-0 w-50 h-52 max-md:w-15 max-md:h-40 bg-white rounded-md overflow-hidden flex items-center justify-center text-gray-400 text-sm">
+      <div className="flex-shrink-0 w-50 h-52 max-md:w-15 max-md:h-40 bg-white rounded-md overflow-hidden flex items-center justify-center text-gray-400 text-sm select-none pointer-events-none">
         {wine.image ? (
           <div className="w-full h-full flex items-center justify-center">
             <img
