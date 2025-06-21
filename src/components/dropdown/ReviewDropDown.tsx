@@ -43,7 +43,7 @@ export default function ReviewDropDown({
       alert(MESSAGES.UNAUTHORIZED_EDIT);
       return;
     }
-    open("editReview", <ReviewEditModal reviewId={reviewId} />);
+    open("editReview", <ReviewEditModal refresh={refresh} reviewId={reviewId} />);
     onEdit?.();
   };
 
