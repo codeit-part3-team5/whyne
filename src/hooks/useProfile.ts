@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { uploadImage } from "@/apis/imagesApi";
 import { me, updateUserProfile } from "@/apis/usersApi";
+import useLogin from "@/components/Login/useLogin";
 import { User } from "@/types/User";
 
 interface UseProfileReturn {
@@ -30,6 +31,7 @@ export const useProfile = (): UseProfileReturn => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { setImageUrl } = useLogin();
 
   // 사용자 정보 가져오기
   const getUserInfo = async () => {
@@ -78,6 +80,7 @@ export const useProfile = (): UseProfileReturn => {
 
       // 프로필 업데이트 API 호출
       await updateUserProfile(inputNickName, uploadedImageUrl);
+      setImageUrl(uploadedImageUrl);
 
       // 상태 업데이트
       const updatedUserInfo: User = {

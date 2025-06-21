@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { me } from "@/apis/usersApi";
 import { cn } from "@/utils/cn";
 
 import useLogin from "../Login/useLogin";
@@ -15,8 +14,7 @@ const Header: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { accessToken } = useLogin();
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
+  const { accessToken, imageUrl } = useLogin();
 
   useEffect(() => {
     const checkAuthStatus = () => {
@@ -36,23 +34,6 @@ const Header: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  useEffect(() => {
-    const fetchUserImage = async () => {
-      if (accessToken) {
-        try {
-          const user = await me();
-          if (user && user.image) {
-            setImgSrc(user.image);
-          }
-        } catch (error) {
-          console.log("사용자 정보를 가져오는 중 오류 발생:", error);
-          setImgSrc(null);
-        }
-      }
-    };
-    fetchUserImage();
-  }, [accessToken]);
 
   return (
     <div
@@ -84,7 +65,7 @@ const Header: React.FC = () => {
                 }
               }}
             >
-              <ProfileCircle imageUrl={imgSrc} size="mobile" />
+              <ProfileCircle imageUrl={imageUrl} size="mobile" />
             </div>
             <div ref={containerRef} aria-expanded={isOpen} className="relative">
               {isOpen && <ProfileDropDown />}

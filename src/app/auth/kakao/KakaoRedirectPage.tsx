@@ -9,7 +9,7 @@ import Spinner from "@/components/Spinner";
 
 const KakaoRedirectPage = () => {
   const searchParams = useSearchParams();
-  const { setToken } = useLogin();
+  const { setToken, setImageUrl } = useLogin();
 
   useEffect(() => {
     const callApi = async () => {
@@ -18,6 +18,7 @@ const KakaoRedirectPage = () => {
         const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/kakao`;
         const res = await signInWithProvider("KAKAO", code, redirectUri);
         setToken(res.accessToken, res.refreshToken);
+        setImageUrl(res.user.image);
       }
     };
     callApi();

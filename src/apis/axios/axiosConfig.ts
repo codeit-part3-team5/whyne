@@ -27,6 +27,7 @@ const getAuthValue = async (token: string | undefined | null): Promise<string> =
           refreshToken: useLogin.getState().refreshToken,
         })
       ).data;
+      useLogin.setState({ accessToken: responseData.accessToken });
       authValue = responseData.accessToken;
     }
   }
