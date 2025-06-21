@@ -22,13 +22,14 @@ const SigninForm = () => {
     handleSubmit,
   } = useForm<LoginFormInput>({ mode: "all" });
   const router = useRouter();
-  const { setToken } = useLogin();
+  const { setToken, setImageUrl } = useLogin();
 
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
     const res = await signIn(data.email, data.password, () =>
       setError("email", { type: "custom", message: "이메일 혹은 비밀번호를 확인해주세요." })
     );
     setToken(res.accessToken, res.refreshToken);
+    setImageUrl(res.user.image);
     router.push("/");
   };
 

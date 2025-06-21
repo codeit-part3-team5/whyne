@@ -29,7 +29,7 @@ const SignupForm: React.FC = () => {
   } = useForm<FormInput>({ mode: "all" });
   const password = watch("password");
   const router = useRouter();
-  const { login, setToken } = useLogin();
+  const { login, setToken, setImageUrl } = useLogin();
 
   useEffect(() => {
     if (login()) {
@@ -48,6 +48,7 @@ const SignupForm: React.FC = () => {
       }
     );
     setToken(res.accessToken, res.refreshToken);
+    setImageUrl(res.user.image);
     router.push("/");
   };
 
