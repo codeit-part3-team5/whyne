@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 import { signInWithProvider } from "@/apis/authApi";
@@ -9,6 +9,7 @@ import Spinner from "@/components/Spinner";
 
 const KakaoRedirectPage = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const { setToken, setImageUrl } = useLogin();
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const KakaoRedirectPage = () => {
         const res = await signInWithProvider("KAKAO", code, redirectUri);
         setToken(res.accessToken, res.refreshToken);
         setImageUrl(res.user.image);
+        router.push("/");
       }
     };
     callApi();
