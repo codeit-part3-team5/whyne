@@ -1,8 +1,9 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 
 import Ellipse from "@/assets/ellipse-icon.svg";
 import ReviewDropDown from "@/components/dropdown/ReviewDropDown";
 import ProfileCircle from "@/components/profile/ProfileCircle";
+import { useDropdown } from "@/hooks/useDropdown";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import type { User } from "@/types/User";
 
@@ -24,7 +25,15 @@ export default function ReviewTopSection({
   reviewId,
 }: ReviewTopSectionProps) {
   const isMobile = useMediaQuery("(max-width: 24.375rem)");
-  const [isOpen, setIsOpen] = useState(false);
+
+  // 단일 리뷰를 위한 배열 생성
+  const reviewItem = { id: reviewId, user };
+  const { openDropdownId, dropdownRefs, handleDropdownToggle } = useDropdown(
+    [reviewItem],
+    (item) => item.id
+  );
+
+  const isOpen = openDropdownId === reviewId;
 
   return (
     <section className="flex items-center justify-between w-full relative">
@@ -40,17 +49,21 @@ export default function ReviewTopSection({
           size={isMobile ? 32 : 38}
           onLikeClick={(e) => onLikeClick?.(e)}
         />
-
         <button
           aria-expanded={isOpen}
           aria-haspopup="menu"
           className="relative"
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={() => handleDropdownToggle(reviewId)}
         >
           <Ellipse height="38" width="38" />
         </button>
         {isOpen && (
-          <div className="absolute right-0 top-12 z-11">
+          <div
+            ref={(el) => {
+              dropdownRefs.current[reviewId] = el;
+            }}
+            className="absolute right-0 top-12 z-11"
+          >
             <ReviewDropDown
               authorId={user.id}
               reviewId={reviewId}
