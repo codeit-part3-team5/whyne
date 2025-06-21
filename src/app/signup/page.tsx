@@ -2,7 +2,7 @@ import Signup from "@/components/Login/Signup";
 
 const SignupPage = () => {
   return (
-    <div>
+    <div className="py-25">
       <Signup />
     </div>
   );
