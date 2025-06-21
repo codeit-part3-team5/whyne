@@ -17,7 +17,11 @@ const Footer: React.FC = () => {
           rel="noopener noreferrer"
           target="_blank"
         >
-          <img alt="github-icon" className="size-[1.25rem]" src="/images/github.png" />
+          <img
+            alt="github-icon"
+            className="size-[1.25rem] select-none pointer-events-none"
+            src="/images/github.png"
+          />
           <span>GitHub</span>
         </a>
       </div>

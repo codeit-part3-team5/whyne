@@ -203,7 +203,7 @@ export default function WineEditModal({ wineId, initialWineData }: WineEditModal
           {imagePreview ? (
             <img
               alt="미리보기"
-              className="w-full h-full object-cover pointer-events-none rounded-md"
+              className="w-full h-full object-cover pointer-events-none rounded-md select-none"
               src={imagePreview}
             />
           ) : (

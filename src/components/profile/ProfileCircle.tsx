@@ -16,7 +16,7 @@ export default function ProfileCircle({ imageUrl, size = "default" }: ProfileCir
       {imageUrl ? (
         <img
           alt="사용자 프로필"
-          className="w-full h-full rounded-full object-cover border-[1.5px] border-gray-300"
+          className="w-full h-full rounded-full object-cover border-[1.5px] border-gray-300 select-none pointer-events-none"
           src={imageUrl}
         />
       ) : (

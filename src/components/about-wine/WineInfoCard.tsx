@@ -24,7 +24,7 @@ export default function WineInfoCard({ data }: Props) {
           {data.image ? (
             <img
               alt={data.name}
-              className="w-[4rem] h-[10rem] sm:w-[10rem] sm:h-[11rem] md:w-[12rem] md:h-[12.5rem] lg:w-[12.5rem] lg:h-[13.0625rem] object-contain object-bottom"
+              className="w-[4rem] h-[10rem] sm:w-[10rem] sm:h-[11rem] md:w-[12rem] md:h-[12.5rem] lg:w-[12.5rem] lg:h-[13.0625rem] object-contain object-bottom select-none pointer-events-none"
               src={data.image}
             />
           ) : (
